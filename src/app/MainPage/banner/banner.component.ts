@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APP_NAME } from '../constants'
+import { APP_NAME } from '../../constants'
 
 
 @Component({

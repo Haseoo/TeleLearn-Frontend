@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { BannerComponent } from './banner/banner.component';
+import { MainPageComponent } from './MainPage/main-page/main-page.component';
+import { BannerComponent } from './MainPage/banner/banner.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
