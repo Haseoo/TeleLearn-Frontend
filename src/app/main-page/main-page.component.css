@@ -1,0 +1,15 @@
+.menu {
+    width: 25%;
+    min-width: 250px;
+}
+
+.content {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-title {
+    text-align: center;
+    font-weight: bold;
+}

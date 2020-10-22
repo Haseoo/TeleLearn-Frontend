@@ -1,0 +1,36 @@
+nav {
+    height: 60px;
+    background-image: url(http://dawidhomeserver.ddns.net/minecraft/acryllicBg.png);
+    background-repeat: repeat;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+main {
+    margin-top: 60px;
+}
+
+.nav-menu {
+    width: 100%;
+}
+
+.nav-menu-elements {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    width: 100%;
+}
+
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.navbar-brand {
+    font-size: 18pt;
+    color: black;
+}
