@@ -1,11 +1,7 @@
-<ul class="pagination justify-content-center">
-    <li class="page-item" [ngClass]="{'disabled': currentPage <= 0}">
-      <button class="page-link" (click)="currentPage=currentPage-1">Poprzednia</button>
-    </li>
-    <li class="page-item" *ngFor="let it of [].constructor(numberOfPages); let i = index" [ngClass]="{'active': currentPage === i}">
-        <a class="page-link" (click)="currentPage=i">{{ i + 1 }}</a>
-    </li>
-    <li class="page-item" [ngClass]="{'disabled': currentPage >= numberOfPages -1 }">
-      <button class="page-link" (click)="currentPage=currentPage+1">Następna</button>
-    </li>
-</ul>
+<div class="list">
+    <ul>
+        <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: current, totalItems: 300 }">{{ item }}</li>
+    </ul>
+
+    <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="PageChanged($event)"></pagination-controls>
+</div>

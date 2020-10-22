@@ -7,12 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsPagerComponent implements OnInit {
 
-  constructor() { }
-
-  numberOfPages:number = 150;
-  currentPage:number = 0;
+  collection = [];
+  current: number = 0;
+  constructor() {
+    for (let i = 1; i <= 10; i++) {
+      this.collection.push(`item ${i}`);
+    }
+  }
 
   ngOnInit(): void {
+  }
+
+  PageChanged(newPage:number): void {
+    console.log(newPage);
+    this.current = newPage;
+    this.collection = [];
+    for (let i = 1; i <= 10; i++) {
+      this.collection.push(`item ${i + (newPage - 1) * 10}`);
+    }
   }
 
 }
