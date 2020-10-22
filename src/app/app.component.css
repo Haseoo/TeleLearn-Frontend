@@ -5,7 +5,6 @@ nav {
 main {
     margin-top: 60px;
     width: 100%;
-
 }
 
 .nav-menu {
@@ -24,7 +23,7 @@ footer {
 }
 
 .acrylic {
-    background-image: url(http://dawidhomeserver.ddns.net/minecraft/acryllicBg.png);
+    background-image: 'assets/acrylicBg.png';
     background-repeat: repeat;
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.6);

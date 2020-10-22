@@ -8,13 +8,15 @@ import { MainPageComponent } from './MainPage/main-page/main-page.component';
 import { BannerComponent } from './MainPage/banner/banner.component';
 import { FormsModule } from '@angular/forms';
 import { NewsPagerComponent } from './MainPage/news-pager/news-pager.component';
+import { NewsCardComponent } from './MainPage/news-card/news-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     BannerComponent,
-    NewsPagerComponent
+    NewsPagerComponent,
+    NewsCardComponent
   ],
   imports: [
     BrowserModule,

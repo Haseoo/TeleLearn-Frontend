@@ -8,3 +8,11 @@
     text-align: center;
     font-weight: bold;
 }
+
+.container {
+    margin-left: 15px;
+}
+
+.news-container {
+    padding-top: 10px;
+}

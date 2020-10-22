@@ -3,12 +3,7 @@
     background: linear-gradient(150deg, rgb(78, 103, 247) 15%, #05d5ff 60%, #8bffcf 80%);
     width: 100%;
     height: 250px;
-    margin: 10px 0;
-    /*It may cause problems in the future*/
-    width: 100vw;
-    position: relative;
-    left: calc(-50vw + 50%);
-    /*It may cause problems in the future*/
+    margin-bottom: 15px;
 }
 .logo {
     margin: 0 10%;

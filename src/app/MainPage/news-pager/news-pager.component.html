@@ -1,7 +1,8 @@
-<div class="list">
-    <ul>
-        <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: current, totalItems: 300 }">{{ item }}</li>
-    </ul>
-
-    <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="PageChanged($event)"></pagination-controls>
+<div class="container">
+    <div class="card-row row justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current, totalItems: total }">
+        <app-news-card [news]="item"></app-news-card>
+    </div>
+    <div class="row justify-content-center">
+        <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="PageChanged($event)"></pagination-controls>
+    </div>
 </div>
