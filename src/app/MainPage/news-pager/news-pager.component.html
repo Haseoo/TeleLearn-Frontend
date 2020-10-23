@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!fetchError">
     <div class="card-row row justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current, totalItems: total }">
         <app-news-card [news]="item"></app-news-card>
     </div>
@@ -6,3 +6,4 @@
         <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="PageChanged($event)"></pagination-controls>
     </div>
 </div>
+<app-error-bar *ngIf="fetchError" [errorMessage]="errorMessage"></app-error-bar>

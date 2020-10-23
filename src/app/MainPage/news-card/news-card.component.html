@@ -8,7 +8,7 @@
         {{ news.author }} ({{ news.publicationDate | date:'dd.MM.yyyy HH:mm' }})
     </div>
     <article class="card-text">
-        {{ news.content }}
+        {{ news.brief }}
     </article>
     <a *ngIf="news.isMore" class="card-link" routerLink="news/{{ news.id }}">Czytaj więcej...</a>
 </section>
