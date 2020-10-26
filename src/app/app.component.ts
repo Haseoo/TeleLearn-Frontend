@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { APP_NAME } from './constants'
+import { UserService } from './Services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,8 @@ import { APP_NAME } from './constants'
 export class AppComponent {
   title = APP_NAME;
   appName = APP_NAME;
+
+  constructor(public userService:UserService) {
+    
+  }
 }

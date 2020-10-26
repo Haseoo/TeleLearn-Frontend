@@ -10,5 +10,5 @@
     <article class="card-text">
         {{ news.brief }}
     </article>
-    <a *ngIf="news.isMore" class="card-link" routerLink="news/{{ news.id }}">Czytaj więcej...</a>
+    <a *ngIf="news.more" class="card-link" routerLink="news/{{ news.id }}">Czytaj więcej...</a>
 </section>

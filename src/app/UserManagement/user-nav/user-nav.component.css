@@ -1,0 +1,18 @@
+.nav-banner {
+    width: 100%;
+    font-size: 13pt;
+    padding: 7px 0 7px 1em;
+    border: solid lightgray;
+    border-width: 1px 0;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nav-banner:focus {
+    outline: 0;
+}
+
+.container {
+    margin: .5em 0;
+}

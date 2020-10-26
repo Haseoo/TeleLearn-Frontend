@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { NewsPagerComponent } from './MainPage/news-pager/news-pager.component';
 import { NewsCardComponent } from './MainPage/news-card/news-card.component';
 import { ErrorBarComponent } from './error-bar/error-bar.component';
+import { UserNavComponent } from './UserManagement/user-nav/user-nav.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ErrorBarComponent } from './error-bar/error-bar.component';
     BannerComponent,
     NewsPagerComponent,
     NewsCardComponent,
-    ErrorBarComponent
+    ErrorBarComponent,
+    UserNavComponent
   ],
   imports: [
     BrowserModule,
