@@ -1,17 +1,18 @@
 <body>
-  <nav class="navbar navbar-default fixed-top shadow acrylic">
-      <div class="nav-menu vertical-center">
-          <div class="nav-menu-elements d-flex bd-highlight">
-              <div class="flex-grow-1 bd-highlight app-name align-self-center">
-                  <a class="navbar-brand"  href="/">{{ appName }}</a>
-              </div>
-              <span *ngIf="!userService.GetCurrentUser()" class="bd-highlight align-self-center">Niezalogowany/a (<a routerLink="/login">zaloguj się</a>)</span>
+    <nav class="navbar navbar-default fixed-top shadow acrylic">
+        <div class="nav-menu vertical-center">
+            <div class="nav-menu-elements d-flex bd-highlight">
+                <div class="flex-grow-1 bd-highlight app-name align-self-center">
+                    <a class="navbar-brand" href="/">{{ appName }}</a>
+                </div>
+                <span *ngIf="!userService.GetCurrentUser()" class="bd-highlight align-self-center">Niezalogowany/a (<a routerLink="/login">zaloguj się</a>)</span>
             </div>
-      </div>
-  </nav>
-  <main>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
-  <footer>Dawid Szymkiewicz PŚk 2020/21</footer>
+        </div>
+    </nav>
+    <main>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+    <footer>Dawid Szymkiewicz PŚk 2020/21</footer>
+</body>

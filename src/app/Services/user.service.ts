@@ -7,7 +7,7 @@ export class UserService {
 
   constructor() { }
 
-  public GetCurrentUser():any {
+  public GetCurrentUser(): any {
     return localStorage.getItem('currentUser');
   }
 }

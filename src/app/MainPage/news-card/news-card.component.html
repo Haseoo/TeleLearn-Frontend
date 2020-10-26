@@ -5,7 +5,8 @@
         </a>
     </div>
     <div class="card-subtitle">
-        {{ news.author }} ({{ news.publicationDate | date:'dd.MM.yyyy HH:mm' }})
+        {{ news.author }}
+        ({{ news.publicationDate | date:'dd.MM.yyyy HH:mm' }})
     </div>
     <article class="card-text">
         {{ news.brief }}

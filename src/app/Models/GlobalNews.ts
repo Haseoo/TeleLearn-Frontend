@@ -5,5 +5,5 @@ export class GlobalNews {
     brief: string;
     author: string;
     content: string;
-    more:boolean;
+    more: boolean;
 }

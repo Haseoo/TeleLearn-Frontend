@@ -8,7 +8,7 @@ import { GlobalNews } from 'src/app/Models/GlobalNews';
 })
 export class NewsCardComponent implements OnInit {
 
-  @Input() news:GlobalNews;
+  @Input() news: GlobalNews;
 
   constructor() { }
 

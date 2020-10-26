@@ -11,7 +11,7 @@ export class AppComponent {
   title = APP_NAME;
   appName = APP_NAME;
 
-  constructor(public userService:UserService) {
-    
+  constructor(public userService: UserService) {
+
   }
 }

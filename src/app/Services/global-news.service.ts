@@ -12,8 +12,8 @@ export class GlobalNewsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBriefs(page:number, size:number): Observable<Page<GlobalNews>> {
+  getBriefs(page: number, size: number): Observable<Page<GlobalNews>> {
     let params = new HttpParams().set('pageNo', page.toString()).set('pageSize', size.toString());
-    return this.httpClient.get<Page<GlobalNews>>(environment.api_url + '/news', {params: params});
+    return this.httpClient.get<Page<GlobalNews>>(environment.api_url + '/news', { params: params });
   }
 }

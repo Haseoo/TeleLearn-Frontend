@@ -9,14 +9,14 @@ import { GlobalNewsService } from 'src/app/Services/global-news.service';
 })
 export class NewsPagerComponent implements OnInit {
 
-  collection:GlobalNews[] = [];
-  current:number = 1;
-  perPage:number = 10;
-  total:number = 0;
-  fetchError:boolean;
-  errorMessage:string;
+  collection: GlobalNews[] = [];
+  current: number = 1;
+  perPage: number = 10;
+  total: number = 0;
+  fetchError: boolean;
+  errorMessage: string;
 
-  constructor(private globalNewsService:GlobalNewsService) {
+  constructor(private globalNewsService: GlobalNewsService) {
   }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class NewsPagerComponent implements OnInit {
     );
   }
 
-  PageChanged(page:number): void {
+  PageChanged(page: number): void {
     this.current = page;
     this.getPage();
   }
