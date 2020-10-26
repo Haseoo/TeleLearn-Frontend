@@ -1,0 +1,24 @@
+<div class="container main-container shadow">
+    <p class="text-center header">Zaloguj się</p>
+    <p class="text-center">Nie masz konta?
+        <a routerLink="register">Zarejestruj się!</a>
+    </p>
+    <app-error-bar [errorMessage]="responseErrorMessage" *ngIf="responseError"></app-error-bar>
+    <div class="login-form">
+        <form [formGroup]="loginForm" (ngSubmit)="Submit()">
+            <div class="form-group">
+                <label>Login</label>
+                <input type="text" placeholder="Twój login" formControlName="login" class="form-control" [ngClass]="{ 'invalid': submitted && ctls.login.errors }"/>
+                <div class="text-danger" *ngIf="submitted && ctls.login.errors && ctls.login.errors.required">Podaj login</div>
+            </div>
+            <div class="form-group">
+                <label>Hasło</label>
+                <input type="password" placeholder="Twoje hasło" formControlName="password" class="form-control" [ngClass]="{ 'invalid': submitted && ctls.password.errors }"/>
+                <div class="text-danger" *ngIf="submitted && ctls.password.errors && ctls.password.errors.required">Podaj hasło</div>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            </div>
+        </form>
+    </div>
+</div>
