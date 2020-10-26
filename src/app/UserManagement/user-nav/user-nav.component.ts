@@ -8,7 +8,7 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class UserNavComponent implements OnInit {
 
-  yourAccountVisible : boolean = true;
+  yourAccountVisible: boolean = true;
 
   constructor(public userService: UserService) { }
 
