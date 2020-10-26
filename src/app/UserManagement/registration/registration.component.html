@@ -1,0 +1,14 @@
+<div class="container form-container shadow">
+    <p class="text-center header">Rejestracja</p>
+    <p class="text-center font-weight-light">Pola wymagane zostały oznaczone symbolem (*)</p>
+    <div class="btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+        <label class="btn btn-secondary" [ngClass]="{ 'active': mode === ACTIVE_OPTIONS.STUDENT }" (click)="mode = ACTIVE_OPTIONS.STUDENT">
+            Uczeń
+        </label>
+        <label class="btn btn-secondary" [ngClass]="{ 'active': mode === ACTIVE_OPTIONS.TEACHER }" (click)="mode = ACTIVE_OPTIONS.TEACHER">
+            Nauczyciel
+        </label>
+    </div>
+    <app-registeration-student *ngIf="mode === ACTIVE_OPTIONS.STUDENT"></app-registeration-student>
+    <app-registeration-teacher *ngIf="mode === ACTIVE_OPTIONS.TEACHER"></app-registeration-teacher>
+</div>

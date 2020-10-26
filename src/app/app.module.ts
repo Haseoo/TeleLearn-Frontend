@@ -13,6 +13,9 @@ import { NewsCardComponent } from './MainPage/news-card/news-card.component';
 import { ErrorBarComponent } from './error-bar/error-bar.component';
 import { UserNavComponent } from './UserManagement/user-nav/user-nav.component';
 import { LoginComponent } from './UserManagement/login/login.component';
+import { RegistrationComponent } from './UserManagement/registration/registration.component';
+import { RegisterationTeacherComponent } from './UserManagement/registration/registeration-teacher/registeration-teacher.component';
+import { RegisterationStudentComponent } from './UserManagement/registration/registeration-student/registeration-student.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { LoginComponent } from './UserManagement/login/login.component';
     NewsCardComponent,
     ErrorBarComponent,
     UserNavComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent,
+    RegisterationTeacherComponent,
+    RegisterationStudentComponent
   ],
   imports: [
     BrowserModule,

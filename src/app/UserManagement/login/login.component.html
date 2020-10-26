@@ -1,7 +1,7 @@
-<div class="container main-container shadow">
+<div class="container form-container shadow">
     <p class="text-center header">Zaloguj się</p>
     <p class="text-center">Nie masz konta?
-        <a routerLink="register">Zarejestruj się!</a>
+        <a routerLink="/register">Zarejestruj się!</a>
     </p>
     <app-error-bar [errorMessage]="responseErrorMessage" *ngIf="responseError"></app-error-bar>
     <div class="login-form">
