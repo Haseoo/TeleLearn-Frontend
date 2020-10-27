@@ -4,6 +4,8 @@
         <a routerLink="/register">Zarejestruj się!</a>
     </p>
     <app-error-bar [errorMessage]="responseErrorMessage" *ngIf="responseError"></app-error-bar>
+    <app-info-bar [message]="'Rejestracja pomyślna, zaloguj się'" *ngIf="isRedirectFromRegistration"></app-info-bar>
+    <app-error-bar [errorMessage]="'Aby uzystkać dostęp do strony, zaloguj się.'" *ngIf="returnUrl"></app-error-bar>
     <div class="login-form">
         <form [formGroup]="loginForm" (ngSubmit)="Submit()">
             <div class="form-group">

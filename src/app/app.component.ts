@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { APP_NAME } from './constants'
+import { UserLoginResponse } from './Models/UserLoginResponse';
 import { UserService } from './Services/user.service';
 
 @Component({
@@ -7,11 +8,17 @@ import { UserService } from './Services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = APP_NAME;
   appName = APP_NAME;
 
-  constructor(public userService: UserService) {
+  constructor(private userService: UserService){
 
+  }
+  ngOnInit(): void {
+  }
+
+  get currentUser(): UserLoginResponse {
+    return this.userService.GetCurrentUser();
   }
 }

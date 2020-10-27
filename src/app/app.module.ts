@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,9 @@ import { LoginComponent } from './UserManagement/login/login.component';
 import { RegistrationComponent } from './UserManagement/registration/registration.component';
 import { RegisterationTeacherComponent } from './UserManagement/registration/registeration-teacher/registeration-teacher.component';
 import { RegisterationStudentComponent } from './UserManagement/registration/registeration-student/registeration-student.component';
+import { JwtInterceptorService } from 'src/Auth/jwt-interceptor.service';
+import { InfoBarComponent } from './info-bar/info-bar.component';
+import { LogoutComponent } from './UserManagement/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { RegisterationStudentComponent } from './UserManagement/registration/reg
     LoginComponent,
     RegistrationComponent,
     RegisterationTeacherComponent,
-    RegisterationStudentComponent
+    RegisterationStudentComponent,
+    InfoBarComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,7 @@ import { RegisterationStudentComponent } from './UserManagement/registration/reg
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

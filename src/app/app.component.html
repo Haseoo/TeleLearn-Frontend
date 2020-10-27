@@ -5,7 +5,9 @@
                 <div class="flex-grow-1 bd-highlight app-name align-self-center">
                     <a class="navbar-brand" href="/">{{ appName }}</a>
                 </div>
-                <span *ngIf="!userService.GetCurrentUser()" class="bd-highlight align-self-center">Niezalogowany/a (<a routerLink="/login">zaloguj się</a>)</span>
+                <span *ngIf="!currentUser" class="bd-highlight align-self-center">Niezalogowany/a (<a routerLink="/login">zaloguj się</a>)</span>
+                <span *ngIf="currentUser" class="bd-highlight align-self-center">Zalogowany jako {{currentUser.name}} {{currentUser.surname}} (<a routerLink="logout">wyloguj</a>)</span>
+
             </div>
         </div>
     </nav>

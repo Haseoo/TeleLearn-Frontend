@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TeacherRegisterRequest } from 'src/app/Models/Requests/TeacherRegisterRequest';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-registeration-teacher',
@@ -14,7 +17,9 @@ export class RegisterationTeacherComponent implements OnInit {
   responseErrorMessage: string;
   readonly PASSWORD_MIN_LENGHT:number = 6;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -39,6 +44,21 @@ export class RegisterationTeacherComponent implements OnInit {
     if (!this.registerationForm.valid || !this.registerationForm.controls.tos.value) {
       return;
     } else {
+      let ctls = this.registerationForm.controls;
+      let request = new TeacherRegisterRequest(ctls.login.value,
+        ctls.password.value,
+        ctls.email.value,
+        ctls.name.value,
+        ctls.surname.value,
+        ctls.unit.value,
+        ctls.title.value);
+      this.userService.registerTeacher(request).subscribe(
+        dt => this.router.navigate(['/login'], {queryParams: {redirect: 'registration'}}),
+        err => {
+          this.responseErrorMessage = err.error.message;
+          this.responseError = true;
+        }
+      );
     }
   }
 
