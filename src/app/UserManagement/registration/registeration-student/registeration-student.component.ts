@@ -35,7 +35,7 @@ export class RegisterationStudentComponent implements OnInit {
 
   Submit() {
     this.submitted = true;
-    if (!this.registerationForm.valid) {
+    if (!this.registerationForm.valid || !this.registerationForm.controls.tos.value) {
       return;
     } else {
     }

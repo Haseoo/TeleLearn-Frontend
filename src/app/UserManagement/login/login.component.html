@@ -7,8 +7,8 @@
     <div class="login-form">
         <form [formGroup]="loginForm" (ngSubmit)="Submit()">
             <div class="form-group">
-                <label>Login</label>
-                <input type="text" placeholder="Twój login" formControlName="login" class="form-control" [ngClass]="{ 'invalid': submitted && ctls.login.errors }"/>
+                <label>Login lub email</label>
+                <input type="text" placeholder="Twój login lub adres email" formControlName="login" class="form-control" [ngClass]="{ 'invalid': submitted && ctls.login.errors }"/>
                 <div class="text-danger" *ngIf="submitted && ctls.login.errors && ctls.login.errors.required">Podaj login</div>
             </div>
             <div class="form-group">
