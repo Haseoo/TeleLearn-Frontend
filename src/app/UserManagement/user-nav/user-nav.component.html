@@ -34,7 +34,7 @@
 
     <ul *ngIf="userService.GetCurrentUser()">
         <li *ngIf="!isCurrentUserAdmin()">
-            <a routerLink="/user/{{userService.GetCurrentUser().id}}">Mój profil</a>
+            <a href="/user/{{ userService.GetCurrentUser().id }}{{ GetBackUrlParam() }}">Mój profil</a>
         </li>
         <li>
             <a routerLink="/messages">Wiadomości</a>

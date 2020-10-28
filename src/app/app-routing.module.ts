@@ -9,6 +9,7 @@ import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.compo
 import { LoginComponent } from './UserManagement/login/login.component';
 import { LogoutComponent } from './UserManagement/logout/logout.component';
 import { RegistrationComponent } from './UserManagement/registration/registration.component';
+import { UserInfoComponent } from './UserManagement/user-info/user-info.component';
 import { UserSettingsComponent } from './UserManagement/user-settings/user-settings.component';
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'auth-error', component: AuthErrorComponent, canActivate: [AuthGuardService] },
-  { path: 'user/settings', component: UserSettingsComponent, canActivate: [UserGuardService]}
+  { path: 'user/settings', component: UserSettingsComponent, canActivate: [UserGuardService] },
+  { path: 'user/:id', component: UserInfoComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

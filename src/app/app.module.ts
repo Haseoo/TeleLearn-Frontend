@@ -22,6 +22,7 @@ import { LogoutComponent } from './UserManagement/logout/logout.component';
 import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.component';
 import { SuccessBarComponent } from './success-bar/success-bar.component';
 import { UserSettingsComponent } from './UserManagement/user-settings/user-settings.component';
+import { UserInfoComponent } from './UserManagement/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserSettingsComponent } from './UserManagement/user-settings/user-setti
     LogoutComponent,
     AuthErrorComponent,
     SuccessBarComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

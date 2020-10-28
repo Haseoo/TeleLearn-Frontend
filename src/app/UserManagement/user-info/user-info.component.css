@@ -1,0 +1,24 @@
+.card {
+    max-width: 900px;
+    padding: 1em;
+    border-radius: 0;
+    box-shadow: 0 .5rem .5rem rgba(0,0,0,.15)!important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-title {
+    font-size: 24pt;
+    font-weight: bold;
+    border-bottom: solid 1px gray;
+    text-align: center;
+}
+
+.card-subtitle {
+    font-size: 16pt;
+    color: gray;
+}
+
+.container {
+    margin: 10px 0;
+}

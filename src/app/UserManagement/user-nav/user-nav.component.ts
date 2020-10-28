@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserRole } from 'src/app/Models/UserRole';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -9,7 +10,8 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class UserNavComponent implements OnInit {
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -28,6 +30,10 @@ export class UserNavComponent implements OnInit {
 
   private checkUserRole(role: UserRole): boolean {
     return this.userService.GetCurrentUser() && this.userService.GetCurrentUser().userRole.toString() === UserRole[role]
+  }
+
+  GetBackUrlParam(): string {
+    return `?backUrl=${this.router.url}`;
   }
 
 }
