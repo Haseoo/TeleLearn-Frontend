@@ -20,7 +20,7 @@ export class TeacherRegisterRequest {
             this.email = email;
             this.name = name;
             this.surname = surname;
-            this.unit = (unit === '') ? null : unit;
-            this.title = (title === '') ? null : title;
+            this.unit = unit;
+            this.title = title;
 	}
 }

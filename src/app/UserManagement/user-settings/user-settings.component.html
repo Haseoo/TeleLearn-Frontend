@@ -1,0 +1,73 @@
+<div class="d-flex bd-highlight">
+    <div class="menu bd-highlight shadow">
+        <div class="menu-title container-fluid">Nawigacja</div>
+        <app-user-nav></app-user-nav>
+    </div>
+    <div class="news-container flex-grow-1 d-flex justify-content-center">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <h2>Dane użytkownika</h2>
+            </div>
+            <app-error-bar [errorMessage]="editResponseErrorMessage" *ngIf="editResponseError"></app-error-bar>
+            <app-success-bar [message]="'Dane zostały pomyślnie zaaktualizowane'" *ngIf="editUserSuccess"></app-success-bar>
+            <div>
+                <form [formGroup]="userEditForm" (ngSubmit)="UserEditSubmit()">
+                    <div class="form-group">
+                        <label>Imię</label>
+                        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'invalid': userEditSubmitted && ectls.name.errors }"/>
+                        <div class="text-danger" *ngIf="userEditSubmitted && ectls.name.errors && ectls.name.errors.required">Podaj swoje imię</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nazwisko</label>
+                        <input type="text"formControlName="surname" class="form-control" [ngClass]="{ 'invalid': userEditSubmitted && ectls.surname.errors }"/>
+                        <div class="text-danger" *ngIf="userEditSubmitted && ectls.surname.errors && ectls.surname.errors.required">Podaj swoje nazwisko</div>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'invalid': userEditSubmitted && ectls.email.errors }"/>
+                        <div *ngIf="userEditSubmitted && ectls.email.errors" class="text-danger">
+                            <div *ngIf="ectls.email.errors.required">Podaj swój e-mail</div>
+                            <div *ngIf="ectls.email.errors.email">Email musi być poprawny</div>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="isTeacher">
+                        <label>Tytuł naukowy</label>
+                        <input type="text" formControlName="title" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Jednostka oświatowa</label>
+                        <input type="text" formControlName="unit" class="form-control"/>
+                    </div>
+                    <div class="form-group d-flex justify-content-center sub-btn">
+                        <button type="submit" class="btn btn-primary">Zapisz</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row justify-content-center">
+                <h2>Zmiana hasła</h2>
+            </div>
+            <app-error-bar [errorMessage]="passwordResponseErrorMessage" *ngIf="passwordResponseError"></app-error-bar>
+            <app-success-bar [message]="'Hasło zostało pomyślnie zmienione'" *ngIf="passwordChangeSuccess"></app-success-bar>
+            <form [formGroup]="passwordForm" (ngSubmit)="PasswordSubmit()">
+                <div class="form-group">
+                    <label>Obecne hasło</label>
+                    <input type="password" placeholder="Twoje obecne hasło" formControlName="oldPassword" class="form-control" [ngClass]="{ 'invalid': passwordSubmitted && pctls.oldPassword.errors }"/>
+                    <div *ngIf="passwordSubmitted && pctls.oldPassword.errors" class="text-danger">
+                        <div *ngIf="pctls.oldPassword.errors.required">Podaj obecne hasło</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nowe hasło</label>
+                    <input type="password" placeholder="Twoje nowe hasło" formControlName="newPassword" class="form-control" [ngClass]="{ 'invalid': passwordSubmitted && pctls.newPassword.errors }"/>
+                    <div *ngIf="passwordSubmitted && pctls.newPassword.errors" class="text-danger">
+                        <div *ngIf="pctls.newPassword.errors.required">Hasło jest wymagane</div>
+                        <div *ngIf="pctls.newPassword.errors.minlength">Hasło musi mieć co najmniej {{ PASSWORD_MIN_LENGHT }} znaków</div>
+                    </div>
+                </div>
+                <div class="form-group d-flex justify-content-center">
+                    <button type="submit" class="btn sub-btn btn-primary">Zmień hasło</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

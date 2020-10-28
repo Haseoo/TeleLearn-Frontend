@@ -3,8 +3,14 @@ import { ApplicationRef, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginRequest } from '../Models/Requests/LoginRequest';
+import { PasswordChangeRequest } from '../Models/Requests/PasswordChangeRequest';
 import { StudentRegisterRequest } from '../Models/Requests/StudentRegisterRequest';
+import { StudentUpdateRequest } from '../Models/Requests/StudentUpdateRequest';
 import { TeacherRegisterRequest } from '../Models/Requests/TeacherRegisterRequest';
+import { TeacherUpdateRequest } from '../Models/Requests/TeacherUpdateRequest';
+import { Student } from '../Models/Student';
+import { Teacher } from '../Models/Teacher';
+import { User } from '../Models/User';
 import { UserLoginResponse } from '../Models/UserLoginResponse';
 
 @Injectable({
@@ -31,11 +37,46 @@ export class UserService {
   }
 
   registerStudent(request: StudentRegisterRequest): Observable<any> {
-    return this.httpClient.post<any>(`${environment.api_url}/user/register/student`, request);
+    return this.httpClient.post<any>(`${environment.api_url}/user/student`, request);
   }
 
   registerTeacher(request: TeacherRegisterRequest): Observable<any> {
-    return this.httpClient.post<any>(`${environment.api_url}/user/register/teacher`, request);
+    return this.httpClient.post<any>(`${environment.api_url}/user/teacher`, request);
+  }
+
+  getStudent(id: number): Observable<Student> {
+    return this.httpClient.get<Student>(`${environment.api_url}/user/student/${id}`);
+  }
+
+  getUser(id: number): Observable<User> {
+    return this.httpClient.get<Student>(`${environment.api_url}/user/${id}`);
+  }
+
+  getTeacher(id: number): Observable<Teacher> {
+    return this.httpClient.get<Teacher>(`${environment.api_url}/user/teacher/${id}`);
+  }
+
+  updateStudent(id: number, request: StudentUpdateRequest): Observable<any> {
+    return this.httpClient.put<any>(`${environment.api_url}/user/student/${id}`, request);
+  }
+
+  updateTeacher(id: number, request: TeacherUpdateRequest): Observable<any> {
+    return this.httpClient.put<any>(`${environment.api_url}/user/teacher/${id}`, request);
+  }
+
+  updateCurrentUserInfo() {
+    let user = this.GetCurrentUser();
+    this.getUser(user.id).subscribe(
+      dt=> {
+        user.name = dt.name;
+        user.surname = dt.surname;
+        this.storeLogin(user);
+      }
+    )
+  }
+
+  changePassword(id: number, request: PasswordChangeRequest): Observable<any> {
+    return this.httpClient.patch(`${environment.api_url}/user/${id}`, request);
   }
 
 }

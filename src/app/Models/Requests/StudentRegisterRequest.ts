@@ -19,7 +19,7 @@ export class StudentRegisterRequest {
             this.email = email;
             this.name = name;
             this.surname = surname;
-            this.unit = (unit === '') ? null : unit;
+            this.unit = unit;
 	}
     
 }

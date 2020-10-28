@@ -1,0 +1,22 @@
+.menu {
+    margin-right: 15px;
+    width: 25%;
+    min-width: 250px;
+    border: solid rgb(230, 230, 230) 1px;
+    padding: 20px 0;
+}
+
+.menu-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16pt;
+}
+
+.container {
+    margin-left: 15px;
+}
+
+.content-container {
+    padding-top: 10px;
+}

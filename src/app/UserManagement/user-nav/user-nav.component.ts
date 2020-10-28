@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserRole } from 'src/app/Models/UserRole';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -8,11 +9,25 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class UserNavComponent implements OnInit {
 
-  yourAccountVisible: boolean = true;
-
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+  }
+
+  isCurrentUserAdmin(): boolean {
+    return this.checkUserRole(UserRole.ADMIN);
+  }
+
+  isCurrentUserStudent(): boolean {
+    return this.checkUserRole(UserRole.STUDENT);
+  }
+
+  isCurrentUserTeacher(): boolean {
+    return this.checkUserRole(UserRole.TEACHER);
+  }
+
+  private checkUserRole(role: UserRole): boolean {
+    return this.userService.GetCurrentUser() && this.userService.GetCurrentUser().userRole.toString() === UserRole[role]
   }
 
 }

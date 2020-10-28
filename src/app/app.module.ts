@@ -19,6 +19,9 @@ import { RegisterationStudentComponent } from './UserManagement/registration/reg
 import { JwtInterceptorService } from 'src/Auth/jwt-interceptor.service';
 import { InfoBarComponent } from './info-bar/info-bar.component';
 import { LogoutComponent } from './UserManagement/logout/logout.component';
+import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.component';
+import { SuccessBarComponent } from './success-bar/success-bar.component';
+import { UserSettingsComponent } from './UserManagement/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { LogoutComponent } from './UserManagement/logout/logout.component';
     RegisterationTeacherComponent,
     RegisterationStudentComponent,
     InfoBarComponent,
-    LogoutComponent
+    LogoutComponent,
+    AuthErrorComponent,
+    SuccessBarComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
           dt => {
             this.userService.storeLogin(dt);
             if (this.returnUrl) {
-              this.router.navigateByUrl(this.returnUrl);
+              setTimeout(() =>
+              this.router.navigate([this.returnUrl]));
             } else {
               this.router.navigate(['/']);
             }
