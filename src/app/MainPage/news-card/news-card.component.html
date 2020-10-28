@@ -5,11 +5,11 @@
         </a>
     </div>
     <div class="card-subtitle">
-        {{ news.author }}
+        {{ news.author.name }} {{ news.author.surname }} 
         ({{ news.publicationDate | date:'dd.MM.yyyy HH:mm' }})
     </div>
     <article class="card-text">
-        {{ news.brief }}
+        {{ GetBrief() }}
     </article>
-    <a *ngIf="news.more" class="card-link" routerLink="news/{{ news.id }}">Czytaj więcej...</a>
+    <a *ngIf="news.htmlContent" class="card-link" routerLink="news/{{ news.id }}">Czytaj więcej...</a>
 </section>

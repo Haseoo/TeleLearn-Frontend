@@ -1,5 +1,5 @@
 <div class="container" *ngIf="!fetchError">
-    <div class="card-row row justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current, totalItems: total }">
+    <div class="card-row justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current, totalItems: total }">
         <app-news-card [news]="item"></app-news-card>
     </div>
     <div class="row justify-content-center">

@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuardService } from 'src/Auth/admin-guard.service';
 import { AuthGuardService } from 'src/Auth/auth-guard.service';
 import { StudentGuardService } from 'src/Auth/student-guard.service';
 import { TeacherGuardService } from 'src/Auth/teacher-guard.service';
 import { UserGuardService } from 'src/Auth/user-guard.service';
 import { NewsArticleComponent } from './GlobalNews/news-article/news-article.component';
+import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.component';
 import { MainPageComponent } from './MainPage/main-page/main-page.component';
 import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.component';
 import { LoginComponent } from './UserManagement/login/login.component';
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'auth-error', component: AuthErrorComponent, canActivate: [AuthGuardService] },
   { path: 'user/settings', component: UserSettingsComponent, canActivate: [UserGuardService] },
   { path: 'user/:id', component: UserInfoComponent, canActivate: [AuthGuardService] },
-  { path: 'news/:id', component: NewsArticleComponent}
+  { path: 'news/compose', component: NewsComposerComponent, canActivate: [AdminGuardService] },
+  { path: 'news/compose/:id', component: NewsComposerComponent, canActivate: [AdminGuardService] },
+  { path: 'news/:id', component: NewsArticleComponent }
 ];
 
 @NgModule({
