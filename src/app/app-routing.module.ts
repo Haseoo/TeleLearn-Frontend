@@ -4,6 +4,7 @@ import { AuthGuardService } from 'src/Auth/auth-guard.service';
 import { StudentGuardService } from 'src/Auth/student-guard.service';
 import { TeacherGuardService } from 'src/Auth/teacher-guard.service';
 import { UserGuardService } from 'src/Auth/user-guard.service';
+import { NewsArticleComponent } from './GlobalNews/news-article/news-article.component';
 import { MainPageComponent } from './MainPage/main-page/main-page.component';
 import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.component';
 import { LoginComponent } from './UserManagement/login/login.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'auth-error', component: AuthErrorComponent, canActivate: [AuthGuardService] },
   { path: 'user/settings', component: UserSettingsComponent, canActivate: [UserGuardService] },
-  { path: 'user/:id', component: UserInfoComponent, canActivate: [AuthGuardService]}
+  { path: 'user/:id', component: UserInfoComponent, canActivate: [AuthGuardService] },
+  { path: 'news/:id', component: NewsArticleComponent}
 ];
 
 @NgModule({

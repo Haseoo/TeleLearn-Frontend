@@ -23,6 +23,8 @@ import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.compo
 import { SuccessBarComponent } from './success-bar/success-bar.component';
 import { UserSettingsComponent } from './UserManagement/user-settings/user-settings.component';
 import { UserInfoComponent } from './UserManagement/user-info/user-info.component';
+import { NewsArticleComponent } from './GlobalNews/news-article/news-article.component';
+import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { UserInfoComponent } from './UserManagement/user-info/user-info.componen
     AuthErrorComponent,
     SuccessBarComponent,
     UserSettingsComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    NewsArticleComponent,
+    NewsComposerComponent
   ],
   imports: [
     BrowserModule,

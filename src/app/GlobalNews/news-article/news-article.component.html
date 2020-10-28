@@ -1,0 +1,20 @@
+<app-error-bar *ngIf="responseError" [errorMessage]="responseErrorMessage"></app-error-bar>
+<app-success-bar *ngIf="deleteSuccess" [message]="'Pomyślnie usunięto artykuł'"></app-success-bar>
+<section class="card" *ngIf="article">
+    <div class="d-flex justify-content-end" *ngIf="ShowManagement()">
+        <button class="btn btn-success d-flex align-items-center"><i class="material-icons md-18">create</i>Edytuj artykuł</button>
+        <button class="btn btn-danger d-flex align-items-center" (click)="OnDelete()"><i class="material-icons md-18">delete_forever</i>Usuń artykuł</button>
+    </div>
+    <div class="card-title">
+        {{ article.title }}
+    </div>
+    <div class="card-subtitle">
+        {{ article.author.name }} {{ article.author.surname }}
+        ({{ article.publicationDate | date:'dd.MM.yyyy HH:mm' }})
+    </div>
+    <article class="card-text" *ngIf="article.htmlContent" [innerHTML]="article.htmlContent"></article>
+    <article class="card-text" *ngIf="!article.htmlContent" >
+        {{ article.brief }}
+    </article>
+</section>
+

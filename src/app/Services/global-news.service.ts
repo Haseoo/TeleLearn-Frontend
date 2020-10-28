@@ -16,4 +16,12 @@ export class GlobalNewsService {
     let params = new HttpParams().set('pageNo', page.toString()).set('pageSize', size.toString());
     return this.httpClient.get<Page<GlobalNews>>(`${environment.api_url}/news/get`, { params: params });
   }
+
+  getAricle(id: number): Observable<GlobalNews> {
+    return this.httpClient.get<GlobalNews>(`${environment.api_url}/news/get/${id}`);
+  }
+
+  deleteArticle(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.api_url}/news/${id}`);
+  }
 }

@@ -3,7 +3,7 @@ export class GlobalNews {
     title: string;
     publicationDate: Date;
     brief: string;
-    author: string;
-    content: string;
+    author: any;
+    htmlContent: string;
     more: boolean;
 }
