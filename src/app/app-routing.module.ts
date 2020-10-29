@@ -8,6 +8,7 @@ import { UserGuardService } from 'src/Auth/user-guard.service';
 import { NewsArticleComponent } from './GlobalNews/news-article/news-article.component';
 import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.component';
 import { MainPageComponent } from './MainPage/main-page/main-page.component';
+import { NewsPagerComponent } from './MainPage/news-pager/news-pager.component';
 import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.component';
 import { LoginComponent } from './UserManagement/login/login.component';
 import { LogoutComponent } from './UserManagement/logout/logout.component';
@@ -17,16 +18,18 @@ import { UserSettingsComponent } from './UserManagement/user-settings/user-setti
 
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', component: MainPageComponent, children: [
+    { path: '', component: NewsPagerComponent },
+    { path: 'news/compose', component: NewsComposerComponent, canActivate: [AdminGuardService] },
+    { path: 'news/compose/:id', component: NewsComposerComponent, canActivate: [AdminGuardService] },
+    { path: 'news/:id', component: NewsArticleComponent },
+    { path: 'user/settings', component: UserSettingsComponent, canActivate: [UserGuardService] },
+    { path: 'user/:id', component: UserInfoComponent, canActivate: [AuthGuardService] },
+    ]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
-  { path: 'auth-error', component: AuthErrorComponent, canActivate: [AuthGuardService] },
-  { path: 'user/settings', component: UserSettingsComponent, canActivate: [UserGuardService] },
-  { path: 'user/:id', component: UserInfoComponent, canActivate: [AuthGuardService] },
-  { path: 'news/compose', component: NewsComposerComponent, canActivate: [AdminGuardService] },
-  { path: 'news/compose/:id', component: NewsComposerComponent, canActivate: [AdminGuardService] },
-  { path: 'news/:id', component: NewsArticleComponent }
+  { path: 'auth-error', component: AuthErrorComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
