@@ -27,7 +27,7 @@ export class NewsArticleComponent implements OnInit {
       this.newsService.getAricle(params.id).subscribe(
         dt => this.article = dt,
         err => {
-          this.responseErrorMessage = err.error.message;
+          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.responseError = true;
         }
       )
@@ -46,7 +46,7 @@ export class NewsArticleComponent implements OnInit {
           this.article = null;
         },
         err => {
-          this.responseErrorMessage = err.error.message;
+          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.responseError = true;
         }
       )

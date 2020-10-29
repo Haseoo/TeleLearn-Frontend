@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
             }
           },
           err => {
-            this.responseErrorMessage =  err.error.message;
+            this.responseErrorMessage =  (err.error.message) ? err.error.message : err.message;
             this.responseError = true;
           }
         )

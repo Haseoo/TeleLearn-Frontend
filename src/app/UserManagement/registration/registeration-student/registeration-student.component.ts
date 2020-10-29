@@ -53,7 +53,7 @@ export class RegisterationStudentComponent implements OnInit {
       this.userService.registerStudent(request).subscribe(
         dt => this.router.navigate(['/login'], {queryParams: {redirect: 'registration'}}),
         err => {
-          this.responseErrorMessage = err.error.message;
+          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.responseError = true;
         }
       );

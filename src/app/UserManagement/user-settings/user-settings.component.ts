@@ -62,7 +62,7 @@ export class UserSettingsComponent implements OnInit {
         },
         err => {
           this.editResponseError = true;
-          this.editResponseErrorMessage = err.error.message;
+          this.editResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
         }
       )
     } else if (this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER]) {
@@ -79,7 +79,7 @@ export class UserSettingsComponent implements OnInit {
         },
         err => {
           this.editResponseError = true;
-          this.editResponseErrorMessage = err.error.message;
+          this.editResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
         }
       )
     }
@@ -106,7 +106,7 @@ export class UserSettingsComponent implements OnInit {
             this.passwordSubmitted = false;
             setTimeout(() => this.passwordChangeSuccess = false, 5000);
         }, err => {
-          this.passwordResponseErrorMessage = err.error.message;
+          this.passwordResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.passwordResponseError = true;
         }
       )
@@ -131,7 +131,7 @@ export class UserSettingsComponent implements OnInit {
             this.userEditSubmitted = false;
             setTimeout(() => this.editUserSuccess = false, 5000);
           }, err => {
-            this.editResponseErrorMessage = err.error.message;
+            this.editResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.editResponseError = true;
           }
         );
@@ -149,7 +149,7 @@ export class UserSettingsComponent implements OnInit {
             this.userService.updateCurrentUserInfo();
             setTimeout(() => this.editUserSuccess = false, 5000);
           }, err => {
-            this.editResponseErrorMessage = err.error.message;
+            this.editResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.editResponseError = true;
           }
         );

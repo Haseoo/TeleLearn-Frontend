@@ -35,7 +35,7 @@ export class UserInfoComponent implements OnInit {
               this.userService.getStudent(this.user.id).subscribe (
                 dt => this.student = dt,
                 err => {
-                  this.responseErrorMessage = err.error.message;
+                  this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
                   this.responseError = true;
                 }
               )
@@ -43,13 +43,13 @@ export class UserInfoComponent implements OnInit {
               this.userService.getTeacher(this.user.id).subscribe (
                 dt => this.teacher = dt,
                 err => {
-                  this.responseErrorMessage = err.error.message;
+                  this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
                   this.responseError = true;
                 }
               )
             }
           }, err => {
-            this.responseErrorMessage = err.error.message;
+            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.responseError = true;
           }
         )

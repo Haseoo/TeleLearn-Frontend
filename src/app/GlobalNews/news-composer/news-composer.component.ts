@@ -48,7 +48,7 @@ export class NewsComposerComponent implements OnInit {
             });
           },
           err => {
-            this.responseErrorMessage = err.error.message;
+            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.responseError = true;
           }
         )
@@ -79,7 +79,7 @@ export class NewsComposerComponent implements OnInit {
             this.router.navigate([`/news/${id}`]);
           },
           err => {
-            this.responseErrorMessage = err.error.message;
+            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.responseError = true;
           }
         );
@@ -89,7 +89,7 @@ export class NewsComposerComponent implements OnInit {
             this.router.navigate([`/news/${this.article.id}`]);
           },
           err => {
-            this.responseErrorMessage = err.error.message;
+            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.responseError = true;
           }
         );
