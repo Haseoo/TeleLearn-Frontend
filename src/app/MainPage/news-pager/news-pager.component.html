@@ -1,9 +1,16 @@
-<div class="container-fluid w-100" *ngIf="!fetchError">
-    <div class="card-row justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current, totalItems: total }">
-        <app-news-card [news]="item"></app-news-card>
+<div class="container-fluid news-container">
+    <div class="row justify-content-center">
+        <h2>Aktualności</h2>
     </div>
     <div class="row justify-content-center">
-        <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="PageChanged($event)"></pagination-controls>
+        <div class="container-fluid w-100" *ngIf="!fetchError">
+            <div class="card-row justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current, totalItems: total }">
+                <app-news-card [news]="item"></app-news-card>
+            </div>
+            <div class="row justify-content-center">
+                <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="PageChanged($event)"></pagination-controls>
+            </div>
+        </div>
     </div>
+    <app-error-bar *ngIf="fetchError" [errorMessage]="errorMessage"></app-error-bar>
 </div>
-<app-error-bar *ngIf="fetchError" [errorMessage]="errorMessage"></app-error-bar>

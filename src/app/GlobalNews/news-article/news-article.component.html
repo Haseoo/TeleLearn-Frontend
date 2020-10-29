@@ -12,7 +12,7 @@
         {{ article.author.name }} {{ article.author.surname }}
         ({{ article.publicationDate | date:'dd.MM.yyyy HH:mm' }})
     </div>
-    <article class="card-text" *ngIf="article.htmlContent" [innerHTML]="article.htmlContent"></article>
+    <article class="card-text" *ngIf="article.htmlContent" [innerHTML]="article.htmlContent | safeHtml"></article>
     <article class="card-text" *ngIf="!article.htmlContent" >
         {{ article.brief }}
     </article>

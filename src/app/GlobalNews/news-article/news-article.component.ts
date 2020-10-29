@@ -8,7 +8,8 @@ import { UserService } from 'src/app/Services/user.service';
 @Component({
   selector: 'app-news-article',
   templateUrl: './news-article.component.html',
-  styleUrls: ['./news-article.component.css']
+  styleUrls: ['./news-article.component.css'],
+  styles: []
 })
 export class NewsArticleComponent implements OnInit {
 
@@ -19,7 +20,7 @@ export class NewsArticleComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private newsService: GlobalNewsService,
-    private userService: UserService) { }
+    private userService: UserService,) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {

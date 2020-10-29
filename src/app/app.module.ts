@@ -26,6 +26,7 @@ import { UserSettingsComponent } from './UserManagement/user-settings/user-setti
 import { UserInfoComponent } from './UserManagement/user-info/user-info.component';
 import { NewsArticleComponent } from './GlobalNews/news-article/news-article.component';
 import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.component';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.
     UserSettingsComponent,
     UserInfoComponent,
     NewsArticleComponent,
-    NewsComposerComponent
+    NewsComposerComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

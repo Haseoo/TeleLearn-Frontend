@@ -31,3 +31,38 @@
 .btn {
     margin-left: 10px;
 }
+
+::ng-deep .ql-align-center {
+    text-align: center;
+}
+
+::ng-deep .ql-align-right {
+    text-align: right;
+}
+
+::ng-deep .ql-align-right {
+    text-align: right;
+}
+
+::ng-deep .ql-align-justify {
+    text-align: justify;
+}
+
+::ng-deep blockquote {
+    font-style: italic;
+    color: gray;
+}
+
+::ng-deep .ql-syntax {
+    padding: 10px;
+    color: blue;
+    background-color: rgb(233, 233, 233);
+}
+
+::ng-deep .ql-font-serif {
+    font-family: serif;
+}
+
+::ng-deep .ql-font-monospace {
+    font-family: monospace;
+}
