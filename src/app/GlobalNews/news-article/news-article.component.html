@@ -2,7 +2,7 @@
 <app-success-bar *ngIf="deleteSuccess" [message]="'Pomyślnie usunięto artykuł'"></app-success-bar>
 <section class="card" *ngIf="article">
     <div class="d-flex justify-content-end" *ngIf="ShowManagement()">
-        <button class="btn btn-success d-flex align-items-center"><i class="material-icons md-18">create</i>Edytuj artykuł</button>
+        <button class="btn btn-success d-flex align-items-center" routerLink="/news/compose/{{ article.id }}"><i class="material-icons md-18">create</i>Edytuj artykuł</button>
         <button class="btn btn-danger d-flex align-items-center" (click)="OnDelete()"><i class="material-icons md-18">delete_forever</i>Usuń artykuł</button>
     </div>
     <div class="card-title">
