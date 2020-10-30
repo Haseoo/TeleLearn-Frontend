@@ -60,4 +60,8 @@ export class UserInfoComponent implements OnInit {
     this.router.navigate([this.backUrl]);
   }
 
+  OnMessageClick(userId: number) {
+    this.router.navigateByUrl(`/messages/${userId}`);
+  }
+
 }

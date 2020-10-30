@@ -27,6 +27,8 @@ import { UserInfoComponent } from './UserManagement/user-info/user-info.componen
 import { NewsArticleComponent } from './GlobalNews/news-article/news-article.component';
 import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
+import { ConversationListComponent } from './Messages/conversation-list/conversation-list.component';
+import { ConversationComponent } from './Messages/conversation/conversation.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { SafeHtmlPipe } from './safe-html.pipe';
     UserInfoComponent,
     NewsArticleComponent,
     NewsComposerComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    ConversationListComponent,
+    ConversationComponent
   ],
   imports: [
     BrowserModule,

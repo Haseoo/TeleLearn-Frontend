@@ -15,7 +15,7 @@
      </div>
     <div class="container" *ngIf="user">
         <div class="row d-flex justify-content-end">
-            <button class="btn btn-primary d-flex align-items-center"><i class="material-icons md-18">message</i>Napisz wiadomość</button>
+            <button class="btn btn-primary d-flex align-items-center" (click)="OnMessageClick(user.id)"><i class="material-icons md-18">message</i>Napisz wiadomość</button>
         </div>
     </div>
 </section>

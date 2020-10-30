@@ -1,0 +1,58 @@
+.conversation-window {
+    border: solid 1px lightgray;
+    height: 60vh;
+    width: 100%;
+}
+
+.message-container {
+    width: 100%;
+    height: 80%;
+    border-bottom: solid 1px lightgray;
+    overflow-y: scroll;
+}
+
+.message-input-form {
+    background-color: lightgray;
+    height: 20%;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.msg-input {
+    height: 100%;
+}
+
+i {
+    font-size: 50px;
+}
+
+.message-row {
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.card {
+    border-radius: 0;
+    max-width: 50%;
+    padding: 1em;
+}
+
+.message-header {
+    margin-bottom: .5em;
+    font-weight: bold;
+}
+
+.message-header > span {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.message-from {
+    background-color: rgb(245, 245, 245);
+}
+
+.message-to {
+    background-color: aliceblue;
+}

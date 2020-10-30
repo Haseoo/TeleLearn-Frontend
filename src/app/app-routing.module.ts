@@ -9,6 +9,8 @@ import { NewsArticleComponent } from './GlobalNews/news-article/news-article.com
 import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.component';
 import { MainPageComponent } from './MainPage/main-page/main-page.component';
 import { NewsPagerComponent } from './MainPage/news-pager/news-pager.component';
+import { ConversationListComponent } from './Messages/conversation-list/conversation-list.component';
+import { ConversationComponent } from './Messages/conversation/conversation.component';
 import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.component';
 import { LoginComponent } from './UserManagement/login/login.component';
 import { LogoutComponent } from './UserManagement/logout/logout.component';
@@ -25,6 +27,8 @@ const routes: Routes = [
     { path: 'news/:id', component: NewsArticleComponent },
     { path: 'user/settings', component: UserSettingsComponent, canActivate: [UserGuardService] },
     { path: 'user/:id', component: UserInfoComponent, canActivate: [AuthGuardService] },
+    { path: 'messages', component: ConversationListComponent, canActivate: [AuthGuardService] },
+    { path: 'messages/:id', component: ConversationComponent, canActivate: [AuthGuardService] }
     ]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },

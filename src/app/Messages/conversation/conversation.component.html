@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <app-error-bar *ngIf="responseError" [errorMessage]="responseErrorMessage"></app-error-bar>
+    <div *ngIf="participant" class="row justify-content-center">
+        <h3>Konwersacja z
+            <a href="{{ GetUserUrl() }}">{{ participant.name }}
+                {{ participant.surname }}</a>
+        </h3>
+    </div>
+    <div class="row justify-content-center">
+        <div class="conversation-window">
+            <div #messageContainer class="message-container">
+                <div class="d-flex message-row" [ngClass]="IsMessageSendByParticipant(item) ? 'justify-content-start' : 'justify-content-end'" *ngFor="let item of messages">
+                    <div class="card shadow-sm" [ngClass]="IsMessageSendByParticipant(item) ? 'message-from' : 'message-to'">
+                        <div class="card-row message-header">
+                            {{ GetAuthorFromMessage(item) }} <span>{{ item.sendTime | date:'dd.MM.yyyy HH:mm' }}</span>
+                        </div>
+                        <div class="card-row card-text" [innerHTML]="SanitazeMessage(item.content)"></div>
+                    </div>
+                </div>
+            </div>
+            <form class="message-input-form d-flex align-items-stretch justify-content-end" [formGroup]="sendMessageForm" (ngSubmit)="SendMessage()">
+                <div class="flex-grow-1">
+                    <textarea placeholder="Twoja wiadomość..." formControlName="message" class="form-control msg-input"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary d-flex align-items-center"><i class="material-icons">send</i></button>
+            </form>
+
+        </div>
+    </div>
+</div>

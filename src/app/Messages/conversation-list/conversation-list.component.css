@@ -1,0 +1,37 @@
+.conversation {
+    margin-bottom: 1em;
+    border: solid 1px rgb(230, 230, 230);
+}
+::ng-deep li.pagination-next > a:focus, ::ng-deep li.pagination-previous > a:focus {
+    outline: 0;
+}
+
+.card {
+    padding: 5px 0;
+    margin-left: 10px;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.header {
+    font-size: 15pt;
+}
+
+span.new-messages {
+    font-weight: bold;
+}
+
+span.date {
+    font-style: italic;
+    color: gray;
+}
+
+i {
+    font-size: 48px;
+}
+
+.conversation:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);;
+}
