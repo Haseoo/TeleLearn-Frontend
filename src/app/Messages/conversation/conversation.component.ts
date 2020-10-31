@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingBarComponent, LoadingBarService } from '@ngx-loading-bar/core';
 import { Message } from 'src/app/Models/Message';
 import { SendMessageRequest } from 'src/app/Models/Requests/SendMessageRequest';
 import { User } from 'src/app/Models/User';
@@ -28,19 +29,23 @@ export class ConversationComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private messagesService: MessagesService) { }
+    private messagesService: MessagesService,
+    private loadingBarService: LoadingBarService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       params => {
+        this.loadingBarService.useRef('fetchMessages').start();
         this.userService.getUser(params['id']).subscribe (
           dt => {
             this.participant = dt;
             this.FetchMessages();
+            this.loadingBarService.useRef('fetchMessages').stop();
           },
           err => {
             this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.responseError = true;
+            this.loadingBarService.useRef('fetchMessages').stop();
           }
         )
       }

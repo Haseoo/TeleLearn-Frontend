@@ -29,6 +29,7 @@ import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { ConversationListComponent } from './Messages/conversation-list/conversation-list.component';
 import { ConversationComponent } from './Messages/conversation/conversation.component';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,9 @@ import { ConversationComponent } from './Messages/conversation/conversation.comp
     NgxPaginationModule,
     HttpClientModule,
     ReactiveFormsModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    LoadingBarModule,
+    
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }],
   bootstrap: [AppComponent]
