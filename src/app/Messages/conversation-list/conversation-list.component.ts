@@ -32,9 +32,4 @@ export class ConversationListComponent implements OnInit {
       }
     )
   }
-
-  OnConversationClick(userId: number) {
-    this.router.navigateByUrl(`/messages/${userId}`);
-  }
-
 }

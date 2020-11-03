@@ -2,33 +2,35 @@
     <h2>Konwersacje</h2>
 </div>
 <div *ngIf="!fetchError">
-    <div class="conversation container-fluid shadow-sm justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current }" (click)="OnConversationClick(item.participant.id)">
-        <div class="d-flex align-items-center justify-content-end">
-            <i *ngIf="item.unreadMessageCount > 0" class="material-icons">
-                mark_chat_unread
-            </i>
-            <i *ngIf="item.unreadMessageCount === 0" class="material-icons">
-                chat_bubble_outline
-            </i>
-            <div class="card">
-                <div class="card-row header">
-                    {{ item.participant.name }}
-                    {{ item.participant.surname }}
-                    <span *ngIf="item.unreadMessageCount > 0">
-                        (<span class="new-messages">{{ item.unreadMessageCount }}</span>)
-                    </span>
+    <div class="conversation container-fluid shadow-sm justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current }">
+        <a routerLink="/messages/{{ item.participant.id }}">
+            <div class="d-flex align-items-center justify-content-end">
+                <i *ngIf="item.unreadMessageCount > 0" class="material-icons">
+                    mark_chat_unread
+                </i>
+                <i *ngIf="item.unreadMessageCount === 0" class="material-icons">
+                    chat_bubble_outline
+                </i>
+                <div class="card">
+                    <div class="card-row header">
+                        {{ item.participant.name }}
+                        {{ item.participant.surname }}
+                        <span *ngIf="item.unreadMessageCount > 0">
+                            (<span class="new-messages">{{ item.unreadMessageCount }}</span>)
+                        </span>
+                    </div>
+                    <div class="card-row">
+                        <span class="date">
+                            Ostatnia wiadomość:
+                            {{ item.lastMessageTime | date:'dd.MM.yyyy HH:mm'}}
+                        </span>
+                    </div>
                 </div>
-                <div class="card-row">
-                    <span class="date">
-                        Ostatnia wiadomość:
-                        {{ item.lastMessageTime | date:'dd.MM.yyyy HH:mm'}}
-                    </span>
-                </div>
+                <i class="material-icons">
+                    keyboard_arrow_right
+                </i>
             </div>
-            <i class="material-icons">
-                keyboard_arrow_right
-            </i>
-        </div>
+        </a>
     </div>
     <div class="row justify-content-center">
         <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="current = $event"></pagination-controls>

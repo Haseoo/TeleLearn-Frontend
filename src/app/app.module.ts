@@ -31,6 +31,9 @@ import { SafeHtmlPipe } from './safe-html.pipe';
 import { ConversationListComponent } from './Messages/conversation-list/conversation-list.component';
 import { ConversationComponent } from './Messages/conversation/conversation.component';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { MyCoursesComponent } from './Courses/my-courses/my-courses.component';
+import { CourseComponent } from './Courses/course/course.component';
+import { CoursesBriefComponent } from './Courses/courses-brief/courses-brief.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     NewsComposerComponent,
     SafeHtmlPipe,
     ConversationListComponent,
-    ConversationComponent
+    ConversationComponent,
+    MyCoursesComponent,
+    CourseComponent,
+    CoursesBriefComponent
   ],
   imports: [
     BrowserModule,

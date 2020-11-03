@@ -1,21 +1,34 @@
 <nav class="container-fluid nav-container" *ngIf="backUrl">
-    <button class="btn btn-back d-flex align-items-center" (click)="OnBack()"><i class="material-icons md-18">keyboard_backspace</i>Powrót</button>
+    <button class="btn btn-back d-flex align-items-center" (click)="OnBack()">
+        <i class="material-icons md-18">keyboard_backspace</i>Powrót</button>
 </nav>
 <section class="card">
     <app-error-bar *ngIf="responseError" [errorMessage]="responseErrorMessage"></app-error-bar>
     <div class="card-title" *ngIf="user">
         <span *ngIf="teacher">{{ teacher.title }}</span>
-        {{user.name }} {{ user.surname }}
+        {{user.name }}
+        {{ user.surname }}
     </div>
     <div class="card-subtitle" *ngIf="student">
-       Uczeń<span *ngIf="student.unit"> w {{ student.unit }}</span>
+        Uczeń<span *ngIf="student.unit">
+            w
+            {{ student.unit }}</span>
     </div>
     <div class="card-subtitle" *ngIf="teacher">
-        Nauczyciel<span *ngIf="teacher.unit"> w {{ teacher.unit }}</span>
-     </div>
-    <div class="container" *ngIf="user">
+        Nauczyciel<span *ngIf="teacher.unit">
+            w
+            {{ teacher.unit }}</span>
+    </div>
+    <div class="container"  *ngIf="user">
         <div class="row d-flex justify-content-end">
-            <button class="btn btn-primary d-flex align-items-center" (click)="OnMessageClick(user.id)"><i class="material-icons md-18">message</i>Napisz wiadomość</button>
+            <button class="btn btn-primary d-flex align-items-center" (click)="OnMessageClick(user.id)">
+                <i class="material-icons md-18">message</i>Napisz wiadomość</button>
+        </div>
+    </div>
+    <a class="h5">Prowadzone kursy:</a>
+    <div class="container" *ngIf="user">
+        <div class="courses justify-content-center">
+            <app-courses-brief [courseBriefs]="coursesBriefs" [showOwner]="false"></app-courses-brief>
         </div>
     </div>
 </section>

@@ -1,0 +1,3 @@
+<h3 class="text-center">Moje kursy</h3>
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<app-courses-brief *ngIf="!error" [courseBriefs]="courseBriefs" [showOwner]="ShowOwner"></app-courses-brief>

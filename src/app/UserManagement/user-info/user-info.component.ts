@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CourseBrief } from 'src/app/Models/Courses/CourseBrief';
 import { Student } from 'src/app/Models/Student';
 import { Teacher } from 'src/app/Models/Teacher';
 import { User } from 'src/app/Models/User';
 import { UserRole } from 'src/app/Models/UserRole';
+import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -18,12 +20,14 @@ export class UserInfoComponent implements OnInit {
   teacher: Teacher;
   responseError: boolean;
   responseErrorMessage: string;
+  coursesBriefs: CourseBrief[];
 
   backUrl: string;
 
   constructor(private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => this.backUrl = params.backUrl);
@@ -41,8 +45,16 @@ export class UserInfoComponent implements OnInit {
               )
             } else if (this.user.userRole.toString() === UserRole[UserRole.TEACHER]) {
               this.userService.getTeacher(this.user.id).subscribe (
-                dt => this.teacher = dt,
-                err => {
+                dt => {
+                  this.teacher = dt;
+                  this.courseService.GetMyCoursesForTeacher(this.teacher.id).subscribe(
+                    dt => this.coursesBriefs = dt,
+                    err => {
+                      this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
+                      this.responseError = true;
+                    }
+                  )
+                }, err => {
                   this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
                   this.responseError = true;
                 }

@@ -1,4 +1,4 @@
-.conversation {
+.item {
     margin-bottom: 1em;
     border: solid 1px rgb(230, 230, 230);
 }
@@ -15,14 +15,11 @@
 }
 
 .header {
-    font-size: 15pt;
-}
-
-span.new-messages {
+    font-size: 16pt;
     font-weight: bold;
 }
 
-span.date {
+.owner {
     font-style: italic;
     color: gray;
 }
@@ -31,11 +28,12 @@ i {
     font-size: 48px;
 }
 
-.conversation:hover {
+.item:hover {
+    cursor: pointer;
     background-color: rgb(230, 230, 230);;
 }
 
-a {
+a.card {
     color: black;
     text-decoration: none;
 }

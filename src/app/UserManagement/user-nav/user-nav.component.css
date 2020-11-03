@@ -16,3 +16,11 @@
 .container {
     margin: .5em 0;
 }
+
+.card {
+    width: 100%;
+}
+
+.courses {
+    margin-top: 100px;
+}

@@ -12,11 +12,28 @@
 <button class="nav-banner" *ngIf="isCurrentUserStudent()">
     Panel ucznia
 </button>
+<div class="container">
+    <ul *ngIf="isCurrentUserStudent()">
+        <li>
+            <a routerLink="/my-courses">Moje kursy</a>
+        </li>
+    </ul>
+</div>
 
 
 <button class="nav-banner" *ngIf="isCurrentUserTeacher()">
     Panel nauczyciela
 </button>
+<div class="container">
+    <ul *ngIf="isCurrentUserTeacher()">
+        <li>
+            <a routerLink="/my-courses">Moje kursy</a>
+        </li>
+        <li>
+            <a routerLink="/new-course">Utwórz nowy kurs</a>
+        </li>
+    </ul>
+</div>
 
 
 <button class="nav-banner">
