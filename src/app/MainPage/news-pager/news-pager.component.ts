@@ -30,7 +30,6 @@ export class NewsPagerComponent implements OnInit {
         this.total = dt.totalItems;
       },
       err => {
-        console.log(err.error.message);
         this.fetchError = true;
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
       }

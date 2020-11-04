@@ -1,0 +1,41 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<app-success-bar *ngIf="editSuccess" [message]="'Dane zostały zaaktualizowane pomyślnie'"></app-success-bar>
+<h3 class="text-center" *ngIf="!course">Tworzenie nowego kursu</h3>
+<div class="container-fluid">
+    <form [formGroup]="courseForm" (ngSubmit)="Submit()">
+        <div class="form-group">
+            <label>Nazwa kursu(*)</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'invalid': submited && ctls.name.errors }"/>
+            <div class="text-danger" *ngIf="submited && ctls.name.errors && ctls.name.errors.required">Podaj nazwę kursu</div>
+        </div>
+        <div class="form-check form-group">
+            <input class="form-check-input" type="checkbox" formControlName="publicCourse">
+            <label class="form-check-label">Publiczny kurs</label>
+            <div class="text-secondary">Publiczne kursy wyświetlają się w profilu nauczyciela. Dołączenie do niepublcznego kursu jest możliwe jedyne przez link.</div>
+        </div>
+        <div class="form-check form-group">
+            <input class="form-check-input" type="checkbox" formControlName="autoAccept">
+            <label class="form-check-label">Dołączanie uczniów bez akceptacji przez prowadzącego</label>
+        </div>
+        <div class="form-check form-group">
+            <input class="form-check-input" type="checkbox" formControlName="studentsAllowedToPost">
+            <label class="form-check-label">Uczniowe mają możliwość publikowania wpisów w kursie</label>
+        </div>
+        <div class="form-group">
+            <label>Opis kursu</label>
+            <div class="quill-wrapper">
+                <quill-editor formControlName="welcomePageHtmlContent" spellcheck scrollingContainer="true"></quill-editor>
+            </div>
+        </div>
+        <div class="form-group d-flex justify-content-center sub-btn">
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+    </form>
+    <h3 *ngIf="course" class="text-center">Usuwanie kursu</h3>
+    <div class="container center-block">
+        <p class="text-danger">Uwaga! Usunęcie kursu jest nieodracalne, spowoduje to, że wszyscy uczniowe utracą progres w zadaniach przypisanych do kursu.</p>
+        <div class="form-group d-flex justify-content-center sub-btn">
+            <button class="btn btn-danger" (click)="OnCourseDelete()">Usuń kurs</button>
+        </div>
+    </div>
+</div>

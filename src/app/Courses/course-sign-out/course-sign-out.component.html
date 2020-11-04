@@ -1,0 +1,5 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<p class="text-danger text-center">Czy na pewno chcesz wypisać się z kursu? Operacja jest nieodwracalna oraz utracisz swoje postępy!</p>
+<div class="form-group d-flex justify-content-center sub-btn">
+    <button class="btn btn-danger" (click)="OnSignOut()">Wypisz mnie</button>
+</div>

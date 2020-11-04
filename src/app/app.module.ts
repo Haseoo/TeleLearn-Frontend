@@ -34,6 +34,11 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { MyCoursesComponent } from './Courses/my-courses/my-courses.component';
 import { CourseComponent } from './Courses/course/course.component';
 import { CoursesBriefComponent } from './Courses/courses-brief/courses-brief.component';
+import { CourseMainPageComponent } from './Courses/course-main-page/course-main-page.component';
+import { CourseFormComponent } from './Courses/course-form/course-form.component';
+import { StudentListComponent } from './Courses/student-list/student-list.component';
+import { CourseSignOutComponent } from './Courses/course-sign-out/course-sign-out.component';
+import { CourseSignUpComponent } from './Courses/course-sign-up/course-sign-up.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +66,12 @@ import { CoursesBriefComponent } from './Courses/courses-brief/courses-brief.com
     ConversationComponent,
     MyCoursesComponent,
     CourseComponent,
-    CoursesBriefComponent
+    CoursesBriefComponent,
+    CourseMainPageComponent,
+    CourseFormComponent,
+    StudentListComponent,
+    CourseSignOutComponent,
+    CourseSignUpComponent
   ],
   imports: [
     BrowserModule,

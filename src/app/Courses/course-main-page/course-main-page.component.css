@@ -1,0 +1,85 @@
+.card {
+    padding: 1em;
+    border-radius: 0;
+    box-shadow: 0 .5rem .5rem rgba(0,0,0,.15)!important;
+    margin-bottom: 1.5em;
+}
+
+.card-title {
+    font-size: 18pt;
+    font-weight: bold;
+    border-bottom: solid 1px gray;
+}
+
+
+.card-text {
+    margin: .5em 0;
+    padding-left: .5em;
+}
+
+::ng-deep .ql-align-center {
+    text-align: center;
+}
+
+::ng-deep .ql-align-right {
+    text-align: right;
+}
+
+::ng-deep .ql-align-right {
+    text-align: right;
+}
+
+::ng-deep .ql-align-justify {
+    text-align: justify;
+}
+
+::ng-deep blockquote {
+    font-style: italic;
+    color: gray;
+}
+
+::ng-deep .ql-syntax {
+    padding: 10px;
+    color: blue;
+    background-color: rgb(233, 233, 233);
+}
+
+::ng-deep .ql-font-serif {
+    font-family: serif;
+}
+
+::ng-deep .ql-font-monospace {
+    font-family: monospace;
+}
+
+::ng-deep .ql-indent-1 {
+    padding-left: 2rem;
+}
+
+::ng-deep .ql-indent-2 {
+    padding-left: 4rem;
+}
+
+::ng-deep .ql-indent-3 {
+    padding-left: 6rem;
+}
+
+::ng-deep .ql-indent-4 {
+    padding-left: 8rem;
+}
+
+::ng-deep .ql-indent-5 {
+    padding-left: 10rem;
+}
+
+::ng-deep .ql-indent-6 {
+    padding-left: 12rem;
+}
+
+::ng-deep .ql-indent-7 {
+    padding-left: 14rem;
+}
+
+::ng-deep .ql-indent-8 {
+    padding-left: 16rem;
+}

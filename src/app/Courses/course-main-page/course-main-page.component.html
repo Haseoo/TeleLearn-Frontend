@@ -1,0 +1,19 @@
+<section class="card" *ngIf="course">
+    <div class="card-title">
+        Informacje o prowadzącym
+    </div>
+    <div class="d-flex align-items-center">
+        <i class="material-icons">person</i>
+        <a routerLink="/user/{{ course.owner.id }}">
+            {{ course.owner.title }} {{ course.owner.name }} {{ course.owner.surname }}
+        </a>
+    </div>
+</section>
+
+<section class="card" *ngIf="course && course.welcomePageHtmlContent">
+    <div class="card-title">
+        O kursie
+    </div>
+    <div class="card-text" [innerHTML]="course.welcomePageHtmlContent | safeHtml">
+    </div>
+</section>

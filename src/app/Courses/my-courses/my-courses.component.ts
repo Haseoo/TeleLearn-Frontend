@@ -32,7 +32,7 @@ export class MyCoursesComponent implements OnInit {
         this.courseBriefs = dt;
       }, err => {
         this.error = true;
-        this.errorMessage = (err.error.message) ? err.error.message : err.error;
+        this.errorMessage = (err.error.message) ? err.error.message : err.message;
       }
     )
   }

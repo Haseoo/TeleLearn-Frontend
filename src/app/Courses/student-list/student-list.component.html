@@ -1,0 +1,56 @@
+<app-error-bar *ngIf="error" [errorMessage]="erorMessage"></app-error-bar>
+<div class="container" *ngIf="course && IsCurrentUserTeacher() && course.requestedStudents.length > 0">
+    <div class="h4 text-center">Lista uczniów oczekujących na akceptację:</div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th >Jednoska</th>
+            <th>Akcja</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of course.requestedStudents">
+                <td><a routerLink="/user/{{ item.id }}">{{ item.name }}</a></td>
+                <td><a routerLink="/user/{{ item.id }}">{{ item.surname }}</a></td>
+                <td>{{ item.unit }}</td>
+                <td>
+                    <button title="Zaakceptuj" class="btn btn-outline-success" (click)="OnStudentAccept(item)">
+                        <i class="material-icons">person_add</i>
+                    </button>
+                    <button title="Odrzuć" class="btn btn-outline-danger" (click)="OnUserDelete(item)">
+                        <i class="material-icons">person_remove</i>
+                    </button>
+                </td>
+              </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container" *ngIf="course">
+    <div class="h4 text-center">Lista uczestników kursu:</div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th >Jednoska</th>
+            <th *ngIf="IsCurrentUserTeacher()">Akcja</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of course.allowedStudents">
+                <td><a routerLink="/user/{{ item.id }}">{{ item.name }}</a></td>
+                <td><a routerLink="/user/{{ item.id }}">{{ item.surname }}</a></td>
+                <td>{{ item.unit }}</td>
+                <td *ngIf="IsCurrentUserTeacher()">
+                    <button title="Usuń ucznia z kursu" class="btn btn-outline-danger" (click)="OnUserDelete(item)">
+                        <i class="material-icons">person_remove</i>
+                    </button>
+                </td>
+              </tr>
+        </tbody>
+    </table>
+</div>
+
