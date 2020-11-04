@@ -59,9 +59,9 @@ export class CourseFormComponent implements OnInit {
   }
 
   Submit() {
+    window.scroll(0,0);
     this.submited = true;
     if (!this.courseForm.valid) {
-      window.scroll(0,0);
       return;
     }
     let request = new CourseRequest();
@@ -78,7 +78,6 @@ export class CourseFormComponent implements OnInit {
           this.editSuccess = true;
           setTimeout(() => this.editSuccess = false, 5000);
         }, err => {
-          window.scroll(0,0);
           this.errorMessage = (err.error.message) ? err.error.message : err.message;
           this.error = true;
         }

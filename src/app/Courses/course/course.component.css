@@ -34,8 +34,6 @@ i {
 
 .header {
     margin-bottom: 1em;
-    border-bottom: solid 1px;
-    padding-bottom: .5em;
 }
 
 .nav-banner {
@@ -51,4 +49,15 @@ i {
 
 .nav-banner:focus {
     outline: 0;
+}
+
+h2 {
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+    padding-left: 2.5em;
+    border-bottom: solid darkgrey 1px;
+}
+
+ul {
+    margin: .5em 0;
 }
