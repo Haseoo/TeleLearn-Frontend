@@ -30,6 +30,7 @@ export class MyCoursesComponent implements OnInit {
     observaleBriefs.subscribe(
       dt => {
         this.courseBriefs = dt;
+        this.courseBriefs.sort(this._CourseCompare);
       }, err => {
         this.error = true;
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
@@ -39,6 +40,16 @@ export class MyCoursesComponent implements OnInit {
 
   get ShowOwner(): boolean {
     return !(this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER]);
+  }
+
+  private _CourseCompare(course1: CourseBrief, course2: CourseBrief) {
+    if (course1.name < course2.name) {
+      return -1;
+    }
+    if (course1.name < course2.name) {
+      return 1;
+    }
+    return 0;
   }
 
 }
