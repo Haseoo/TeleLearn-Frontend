@@ -79,4 +79,8 @@ export class UserService {
     return this.httpClient.patch(`${environment.api_url}/user/${id}`, request);
   }
 
+  GetTeachers(): Observable<Teacher[]> {
+    return this.httpClient.get<Teacher[]>(`${environment.api_url}/user/teacher`);
+  }
+
 }

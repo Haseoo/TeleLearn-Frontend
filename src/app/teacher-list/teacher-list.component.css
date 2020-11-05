@@ -1,0 +1,32 @@
+tr:hover {
+    cursor: pointer;
+    color: rgb(80, 146, 232);
+}
+
+.filter {
+    background-color: transparent;
+    border: solid lightgray;
+    border-width: 1px 0;
+    padding: .5em;
+    width: 100%;
+    outline: 0;
+}
+
+.filter-form {
+    border: solid lightgray;
+    border-width: 0 1px 1px 1px;
+    padding: 15px;
+}
+
+.filter-wrapper {
+    margin: 1em 0;
+}
+
+.filter:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
+
+.btn-separator {
+    margin:0  5px;
+}

@@ -4,7 +4,7 @@
     <h3 class="text-center">Zapisywanie do kursu: {{ course.name }}</h3>
     <p>Prowadzący kurs: <a routerLink="/user/{{ course.owner.id }}"> {{ course.owner.title }} {{ course.owner.name }} {{ course.owner.surname }}</a></p>
     <p>Aby uzyskać dostęp do kursu musisz się najpierw do niego zapisać.</p>
-    <p *ngIf="!course.isAutoAccept">Po zapisaniu się do kursu, prowadzący musi zaakecptować Twoją proźbę do dołączenie, po czym uzyskasz dostęp do tego kursu.</p>
+    <p *ngIf="!course.isAutoAccept">Po zapisaniu się do kursu, prowadzący musi zaakecptować Twoją prośbę do dołączenie, po czym uzyskasz dostęp do tego kursu.</p>
     <div class="form-group d-flex justify-content-center sub-btn">
         <button class="btn btn-primary" (click)="OnStudenSignIn()">Zapisz się do kursu</button>
     </div>

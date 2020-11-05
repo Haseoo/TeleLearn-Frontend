@@ -98,3 +98,7 @@
 ::ng-deep .ql-indent-8 {
     padding-left: 16rem;
 }
+
+::ng-deep p {
+    margin-bottom: .5em;
+}

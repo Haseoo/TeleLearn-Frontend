@@ -18,6 +18,7 @@ import { MainPageComponent } from './MainPage/main-page/main-page.component';
 import { NewsPagerComponent } from './MainPage/news-pager/news-pager.component';
 import { ConversationListComponent } from './Messages/conversation-list/conversation-list.component';
 import { ConversationComponent } from './Messages/conversation/conversation.component';
+import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AuthErrorComponent } from './UserManagement/auth-error/auth-error.component';
 import { LoginComponent } from './UserManagement/login/login.component';
 import { LogoutComponent } from './UserManagement/logout/logout.component';
@@ -38,7 +39,8 @@ const routes: Routes = [
     { path: 'messages/:id', component: ConversationComponent, canActivate: [AuthGuardService] },
     { path: 'my-courses', component: MyCoursesComponent, canActivate: [UserGuardService] },
     { path: 'new-course', component: CourseFormComponent, canActivate: [TeacherGuardService] },
-    { path: 'sign-up-course/:course-id', component: CourseSignUpComponent, canActivate: [StudentGuardService] }
+    { path: 'sign-up-course/:course-id', component: CourseSignUpComponent, canActivate: [StudentGuardService] },
+    { path: 'teachers', component: TeacherListComponent, canActivate: [AuthGuardService] }
     ]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },

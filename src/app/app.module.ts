@@ -39,6 +39,7 @@ import { CourseFormComponent } from './Courses/course-form/course-form.component
 import { StudentListComponent } from './Courses/student-list/student-list.component';
 import { CourseSignOutComponent } from './Courses/course-sign-out/course-sign-out.component';
 import { CourseSignUpComponent } from './Courses/course-sign-up/course-sign-up.component';
+import { TeacherListComponent } from './teacher-list/teacher-list.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { CourseSignUpComponent } from './Courses/course-sign-up/course-sign-up.c
     CourseFormComponent,
     StudentListComponent,
     CourseSignOutComponent,
-    CourseSignUpComponent
+    CourseSignUpComponent,
+    TeacherListComponent
   ],
   imports: [
     BrowserModule,
