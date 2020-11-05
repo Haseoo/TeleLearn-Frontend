@@ -39,6 +39,7 @@ export class RegisterationStudentComponent implements OnInit {
   }
 
   Submit() {
+    window.scroll(0,0);
     this.submitted = true;
     if (!this.registerationForm.valid || !this.registerationForm.controls.tos.value) {
       return;

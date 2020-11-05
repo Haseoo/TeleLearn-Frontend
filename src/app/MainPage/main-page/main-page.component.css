@@ -6,14 +6,10 @@
 }
 
 .menu-title {
+    text-align: center;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 16pt;
-    padding-left: 10px;
-}
-
-.container {
-    margin-left: 15px;
 }
 
 .content-container {
@@ -25,6 +21,9 @@
 @media only screen and (max-width: 700px) {
     .menu {
         margin-bottom: 1em;
-        padding: 5px 0;
+    }
+
+    .content-container {
+        padding: 0;
     }
 }

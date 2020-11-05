@@ -12,12 +12,8 @@
     font-size: 16pt;
 }
 
-.container {
-    margin-left: 15px;
-}
-
 .content-container {
-    flex: 70%;
+    flex: 75%;
     padding: 10px;
     overflow: hidden;
 }
@@ -40,12 +36,14 @@ i {
 .nav-banner {
     width: 100%;
     font-size: 13pt;
-    padding: 7px 0 7px 1em;
+    padding: 7px 0;
+    text-align: center!important;
     border: solid lightgray;
     border-width: 1px 0;
     font-weight: bold;
     text-align: left;
     cursor: pointer;
+    background-color: rgb(194, 233, 248);
 }
 
 .nav-banner:focus {
@@ -57,8 +55,32 @@ h2 {
     padding-bottom: 5px;
     padding-left: .5em;
     border-bottom: solid darkgrey 1px;
+    word-break: break-all;
 }
 
 ul {
-    margin: .5em 0;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 10px 0;
+    list-style-type: none;
+    text-align: center;
+    border-bottom: solid lightgray 1px;
+}
+
+
+li:hover {
+    background-color: aliceblue;
+}
+
+@media only screen and (max-width: 840px) {
+    .menu {
+        margin-bottom: 1em;
+    }
+
+    .content-container {
+        padding: 0;
+    }
 }

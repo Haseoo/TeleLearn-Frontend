@@ -1,69 +1,61 @@
 <button class="nav-banner" *ngIf="isCurrentUserAdmin()">
     Panel adminstratora
 </button>
-<div class="container">
-    <ul *ngIf="isCurrentUserAdmin()">
-        <li>
-            <a routerLink="/news/compose">Dodaj nowy artykuł na stronę główną</a>
-        </li>
-    </ul>
-</div>
+<ul *ngIf="isCurrentUserAdmin()">
+    <li>
+        <a href="/news/compose">Dodaj nowy artykuł na stronę główną</a>
+    </li>
+</ul>
 
 <button class="nav-banner" *ngIf="isCurrentUserStudent()">
     Panel ucznia
 </button>
-<div class="container">
-    <ul *ngIf="isCurrentUserStudent()">
-        <li>
-            <a routerLink="/my-courses">Moje kursy</a>
-        </li>
-        <li>
-            <a routerLink="/teachers">Znajdź nauczyciela</a>
-        </li>
-    </ul>
-</div>
+<ul *ngIf="isCurrentUserStudent()">
+    <li>
+        <a href="/my-courses">Moje kursy</a>
+    </li>
+    <li>
+        <a href="/teachers">Znajdź nauczyciela</a>
+    </li>
+</ul>
 
 
 <button class="nav-banner" *ngIf="isCurrentUserTeacher()">
     Panel nauczyciela
 </button>
-<div class="container">
-    <ul *ngIf="isCurrentUserTeacher()">
-        <li>
-            <a routerLink="/my-courses">Moje kursy</a>
-        </li>
-        <li>
-            <a routerLink="/new-course">Utwórz nowy kurs</a>
-        </li>
-    </ul>
-</div>
+<ul *ngIf="isCurrentUserTeacher()">
+    <li>
+        <a href="/my-courses">Moje kursy</a>
+    </li>
+    <li>
+        <a href="/new-course">Utwórz nowy kurs</a>
+    </li>
+</ul>
 
 
 <button class="nav-banner">
     Twoje konto
 </button>
-<div class="container">
-    <ul *ngIf="!userService.GetCurrentUser()">
-        <li>
-            <a routerLink="/login">Zaloguj się</a>
-        </li>
-        <li>
-            <a routerLink="/register">Zarejestruj się</a>
-        </li>
-    </ul>
+<ul *ngIf="!userService.GetCurrentUser()">
+    <li>
+        <a href="/login">Zaloguj się</a>
+    </li>
+    <li>
+        <a href="/register">Zarejestruj się</a>
+    </li>
+</ul>
 
-    <ul *ngIf="userService.GetCurrentUser()">
-        <li *ngIf="!isCurrentUserAdmin()">
-            <a href="/user/{{ userService.GetCurrentUser().id }}{{ GetBackUrlParam() }}">Mój profil</a>
-        </li>
-        <li>
-            <a routerLink="/messages">Wiadomości</a>
-        </li>
-        <li *ngIf="!isCurrentUserAdmin()">
-            <a routerLink="/user/settings">Ustawienia konta</a>
-        </li>
-        <li>
-            <a routerLink="/logout">Wyloguj</a>
-        </li>
-    </ul>
-</div>
+<ul *ngIf="userService.GetCurrentUser()">
+    <li *ngIf="!isCurrentUserAdmin()">
+        <a href="/user/{{ userService.GetCurrentUser().id }}{{ GetBackUrlParam() }}">Mój profil</a>
+    </li>
+    <li>
+        <a href="/messages">Wiadomości</a>
+    </li>
+    <li *ngIf="!isCurrentUserAdmin()">
+        <a href="/user/settings">Ustawienia konta</a>
+    </li>
+    <li>
+        <a href="/logout">Wyloguj</a>
+    </li>
+</ul>

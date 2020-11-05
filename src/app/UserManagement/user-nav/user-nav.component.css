@@ -1,26 +1,34 @@
 .nav-banner {
     width: 100%;
     font-size: 13pt;
-    padding: 7px 0 7px 1em;
+    padding: 7px 0;
+    text-align: center!important;
     border: solid lightgray;
     border-width: 1px 0;
     font-weight: bold;
     text-align: left;
     cursor: pointer;
+    background-color: rgb(194, 233, 248);
 }
 
 .nav-banner:focus {
     outline: 0;
 }
 
-.container {
-    margin: .5em 0;
+
+ul {
+    padding: 0;
+    margin: 0;
 }
 
-.card {
-    width: 100%;
+li {
+    padding: 10px 0;
+    list-style-type: none;
+    text-align: center;
+    border-bottom: solid lightgray 1px;
 }
 
-.courses {
-    margin-top: 100px;
+
+li:hover {
+    background-color: aliceblue;
 }
