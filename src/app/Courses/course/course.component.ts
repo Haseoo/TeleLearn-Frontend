@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/Models/Courses/Course';
 import { UserRole } from 'src/app/Models/UserRole';
@@ -16,12 +16,16 @@ export class CourseComponent implements OnInit {
   errorMessage: string;
   course: Course;
 
+  menuVisible: boolean = false;
+  innerWidth: number;
+
   constructor(private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
     private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
     this.activatedRoute.params.subscribe(
       params => {
         let courseId = params['course-id'];
@@ -51,6 +55,11 @@ export class CourseComponent implements OnInit {
 
   IsCurrentUserStudent(): boolean {
     return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 
 }

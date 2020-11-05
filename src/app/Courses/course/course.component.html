@@ -1,51 +1,54 @@
 <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
-<div class="container-fluid header">
+<h2 *ngIf="course">{{ course.name }}</h2>
+<div class="header">
     <a class="d-flex align-items-center" routerLink="/my-courses">
         <i class="material-icons">keyboard_backspace</i>
         Powrót do moich kursów</a>
 </div>
-<h2 *ngIf="course">{{ course.name }}</h2>
-<div class="d-flex bd-highlight" *ngIf="!error">
+<div class="d-flex bd-highlight flex-wrap" *ngIf="!error">
     <div class="menu bd-highlight shadow" *ngIf="course">
-        <div class="menu-title">Nawigacja po kursie</div>
-        <button class="nav-banner">
-            Sekcje kursu
-        </button>
-        <ul>
-            <li>
-                <a routerLink="/course/{{ course.id }}">Informacje</a>
-            </li>
-            <li>
-                <a routerLink="/course/{{ course.id }}/calendar">Kalendarz</a>
-            </li>
-            <li>
-                <a routerLink="/course/{{ course.id }}/board">Tablica wpisów</a>
-            </li>
-            <li>
-                <a routerLink="/course/{{ course.id }}/paths">Ścieżki</a>
-            </li>
-        </ul>
+        <div class="menu-title d-flex align-items-center justify-content-center" (click)="menuVisible = !menuVisible">Nawigacja po kursie
+            <i *ngIf="innerWidth < 700" class="material-icons">keyboard_arrow_down</i></div>
+       <div *ngIf="innerWidth > 700 || menuVisible">
+            <button class="nav-banner">
+                Sekcje kursu
+            </button>
+            <ul>
+                <li>
+                    <a routerLink="/course/{{ course.id }}">Informacje</a>
+                </li>
+                <li>
+                    <a routerLink="/course/{{ course.id }}/calendar">Kalendarz</a>
+                </li>
+                <li>
+                    <a routerLink="/course/{{ course.id }}/board">Tablica wpisów</a>
+                </li>
+                <li>
+                    <a routerLink="/course/{{ course.id }}/paths">Ścieżki</a>
+                </li>
+            </ul>
 
-        <button class="nav-banner">
-            Zarządzanie kursem
-        </button>
+            <button class="nav-banner">
+                Zarządzanie kursem
+            </button>
 
-        <ul *ngIf="IsCurrentUserStudent()">
-            <li>
-                <a routerLink="/course/{{ course.id }}/participants">Lista uczestników</a>
-            </li>
-            <li>
-                <a routerLink="/course/{{ course.id }}/sign-out">Wypisz się z kursu</a>
-            </li>
-        </ul>
-        <ul *ngIf="IsCurrentUserTeacher()">
-            <li>
-                <a routerLink="/course/{{ course.id }}/participants">Lista uczestników</a>
-            </li>
-            <li>
-                <a routerLink="/course/{{ course.id }}/update">Ustawienia kursu</a>
-            </li>
-        </ul>
+            <ul *ngIf="IsCurrentUserStudent()">
+                <li>
+                    <a routerLink="/course/{{ course.id }}/participants">Lista uczestników</a>
+                </li>
+                <li>
+                    <a routerLink="/course/{{ course.id }}/sign-out">Wypisz się z kursu</a>
+                </li>
+            </ul>
+            <ul *ngIf="IsCurrentUserTeacher()">
+                <li>
+                    <a routerLink="/course/{{ course.id }}/participants">Lista uczestników</a>
+                </li>
+                <li>
+                    <a routerLink="/course/{{ course.id }}/update">Ustawienia kursu</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="content-container flex-grow-1 justify-content-center">
         <router-outlet></router-outlet>

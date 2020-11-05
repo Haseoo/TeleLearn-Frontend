@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { APP_NAME } from './constants'
 import { UserLoginResponse } from './Models/UserLoginResponse';
 import { UserService } from './Services/user.service';
@@ -15,7 +15,16 @@ export class AppComponent implements OnInit{
   constructor(private userService: UserService){
 
   }
+
+  innerWidth: number;
+
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 
   get currentUser(): UserLoginResponse {

@@ -1,5 +1,5 @@
 <app-error-bar *ngIf="error" [errorMessage]="erorMessage"></app-error-bar>
-<div class="container" *ngIf="course && IsCurrentUserTeacher() && course.requestedStudents.length > 0">
+<div *ngIf="course && IsCurrentUserTeacher() && course.requestedStudents.length > 0">
     <div class="h4 text-center">Lista uczniów oczekujących na akceptację:</div>
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -28,7 +28,7 @@
     </table>
 </div>
 
-<div class="container" *ngIf="course">
+<div *ngIf="course">
     <div class="h4 text-center">Lista uczestników kursu:</div>
     <table class="table table-striped">
         <thead class="thead-dark">

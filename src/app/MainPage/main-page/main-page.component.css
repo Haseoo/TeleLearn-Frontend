@@ -1,16 +1,15 @@
 .menu {
-    margin-right: 15px;
-    width: 25%;
-    min-width: 250px;
     border: solid rgb(230, 230, 230) 1px;
-    padding: 20px 0;
+    padding: 10px 0;
+    flex: auto;
+    min-width: 210px;
 }
 
 .menu-title {
-    text-align: center;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 16pt;
+    padding-left: 10px;
 }
 
 .container {
@@ -18,7 +17,14 @@
 }
 
 .content-container {
-    padding-top: 10px;
-    max-width: 75%;
+    flex: 70%;
+    padding: 10px;
     overflow: hidden;
+}
+
+@media only screen and (max-width: 700px) {
+    .menu {
+        margin-bottom: 1em;
+        padding: 5px 0;
+    }
 }

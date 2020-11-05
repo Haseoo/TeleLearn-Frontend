@@ -11,5 +11,13 @@
 }
 div.logo > h1 {
     font-family: 'Architects Daughter', cursive;
+    font-size: 10vw;
     margin-left: 10px;
+}
+
+img {
+    min-width: 100px;
+    min-height: 100px;
+    width: 10vw;
+    height: 10vw;
 }

@@ -25,8 +25,8 @@
                 <i class="material-icons md-18">message</i>Napisz wiadomość</button>
         </div>
     </div>
-    <a class="h5">Prowadzone kursy:</a>
-    <div class="container" *ngIf="user">
+    <a class="h5" *ngIf="teacher">Prowadzone kursy:</a>
+    <div class="container" *ngIf="teacher">
         <div class="courses justify-content-center">
             <app-courses-brief [courseBriefs]="coursesBriefs" [showOwner]="false"></app-courses-brief>
         </div>
