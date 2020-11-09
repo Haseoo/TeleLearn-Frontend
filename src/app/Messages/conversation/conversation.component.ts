@@ -84,7 +84,7 @@ export class ConversationComponent implements OnInit {
   }
 
   SanitazeMessage(message: string): string{
-    return message.replace(/<[^>]*>/g, '').replace("\n","<br />")
+    return message.replace(/<[^>]*>/g, '').replace("\n","<br />");
   }
 
   FetchMessages() {

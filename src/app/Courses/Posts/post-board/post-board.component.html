@@ -1,0 +1,19 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<div class="container" *ngIf="course && !error">
+    <div class="d-flex justify-content-center" *ngIf="IsCurrentUserOwner() || course.areStudentsAllowedToPost">
+        <button class="btn btn-primary" (click)="OnAddPost()">Dodaj nowy post</button>
+    </div>
+    <div class="conversation container-fluid shadow-sm justify-content-center" *ngFor="let item of posts | paginate: { itemsPerPage: 20, currentPage: current }">
+        <app-post [post]="item"
+            [showCommentCount]="true"
+            [baseUrl]="GetBaseUrl()"
+            [showDelete]="IsCurrentUserPermittedToDeletePost(item)"
+            [showUpdate]="IsCurrentUserPermittedToUpdatePost(item)"
+            (postUpdate)="OnPostEdit(item)"
+            (postDelete)="OnPostDelete(item)">
+        </app-post>
+    </div>
+    <div class="d-flex justify-content-center">
+        <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="current = $event"></pagination-controls>
+    </div>
+</div>

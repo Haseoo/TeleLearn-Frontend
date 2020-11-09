@@ -11,6 +11,8 @@ import { CourseSignOutComponent } from './Courses/course-sign-out/course-sign-ou
 import { CourseSignUpComponent } from './Courses/course-sign-up/course-sign-up.component';
 import { CourseComponent } from './Courses/course/course.component';
 import { MyCoursesComponent } from './Courses/my-courses/my-courses.component';
+import { PostComposerComponent } from './Courses/Posts/post-composer/post-composer.component';
+import { PostBoardComponent } from './Courses/Posts/post-board/post-board.component';
 import { StudentListComponent } from './Courses/student-list/student-list.component';
 import { NewsArticleComponent } from './GlobalNews/news-article/news-article.component';
 import { NewsComposerComponent } from './GlobalNews/news-composer/news-composer.component';
@@ -25,6 +27,7 @@ import { LogoutComponent } from './UserManagement/logout/logout.component';
 import { RegistrationComponent } from './UserManagement/registration/registration.component';
 import { UserInfoComponent } from './UserManagement/user-info/user-info.component';
 import { UserSettingsComponent } from './UserManagement/user-settings/user-settings.component';
+import { PostPageComponent } from './Courses/Posts/post-page/post-page.component';
 
 
 const routes: Routes = [
@@ -50,7 +53,11 @@ const routes: Routes = [
     { path: '', component: CourseMainPageComponent, canActivate: [UserGuardService]},
     { path: 'update', component: CourseFormComponent, canActivate: [TeacherGuardService] },
     { path: 'participants', component: StudentListComponent, canActivate: [UserGuardService] },
-    { path: 'sign-out', component: CourseSignOutComponent, canActivate: [StudentGuardService] }
+    { path: 'sign-out', component: CourseSignOutComponent, canActivate: [StudentGuardService] },
+    { path: 'post/add', component: PostComposerComponent, canActivate: [UserGuardService] },
+    { path: 'post/edit/:id', component: PostComposerComponent, canActivate: [UserGuardService] },
+    { path: 'board', component: PostBoardComponent, canActivate: [UserGuardService] },
+    { path: 'post/:id', component: PostPageComponent, canActivate: [UserGuardService] }
   ] }
 ];
 

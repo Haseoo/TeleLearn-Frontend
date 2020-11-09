@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-row d-flex justify-content-end btn-menu" *ngIf="showDelete || showUpdate">
+        <button class="btn btn-success d-flex align-items-center" *ngIf="showUpdate" (click)="postUpdate.emit()">
+            <i class="material-icons md-18">create</i>Edytuj post
+        </button>
+        <div class="seprataor"></div>
+        <button class="btn btn-danger d-flex align-items-center" *ngIf="showDelete" (click)="postDelete.emit()">
+            <i class="material-icons md-18">delete_forever</i>Usuń post
+        </button>
+    </div>
+    <div class="card-title">
+        <a href="/user/{{ post.author.id }}">
+            {{ post.author.name }}
+            {{ post.author.surname }}
+        </a>
+        <span class="date">({{ post.publicationTime | date:'HH:mm:ss dd.MM.yyyy'}})</span> pisze:
+    </div>
+    <article class="card-text" [innerHTML]="post.content"></article>
+    <div *ngIf="post.attachments && post.attachments.length > 0">
+        <span class="h5">Załączniki:</span>
+        <ul>
+            <li *ngFor="let item of post.attachments">
+                <a class="link" (click)="DownloadFile(item.id)">{{ item.fileName }}</a>
+            </li>
+        </ul>
+    </div>
+    <a *ngIf="showCommentCount" href="{{ baseUrl }}/{{ post.id }}">Komentarze({{ post.commentCount }})</a>
+</div>

@@ -1,0 +1,34 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<div class="container main-container" *ngIf="post && course">
+    <app-post [post]="post" [showDelete]="HasCurrentUserRightsToDelete(post)" [showUpdate]="HasCurrentUserRightsEdit(post)" (postDelete)="OnPostDelete()" (postUpdate)="OnPostEdit()"></app-post>
+    <div class="comment-section" *ngIf="post.commentingAllowed">
+        <div class="h5 text-center">Komentarze:</div>
+        <form [formGroup]="commentForm" (submit)="OnAddComment()">
+            <div class="form-group">
+                <textarea placeholder="Twój komentarz..." formControlName="content" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn sub-btn btn-primary">Dodaj komentarz</button>
+            </div>
+        </form>
+        <div class="card" *ngFor="let item of comments | paginate: { itemsPerPage: 20, currentPage: current }">
+            <div class="card-title">
+                <a href="/user/{{ post.author.id }}">
+                    {{ item.author.name }}
+                    {{ item.author.surname }}
+                </a>
+                <span class="date">({{ post.publicationTime | date:'HH:mm:ss dd.MM.yyyy'}})</span>
+                pisze:
+            </div>
+            <article class="card-text" [innerHTML]="item.content"></article>
+            <div class="d-flex justify-content-end" *ngIf="HasCurrentUserRightsToDelete(item)" (click)="OnDeleteComment(item)">
+                <button class="btn btn-danger d-flex align-items-center">
+                    <i class="material-icons md-18">delete_forever</i>Usuń komentarz
+                </button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="current = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

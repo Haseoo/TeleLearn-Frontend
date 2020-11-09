@@ -1,0 +1,51 @@
+.card {
+    max-width: 900px;
+    padding: 1em;
+    border-radius: 0;
+    box-shadow: 0 .5rem .5rem rgba(0,0,0,.15)!important;
+    margin: 10px auto;
+}
+
+.card:hover {
+    background: rgba(100,100,100,.05);
+
+}
+
+.card-title {
+    font-weight: bold;
+    border-bottom: solid 1px gray;
+    font-size: 14pt;
+}
+
+span.date {
+    color: gray;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.card-text {
+    margin: .5em 0;
+    padding-left: .5em;
+}
+
+.seprataor {
+    margin: 0 5px;
+}
+
+.btn {
+    padding: 3px 6px;
+}
+
+.btn-menu {
+    margin-bottom: 10px;
+}
+
+a.link {
+    color: #007bff;
+}
+
+a.link:hover{
+    color: #007bff;
+    text-decoration: underline !important;
+    cursor: pointer;
+}

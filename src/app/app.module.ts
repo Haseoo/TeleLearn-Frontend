@@ -40,6 +40,10 @@ import { StudentListComponent } from './Courses/student-list/student-list.compon
 import { CourseSignOutComponent } from './Courses/course-sign-out/course-sign-out.component';
 import { CourseSignUpComponent } from './Courses/course-sign-up/course-sign-up.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { PostComposerComponent } from './Courses/Posts/post-composer/post-composer.component';
+import { PostBoardComponent } from './Courses/Posts/post-board/post-board.component';
+import { PostComponent } from './Courses/Posts/post/post.component';
+import { PostPageComponent } from './Courses/Posts/post-page/post-page.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +77,11 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
     StudentListComponent,
     CourseSignOutComponent,
     CourseSignUpComponent,
-    TeacherListComponent
+    TeacherListComponent,
+    PostComposerComponent,
+    PostBoardComponent,
+    PostComponent,
+    PostPageComponent
   ],
   imports: [
     BrowserModule,
