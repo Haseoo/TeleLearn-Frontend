@@ -1,5 +1,5 @@
 <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
-<div class="container" *ngIf="course && !error">
+<div *ngIf="course && !error">
     <div class="d-flex justify-content-center" *ngIf="IsCurrentUserOwner() || course.areStudentsAllowedToPost">
         <button class="btn btn-primary" (click)="OnAddPost()">Dodaj nowy post</button>
     </div>

@@ -28,7 +28,7 @@ export class PostComponent implements OnInit {
   DownloadFile(attachment: Attachment) {
     this.attachmentService.getAttachment(attachment.id).subscribe(
       dt => {
-        let file = new File([dt], attachment.fileName, {type: dt.type});
+        let file = new File([dt.body], attachment.fileName, {type: dt.body.type});
         FileSaver.saveAs(file);
       }, err => {
         console.error(err);
