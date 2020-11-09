@@ -20,7 +20,7 @@
         <span class="h5">Załączniki:</span>
         <ul>
             <li *ngFor="let item of post.attachments">
-                <a class="link" (click)="DownloadFile(item.id)">{{ item.fileName }}</a>
+                <a class="link" (click)="DownloadFile(item)">{{ item.fileName }}</a>
             </li>
         </ul>
     </div>

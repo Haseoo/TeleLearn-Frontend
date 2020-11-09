@@ -1,4 +1,4 @@
 export class Attachment {
     id: number;
-    fileName: number;
+    fileName: string;
 }

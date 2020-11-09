@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post } from 'src/app/Models/Courses/Posts/Post';
 import { AttachmentService } from 'src/app/Services/attachment.service';
+import * as FileSaver from 'file-saver';
+import { Attachment } from 'src/app/Models/Attachment';
 
 @Component({
   selector: 'app-post',
@@ -23,10 +25,11 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  DownloadFile(id: number) {
-    this.attachmentService.getAttachment(id).subscribe(
+  DownloadFile(attachment: Attachment) {
+    this.attachmentService.getAttachment(attachment.id).subscribe(
       dt => {
-        let blob = new Blob(dt);
+        let file = new File([dt], attachment.fileName, {type: dt.type});
+        FileSaver.saveAs(file);
       }, err => {
         console.error(err);
       }
