@@ -1,5 +1,5 @@
 <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
-<app-info-bar *ngIf="waitMessage" [message]="'Twoja proźba o dołączenie została wysłana do prowadzącego kurs.'"></app-info-bar>
+<app-info-bar *ngIf="waitMessage" [message]="'Twoja prośba o dołączenie została wysłana do prowadzącego kurs.'"></app-info-bar>
 <div class="container" *ngIf="course">
     <h3 class="text-center">Zapisywanie do kursu: {{ course.name }}</h3>
     <p>Prowadzący kurs: <a routerLink="/user/{{ course.owner.id }}"> {{ course.owner.title }} {{ course.owner.name }} {{ course.owner.surname }}</a></p>
