@@ -44,6 +44,7 @@ import { PostComposerComponent } from './Courses/Posts/post-composer/post-compos
 import { PostBoardComponent } from './Courses/Posts/post-board/post-board.component';
 import { PostComponent } from './Courses/Posts/post/post.component';
 import { PostPageComponent } from './Courses/Posts/post-page/post-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { PostPageComponent } from './Courses/Posts/post-page/post-page.component
     PostComposerComponent,
     PostBoardComponent,
     PostComponent,
-    PostPageComponent
+    PostPageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

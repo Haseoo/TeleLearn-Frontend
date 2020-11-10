@@ -28,6 +28,7 @@ import { RegistrationComponent } from './UserManagement/registration/registratio
 import { UserInfoComponent } from './UserManagement/user-info/user-info.component';
 import { UserSettingsComponent } from './UserManagement/user-settings/user-settings.component';
 import { PostPageComponent } from './Courses/Posts/post-page/post-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -58,7 +59,11 @@ const routes: Routes = [
     { path: 'post/edit/:id', component: PostComposerComponent, canActivate: [UserGuardService] },
     { path: 'board', component: PostBoardComponent, canActivate: [UserGuardService] },
     { path: 'post/:id', component: PostPageComponent, canActivate: [UserGuardService] }
-  ] }
+  ] },
+
+
+  { path:'404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({
