@@ -2,7 +2,7 @@
 <app-success-bar *ngIf="updateSuccess" [message]="'Aktualizacja pomyślna'"></app-success-bar>
 <div class="container form-container shadow">
     <p class="text-center h3" *ngIf="!post">Dodawanie postu</p>
-    <p class="text-center h3" *ngIf="post">Edcyja postu</p>
+    <p class="text-center h3" *ngIf="post">Edycja postu</p>
     <form [formGroup]="postForm" (ngSubmit)="Submit()">
         <div class="form-group">
             <label>Treść:</label>
