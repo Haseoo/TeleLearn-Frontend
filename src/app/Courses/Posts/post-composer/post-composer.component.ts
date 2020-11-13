@@ -10,6 +10,7 @@ import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { PostService } from 'src/app/Services/post.service';
 import { UserService } from 'src/app/Services/user.service';
+import { environment } from 'src/environments/environment';
 import { Utils } from 'src/Utlis';
 
 @Component({
@@ -18,6 +19,8 @@ import { Utils } from 'src/Utlis';
   styleUrls: ['./post-composer.component.css', './../../../../form-style.css']
 })
 export class PostComposerComponent implements OnInit {
+
+  MAX_FILE_SIZE_MB = environment.max_file_size / 1000000;
 
   error: boolean;
   errorMessage: string;
@@ -79,7 +82,7 @@ export class PostComposerComponent implements OnInit {
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      if (file.size > 10000000) {
+      if (file.size > environment.max_file_size) {
         alert("Plik może mieć maksymalnie 10 MB!");
         return;
       }
@@ -103,7 +106,7 @@ export class PostComposerComponent implements OnInit {
         request.append('files', file);
       });
 
-      this.fileIdsToDelete.forEach(id => request.append('attachmentIdsToDelete', id.toString()))
+      this.fileIdsToDelete.forEach(id => request.append('attachmentIdsToDelete', id.toString()));
       if (this.post) {
         this.postService.UpdatePost(this.post.id, request).subscribe(
           dt => {

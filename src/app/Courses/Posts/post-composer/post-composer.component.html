@@ -26,7 +26,7 @@
         <div class="form-group">
             <p class="h5">Załączniki:</p>
             <div class="form-group">
-                <label for="attachment-upload">Dodaj plik (max 10MB):</label>
+                <label for="attachment-upload">Dodaj plik (max {{ MAX_FILE_SIZE_MB }}MB):</label>
                 <input #attachmentUpload type="file" class="form-control-file" id="attachment-upload" (change)="onFileSelect($event)"/>
             </div>
             <div *ngIf="filesToUpload.length > 0">

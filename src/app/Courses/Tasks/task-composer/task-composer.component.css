@@ -1,0 +1,42 @@
+.interval-separator {
+    margin: 0 .5em;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    max-width: 5em;
+}
+
+.separator {
+    margin: 0 5px;
+}
+
+.btn {
+    padding: 3px 6px;
+}
+
+.item-on-list {
+    border: solid 1px lightgray;
+    margin-bottom: 8px;
+}
+
+.h5 {
+    margin-top: 8px;
+}
+
+.list {
+    margin: 10px 0;
+}
+
+.prev-task-ok-date {
+    color: rgb(97, 97, 97);
+}
+
+.prev-task-bad-date {
+    color: red;
+    font-weight: bold;
+}
+
+.prev-task-bad-date::after {
+    content: '!';
+}

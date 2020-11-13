@@ -1,0 +1,14 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<app-success-bar *ngIf="deleteSucces" [message]="'Pomyślnie usunieto zadanie.'"></app-success-bar>
+<app-task *ngIf="task && course && !editMode"
+    [task]="task"
+    [course]="course"
+    [standalone]="true"
+    [showManagement]="ShowManagement"
+    (delete)="OnTaskDelete()"
+    (update)="OnTaskEdit()"
+></app-task>
+<app-task-composer *ngIf="task && course && editMode"
+    [task]="task"
+    [course]="course"
+></app-task-composer>

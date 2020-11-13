@@ -45,6 +45,9 @@ import { PostBoardComponent } from './Courses/Posts/post-board/post-board.compon
 import { PostComponent } from './Courses/Posts/post/post.component';
 import { PostPageComponent } from './Courses/Posts/post-page/post-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { TaskComposerComponent } from './Courses/Tasks/task-composer/task-composer.component';
+import { TaskPageComponent } from './Courses/Tasks/task-page/task-page.component';
+import { TaskComponent } from './Courses/Tasks/task/task.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +86,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     PostBoardComponent,
     PostComponent,
     PostPageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TaskComposerComponent,
+    TaskPageComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

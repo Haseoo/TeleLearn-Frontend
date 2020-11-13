@@ -1,0 +1,68 @@
+.card {
+    padding: 1em;
+    border-radius: 0;
+    box-shadow: 0 .5rem .5rem rgba(0,0,0,.15)!important;
+    margin: 10px auto;
+}
+
+.card-title {
+    font-weight: bold;
+    border-bottom: solid 1px gray;
+    font-size: 20pt;
+}
+
+.card-subtitle {
+    margin-bottom: .5em;
+    color: rgb(97, 97, 97);
+}
+
+.card-text {
+    margin: 1em 0;
+    padding-left: .5em;
+}
+
+.date {
+    font-weight: bold;
+}
+
+.seprataor {
+    margin: 0 5px;
+}
+
+.btn {
+    padding: 3px 6px;
+}
+
+.btn-menu {
+    margin-bottom: 10px;
+}
+
+a.link {
+    color: #007bff;
+}
+
+a.link:hover{
+    color: #007bff;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.task-nav {
+    margin-top: 10px;
+    font-size: 14pt;
+}
+
+.task-link {
+    padding: 2px 0;
+    color: black;
+    text-decoration: none!important;
+}
+
+.task-link:hover {
+    background: rgba(100,100,100,.1);
+}
+
+*.task-link i {
+    font-size: 30px;
+    font-weight: bolder;
+}

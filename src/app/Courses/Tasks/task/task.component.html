@@ -1,0 +1,43 @@
+<div class="card" *ngIf="task && course">
+    <div class="card-row d-flex justify-content-end btn-menu" *ngIf="showManagement">
+        <button class="btn btn-success d-flex align-items-center"  (click)="update.emit()">
+            <i class="material-icons md-18">create</i>Edytuj zadanie
+        </button>
+        <div class="seprataor"></div>
+        <button class="btn btn-danger d-flex align-items-center" (click)="delete.emit()">
+            <i class="material-icons md-18">delete_forever</i>Usuń zadanie
+        </button>
+    </div>
+    <div class="card-title">
+        {{ task.name }}
+    </div>
+    <div class="card-subtitle" *ngIf="standalone">
+        Zadanie znależące do kusu <a href="/course/{{ course.id }}">{{ course.name }}</a>
+    </div>
+    <div class="card-row">
+        Data wykonania zadania: <span class="date">{{ task.dueDate | date:('dd.MM.yyyy') }}</span>
+    </div>
+    <article class="card-text" [innerHTML]="task.description" *ngIf="task.description && task.description != 'null'"></article>
+    <div *ngIf="task.attachments && task.attachments.length > 0">
+        <span class="h5">Załączniki:</span>
+        <ul>
+            <li *ngFor="let item of task.attachments">
+                <a class="link" (click)="DownloadFile(item)">{{ item.fileName }}</a>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="standalone && task.nextTasks.length > 0 || task.previousTasks.length > 0" class="task-nav">
+    <span class="h5">Powiazanie zadania:</span>
+        <a routerLink="/course/{{ course.id }}/task/{{ item.id }}" class="d-flex align-items-center task-link" 
+        *ngFor="let item of task.previousTasks">
+            <i class="material-icons">keyboard_arrow_left</i>
+            {{ item.name }}
+        </a>
+
+        <a routerLink="/course/{{ course.id }}/task/{{ item.id }}" class="d-flex align-items-center task-link justify-content-end" 
+        *ngFor="let item of task.nextTasks">
+            {{ item.name }}
+            <i class="material-icons">keyboard_arrow_right</i>
+        </a>
+    </div>
+</div>

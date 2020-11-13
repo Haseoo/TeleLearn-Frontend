@@ -1,0 +1,92 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<div class="container">
+    <p class="h3 text-center">Dodawanie zadania</p>
+    <form [formGroup]="taskForm" (ngSubmit)="Submit()">
+        <div class="form-group">
+            <label>Nazwa zadania (*):</label>
+            <input type="text" placeholder="Nazwa zadania" formControlName="name" class="form-control"
+                [ngClass]="{ 'invalid': submitted && ctls.name.errors }"/>
+            <div class="text-danger" *ngIf="submitted && ctls.name.errors && ctls.name.errors.required">Zadanie musi mieć nazwę</div>
+        </div>
+        <div class="form-group">
+            <label>Opis zadania:</label>
+            <textarea placeholder="Opis zadania..." formControlName="content" class="form-control" rows=7></textarea>
+        </div>
+        <div class="form-group">
+            <label>Czas wykonywania (HH:mm) (*):</label>
+            <div class="d-flex align-content-center">
+                <input type="number" formControlName="hoursInterval" [min]=0 class="form-control" [ngClass]="{ 'invalid': submitted && ctls.hoursInterval.errors }"/>
+                <div class="interval-separator align-self-center">
+                    :
+                </div>
+                <input type="number" formControlName="minutesInterval" [min]=0 max="60" class="form-control" [ngClass]="{ 'invalid': submitted && ctls.minutesInterval.errors }"/>
+            </div>
+            <div *ngIf="submitted && ctls.minutesInterval.errors" class="text-danger">
+                <div *ngIf="ctls.minutesInterval.errors.min">Liczba minut nie może być ujemna</div>
+                <div *ngIf="ctls.minutesInterval.errors.max">Liczba minut nie może być większa niż 60</div>
+            </div>
+            <div *ngIf="submitted && ctls.hoursInterval.errors" class="text-danger">
+                <div *ngIf="ctls.hoursInterval.errors.min">Liczba minut nie może być ujemna</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Data zakończenia (*):</label>
+            <input type="date"  formControlName="dueDate" class="form-control"
+                [ngClass]="{ 'invalid': submitted && ctls.dueDate.errors }"/>
+            <div class="text-danger" *ngIf="submitted && ctls.dueDate.errors && ctls.dueDate.errors.required">Zadanie musi mieć datę zakończenia</div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="h5">Zadania poprzedzające:</label>
+            <div class="d-flex align-items-center">
+                <select formControlName="previousTask" class="form-control">
+                    <option *ngFor="let item of taskToDisplay" [ngValue]="item">{{ item.name }}</option>
+                </select>
+                <div class="separator"></div>
+                <button type="button" class="btn btn-primary" (click)="OnPreviousTaskAdd()">Dodaj zadanie</button>
+            </div>
+            <div class="list">
+                <div class="d-flex align-items-center item-on-list" *ngFor="let item of previousTasks">
+                    <button type="button" class="btn btn-danger d-flex align-items-center" title="Usuń zadanie z listy" (click)="OnPreviousTaskDelete(item)">
+                        <i class=" material-icons">close</i></button>
+                    <div class="separator"></div>
+                    {{ item.name }}
+                    (<span [ngClass]="CheckPrevTaskDate(item) ? 'prev-task-ok-date' : 'prev-task-bad-date'"> 
+                        {{ item.dueDate | date:('dd.MM.yyyy') }} 
+                    </span>)
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <p class="h5">Załączniki:</p>
+            <div class="form-group">
+                <label for="attachment-upload">Dodaj plik (max {{ MAX_FILE_SIZE_MB }}MB):</label>
+                <input #attachmentUpload type="file" class="form-control-file" id="attachment-upload" (change)="onFileSelect($event)"/>
+            </div>
+            <div *ngIf="filesToUpload.length > 0">
+                <p class="h5">Załączniki do wrzucenia:</p>
+                <div class="d-flex align-items-center item-on-list" *ngFor="let item of filesToUpload">
+                    <button type="button" class="btn btn-danger" title="Usuń załącznik" (click)="OnFileToUploadDelete(item)"><i class="material-icons">delete_forever</i></button>
+                    <div class="separator"></div>
+                    <i class="material-icons">text_snippet</i>
+                    {{ item.name }}
+                </div>
+            </div>
+            <div *ngIf="task && task.attachments.length > 0">
+                <p class="h5">Załączniki dodane do zadania:</p>
+                <div class="d-flex align-items-center attachment" *ngFor="let item of task.attachments">
+                    <button type="button" class="btn btn-danger" title="Usuń załącznik" (click)="OnAddedFileDelete(item)"><i class="material-icons">delete_forever</i></button>
+                    <div class="separator"></div>
+                    <i class="material-icons">text_snippet</i>
+                    {{ item.fileName }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group d-flex justify-content-center">
+            <button type="submit" class="btn sub-btn btn-primary">Zapisz</button>
+        </div>
+    </form>
+</div>
