@@ -48,6 +48,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { TaskComposerComponent } from './Courses/Tasks/task-composer/task-composer.component';
 import { TaskPageComponent } from './Courses/Tasks/task-page/task-page.component';
 import { TaskComponent } from './Courses/Tasks/task/task.component';
+import { CalendarComponent } from './Courses/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { TaskComponent } from './Courses/Tasks/task/task.component';
     NotFoundComponent,
     TaskComposerComponent,
     TaskPageComponent,
-    TaskComponent
+    TaskComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,

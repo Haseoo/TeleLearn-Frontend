@@ -31,6 +31,7 @@ import { PostPageComponent } from './Courses/Posts/post-page/post-page.component
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TaskComposerComponent } from './Courses/Tasks/task-composer/task-composer.component';
 import { TaskPageComponent } from './Courses/Tasks/task-page/task-page.component';
+import { CalendarComponent } from './Courses/calendar/calendar.component';
 
 
 const routes: Routes = [
@@ -62,7 +63,7 @@ const routes: Routes = [
     { path: 'board', component: PostBoardComponent, canActivate: [UserGuardService] },
     { path: 'post/:id', component: PostPageComponent, canActivate: [UserGuardService] },
     { path: 'task/:id', component: TaskPageComponent, canActivate: [UserGuardService] },
-    { path: 'test', component: TaskComposerComponent }
+    { path: 'calendar', component: CalendarComponent, canActivate: [UserGuardService] }
   ] },
 
 
