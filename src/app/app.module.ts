@@ -49,6 +49,18 @@ import { TaskComposerComponent } from './Courses/Tasks/task-composer/task-compos
 import { TaskPageComponent } from './Courses/Tasks/task-page/task-page.component';
 import { TaskComponent } from './Courses/Tasks/task/task.component';
 import { CalendarComponent } from './Courses/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import listPlugin from '@fullcalendar/list';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  listPlugin,
+  interactionPlugin,
+  timeGridPlugin
+])
 
 @NgModule({
   declarations: [
@@ -102,10 +114,12 @@ import { CalendarComponent } from './Courses/calendar/calendar.component';
     ReactiveFormsModule,
     QuillModule.forRoot(),
     LoadingBarModule,
-    LoadingBarHttpClientModule
+    LoadingBarHttpClientModule,
+    FullCalendarModule,
      
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

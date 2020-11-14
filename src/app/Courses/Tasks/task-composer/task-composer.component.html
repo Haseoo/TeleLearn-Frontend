@@ -1,6 +1,7 @@
 <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
 <div class="container">
-    <p class="h3 text-center">Dodawanie zadania</p>
+    <p class="h3 text-center" *ngIf="!task">Dodawanie zadania</p>
+    <p class="h3 text-center" *ngIf="task">Edycja zadania {{ task.name }}</p>
     <form [formGroup]="taskForm" (ngSubmit)="Submit()">
         <div class="form-group">
             <label>Nazwa zadania (*):</label>

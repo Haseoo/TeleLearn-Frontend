@@ -1,0 +1,12 @@
+::ng-deep .fc-event-main {
+    cursor: pointer;
+}
+
+::ng-deep .fc-daygrid-more-link {
+    font-weight: bold;
+    color: dodgerblue!important;
+}
+
+::ng-deep .fc-daygrid-event {
+    white-space: normal!important;
+}

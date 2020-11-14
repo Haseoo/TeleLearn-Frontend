@@ -1,1 +1,4 @@
-<p>calendar works!</p>
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<div class="container">
+    <full-calendar *ngIf="tasks && timeout" [options]="calendarOptions"></full-calendar>
+</div>
