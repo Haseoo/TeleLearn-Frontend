@@ -1,9 +1,12 @@
 <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
 <h2 *ngIf="course">{{ course.name }}</h2>
-<div class="header">
-    <a class="d-flex align-items-center" routerLink="/my-courses">
-        <i class="material-icons">keyboard_backspace</i>
-        Powrót do moich kursów</a>
+<div class="header d-flex">
+    <div>
+        <a class="d-flex align-items-center back" routerLink="/my-courses">
+            <i class="material-icons">keyboard_backspace</i>
+            Powrót do moich kursów</a>
+    </div>
+    <div class="flex-grow-1"></div>
 </div>
 <div class="d-flex bd-highlight flex-wrap" *ngIf="!error">
     <div class="menu bd-highlight shadow" *ngIf="course">

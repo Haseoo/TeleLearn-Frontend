@@ -54,6 +54,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { TaskUpdateComponent } from './Courses/Tasks/task-update/task-update.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -103,7 +104,8 @@ FullCalendarModule.registerPlugins([
     TaskComposerComponent,
     TaskPageComponent,
     TaskComponent,
-    CalendarComponent
+    CalendarComponent,
+    TaskUpdateComponent
   ],
   imports: [
     BrowserModule,

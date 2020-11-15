@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, observable } from 'rxjs';
 import { Attachment } from 'src/app/Models/Attachment';
@@ -6,6 +6,7 @@ import { Course } from 'src/app/Models/Courses/Course';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { TaskService } from 'src/app/Services/task.service';
 import { environment } from 'src/environments/environment';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-task-composer',
@@ -18,6 +19,8 @@ export class TaskComposerComponent implements OnInit {
 
   @Input() task: Task;
   @Input() course: Course;
+
+  @Output() save = new EventEmitter<string>();
 
   error: boolean;
   errorMessage: string;
@@ -98,8 +101,9 @@ export class TaskComposerComponent implements OnInit {
       observable = this.taskService.AddTask(request);
     }
     observable.subscribe(
-      dt => console.log(dt),
-      err => {
+      dt => {
+        this.save.emit(((this.task) ? this.task.id.toString() : Utils.GetIdFromLocationUrl(dt.headers.get('Location'))));
+      }, err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
