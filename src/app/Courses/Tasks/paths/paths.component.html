@@ -1,61 +1,63 @@
-<ngx-graph class="chart-container" [view]="[500, 550]" draggable="true" [links]="[
-        {
-          id: 'a',
-          source: 'first',
-          target: 'second',
-          label: 'is parent of'
-        }, {
-          id: 'b',
-          source: 'first',
-          target: 'c1',
-          label: 'custom label'
-        }, {
-          id: 'd',
-          source: 'first',
-          target: 'c2',
-          label: 'custom label'
-        }, {
-          id: 'e',
-          source: 'c1',
-          target: 'd',
-          label: 'first link'
-        }, {
-          id: 'f',
-          source: 'c1',
-          target: 'd',
-          label: 'second link'
-        }
-      ]" [nodes]="[
-        {
-          id: 'first',
-          label: 'A'
-        }, {
-          id: 'second',
-          label: 'B'
-        }, {
-          id: 'c1',
-          label: 'C1'
-        }, {
-          id: 'c2',
-          label: 'C2'
-        }, {
-          id: 'd',
-          label: 'D'
-        }
-      ]" layout="dagreCluster">
-      <ng-template #nodeTemplate let-node>
-        <svg:g
-          class="node"
-          ngx-tooltip
-        >
-          <svg:rect
-            [attr.width]="node.dimension.width"
-            [attr.height]="node.dimension.height"
-            [attr.fill]="node.data.color"
-          />
-          <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">
-            {{node.label}}
-          </svg:text>
-        </svg:g>
-      </ng-template>
-</ngx-graph>
+<div style="height: 50vh;">
+    <ngx-graph class="chart-container" [showMiniMap]="true"  [enableZoom]="false" [links]="[
+            {
+            id: 'a',
+            source: 'first',
+            target: 'second',
+            label: 'is parent of'
+            }, {
+            id: 'b',
+            source: 'first',
+            target: 'c1',
+            label: 'custom label'
+            }, {
+            id: 'd',
+            source: 'first',
+            target: 'c2',
+            label: 'custom label'
+            }, {
+            id: 'e',
+            source: 'c1',
+            target: 'd',
+            label: 'first link'
+            }, {
+            id: 'f',
+            source: 'c1',
+            target: 'd',
+            label: 'second link'
+            }
+        ]" [nodes]="[
+            {
+            id: 'first',
+            label: 'A'
+            }, {
+            id: 'second',
+            label: 'B'
+            }, {
+            id: 'c1',
+            label: 'C1'
+            }, {
+            id: 'c2',
+            label: 'C2'
+            }, {
+            id: 'd',
+            label: 'D'
+            }
+        ]" layout="dagreCluster">
+        <ng-template #nodeTemplate let-node>
+            <svg:g
+            class="node"
+            ngx-tooltip
+            >
+            <svg:rect
+                [attr.width]="node.dimension.width"
+                [attr.height]="node.dimension.height"
+                [attr.fill]="node.data.color"
+            />
+            <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">
+                {{node.label}}
+            </svg:text>
+            </svg:g>
+        </ng-template>
+    </ngx-graph>
+</div>
