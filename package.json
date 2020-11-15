@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.11",
+    "@angular/cdk": "^11.0.0",
     "@angular/common": "~9.1.11",
     "@angular/compiler": "~9.1.11",
     "@angular/core": "~9.1.11",
@@ -26,6 +27,7 @@
     "@fullcalendar/timegrid": "^5.4.0",
     "@ngx-loading-bar/core": "^5.1.0",
     "@ngx-loading-bar/http-client": "^5.1.0",
+    "@swimlane/ngx-graph": "^7.2.0",
     "file-saver": "^2.0.2",
     "ngx-pagination": "^5.0.0",
     "ngx-quill": "^12.0.1",

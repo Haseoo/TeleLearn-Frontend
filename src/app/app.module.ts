@@ -55,6 +55,8 @@ import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { TaskUpdateComponent } from './Courses/Tasks/task-update/task-update.component';
+import { PathsComponent } from './Courses/Tasks/paths/paths.component';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -105,7 +107,8 @@ FullCalendarModule.registerPlugins([
     TaskPageComponent,
     TaskComponent,
     CalendarComponent,
-    TaskUpdateComponent
+    TaskUpdateComponent,
+    PathsComponent
   ],
   imports: [
     BrowserModule,
@@ -118,6 +121,7 @@ FullCalendarModule.registerPlugins([
     LoadingBarModule,
     LoadingBarHttpClientModule,
     FullCalendarModule,
+    NgxGraphModule,
      
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }],
