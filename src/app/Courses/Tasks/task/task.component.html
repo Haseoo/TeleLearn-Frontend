@@ -1,4 +1,4 @@
-<div class="card" *ngIf="task && course">
+<div [ngClass]="standalone ? 'card-standalone' : 'card'" *ngIf="task && (!standalone || course)">
     <div class="card-row d-flex justify-content-end btn-menu" *ngIf="showManagement">
         <button class="btn btn-success d-flex align-items-center"  (click)="update.emit()">
             <i class="material-icons md-18">create</i>Edytuj zadanie
@@ -26,8 +26,8 @@
             </li>
         </ul>
     </div>
-    <div *ngIf="standalone && task.nextTasks.length > 0 || task.previousTasks.length > 0" class="task-nav">
-    <span class="h5">Powiazanie zadania:</span>
+    <div *ngIf="standalone && (task.nextTasks.length > 0 || task.previousTasks.length > 0)" class="task-nav">
+        <span class="h5">Powiazanie zadania:</span>
         <a routerLink="/course/{{ course.id }}/task/{{ item.id }}" class="d-flex align-items-center task-link" 
         *ngFor="let item of task.previousTasks">
             <i class="material-icons">keyboard_arrow_left</i>

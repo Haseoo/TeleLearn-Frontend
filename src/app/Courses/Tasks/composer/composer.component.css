@@ -1,0 +1,25 @@
+.part-container {
+    height: 40vh;
+    border: solid rgb(230, 230, 230) 1px;
+}
+
+.bottom-part {
+    overflow-y: scroll;
+}
+
+.task-rect {
+    stroke:darkgray;
+    stroke-width: 1px;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.header {
+    margin: .5em 0;
+}
+
+.separator {
+    margin: 0 .25em;
+}

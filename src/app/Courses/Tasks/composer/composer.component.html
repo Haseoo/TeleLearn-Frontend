@@ -1,0 +1,63 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"]></app-error-bar>
+<div class="header d-flex align-items-center justify-content-end">
+    <div class="h4 flex-grow-1">Edytor zadań</div>
+    <div class="separator"></div>
+    <button class="btn btn-primary d-flex align-items-center" (click)="OnTaskAdd()">
+        <i class="material-icons">add_task</i>
+        <div class="separator"></div>
+         Dodaj zadanie
+    </button>
+</div>
+<div class="part-container shadow-sm" *ngIf="course && tasks">
+    <ngx-graph class="chart-container" 
+    [update$] = "update$"
+    [draggingEnabled]="false"
+    [showMiniMap]="true"
+    [enableZoom]="true"
+    [autoCenter]="false"
+    [links]="links"
+    [nodes]="nodes"
+    layout="dagreCluster">
+    <ng-template #nodeTemplate let-node>
+        <svg:g class="node" (click)="OnTaskClick(node.task)">
+            <svg:rect
+                [attr.width]="node.dimension.width"
+                [attr.height]="node.dimension.height"
+                [attr.fill] = "(IsTaskValid(node.task)) ? 'rgb(194, 233, 248)' : 'rgb(255, 84, 84)'"
+                rx="10" ry="10" class="task-rect"
+            />
+            <svg:text alignment-baseline="central" y=".5em">
+                <tspan text-anchor="middle" [attr.font-weight]="'bold'" [attr.x]="node.dimension.width / 2" dy=".6em">{{node.label}}</tspan>
+                <tspan text-anchor="middle" [attr.x]="node.dimension.width / 2" dy="1.2em">{{node.task.dueDate | date:('dd.MM.yyyy')}}{{ (IsTaskValid(node.task)) ? '' : '!' }}</tspan>
+            </svg:text>
+        </svg:g>
+    </ng-template>
+    <ng-template #linkTemplate let-link>
+        <svg:g class="edge">
+            <svg:path class="line" [attr.stroke]="(link.source == 1 && link.target == 'second') ? 'red' : 'black'" stroke-width="2" marker-end="url(#arrow)"></svg:path>
+        </svg:g>
+        <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+            <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+        </svg:marker>
+    </ng-template>
+</ngx-graph>
+</div>
+
+<div class="part-container bottom-part shadow-sm" *ngIf="course && tasks">
+    <div class="text-center" *ngIf="!editMode && !taskMode">Wybierz zadanie z grafu lub przycisk "Dodaj zadanie" aby rozpocząć...</div>
+    <app-task *ngIf="taskMode" 
+        [task]="currentTask" 
+        [showManagement]="true" 
+        [standalone]="false" 
+        (update)="OnTaskUpdate()" 
+        (delete)="OnTaskDelete()">
+    </app-task>
+    <app-task-composer *ngIf="editMode" 
+        [task]="currentTask" 
+        [course]="course" 
+        [standalone]="false" 
+        [addPreviousTask$]="addPreviousTask$"
+        (save)="OnTaskSave($event)"
+        (taskSelection)="OnSelectionChange($event)">
+    </app-task-composer>
+</div>

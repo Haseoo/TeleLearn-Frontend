@@ -1,8 +1,14 @@
-.card {
+.card-standalone {
     padding: 1em;
     border-radius: 0;
     box-shadow: 0 .5rem .5rem rgba(0,0,0,.15)!important;
     margin: 10px auto;
+}
+
+.card {
+    padding: 1em;
+    margin: 10px auto;
+    border: none;
 }
 
 .card-title {

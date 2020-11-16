@@ -6,12 +6,17 @@
         <div class="separator"></div>
          Dodaj zadanie
     </a>
+    <div class="separator"></div>
+    <a class="btn btn-secondary d-flex align-items-center" routerLink="/course/{{ course.id }}/composer">
+        <i class="material-icons">add_task</i>
+        <div class="separator"></div>
+         Otwórz edytor
+    </a>
 </div>
 <div class="graph-container shadow-sm" *ngIf="course && tasks">
         <ngx-graph class="chart-container" 
         [update$] = "update$"
         [draggingEnabled]="false"
-        [showMiniMap]="true"
         [enableZoom]="false"
         [autoCenter]="innerWidth > 700"
         [links]="links"

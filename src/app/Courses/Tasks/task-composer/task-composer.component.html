@@ -1,4 +1,4 @@
-<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<app-error-bar *ngIf="error && standalone" [errorMessage]="errorMessage"></app-error-bar>
 <div class="container">
     <p class="h3 text-center" *ngIf="!task">Dodawanie zadania</p>
     <p class="h3 text-center" *ngIf="task">Edycja zadania {{ task.name }}</p>
@@ -40,12 +40,16 @@
 
         <div class="form-group">
             <label class="h5">Zadania poprzedzające:</label>
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center" *ngIf="standalone">
                 <select formControlName="previousTask" class="form-control">
                     <option *ngFor="let item of taskToDisplay" [ngValue]="item">{{ item.name }}</option>
                 </select>
                 <div class="separator"></div>
                 <button type="button" class="btn btn-primary" (click)="OnPreviousTaskAdd()">Dodaj zadanie</button>
+            </div>
+            <div *ngIf="!standalone">
+                <button *ngIf="!taskSelectionMode" type="button" class="btn btn-secondary" (click)="OnSelectTaskClick()">Dodaj zadanie</button>
+                <button *ngIf="taskSelectionMode" type="button" class="btn btn-primary" (click)="OnSelectTaskClick()">Wybierz zadanie z grafu lub kliknij aby anulować</button>
             </div>
             <div class="list">
                 <div class="d-flex align-items-center item-on-list" *ngFor="let item of previousTasks">
@@ -86,6 +90,7 @@
                 </div>
             </div>
         </div>
+        <app-error-bar *ngIf="error && !standalone" [errorMessage]="errorMessage"></app-error-bar>
         <div class="form-group d-flex justify-content-center">
             <button type="submit" class="btn sub-btn btn-primary">Zapisz</button>
         </div>

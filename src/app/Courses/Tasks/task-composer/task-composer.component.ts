@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, observable } from 'rxjs';
+import { Observable, observable, Subject } from 'rxjs';
 import { Attachment } from 'src/app/Models/Attachment';
 import { Course } from 'src/app/Models/Courses/Course';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
@@ -19,9 +19,13 @@ export class TaskComposerComponent implements OnInit {
 
   @Input() task: Task;
   @Input() course: Course;
-  @Input() standAlone: boolean = true;
+  @Input() standalone: boolean;
+  @Input() addPreviousTask$: Subject<Task>;
 
   @Output() save = new EventEmitter<string>();
+  @Output() taskSelection = new EventEmitter<boolean>();
+
+  taskSelectionMode: boolean = false;
 
   error: boolean;
   errorMessage: string;
@@ -46,6 +50,15 @@ export class TaskComposerComponent implements OnInit {
     private taskService: TaskService) { }
 
   ngOnInit(): void {
+    if (this.addPreviousTask$) {
+      this.addPreviousTask$.subscribe(task => {
+        if ((!this.task || task.id != this.task.id) &&
+           this.previousTasks.filter(t => t.id == task.id).length === 0) {
+          this.previousTasks.push(task);
+        }
+        this.taskSelectionMode = false;
+      });
+    }
     this.taskForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       content: [],
@@ -76,7 +89,7 @@ export class TaskComposerComponent implements OnInit {
   }
 
   Submit() {
-    if (this.standAlone) {
+    if (this.standalone) {
       window.scroll(0,0);
     }
     this.submitted = true;
@@ -106,7 +119,11 @@ export class TaskComposerComponent implements OnInit {
     }
     observable.subscribe(
       dt => {
-        this.save.emit(((this.task) ? this.task.id.toString() : Utils.GetIdFromLocationUrl(dt.headers.get('Location'))));
+        if (this.task) {
+          this.save.emit(this.task.id.toString());
+        } else {
+          this.save.emit(((this.task) ? this.task.id.toString() : Utils.GetIdFromLocationUrl(dt.headers.get('Location'))));
+        }
       }, err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
@@ -185,8 +202,12 @@ export class TaskComposerComponent implements OnInit {
 
   CheckPrevTaskDate(pTask: Task): boolean {
     let currentTaskDate = this.taskForm.controls.dueDate.value;
-    console.log( currentTaskDate >= pTask.dueDate);
     return currentTaskDate >= pTask.dueDate;
+  }
+
+  OnSelectTaskClick() {
+    this.taskSelectionMode = !this.taskSelectionMode;
+    this.taskSelection.emit(this.taskSelectionMode);
   }
 
 }

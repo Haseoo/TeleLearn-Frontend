@@ -35,6 +35,7 @@ import { CalendarComponent } from './Courses/calendar/calendar.component';
 import { TaskUpdateComponent } from './Courses/Tasks/task-update/task-update.component';
 import { PathsComponent } from './Courses/Tasks/paths/paths.component';
 import { AddTaskComponent } from './Courses/Tasks/add-task/add-task.component';
+import { ComposerComponent } from './Courses/Tasks/composer/composer.component';
 
 
 const routes: Routes = [
@@ -69,7 +70,8 @@ const routes: Routes = [
     { path: 'task/:id', component: TaskPageComponent, canActivate: [UserGuardService] },
     { path: 'task/:id/update', component: TaskUpdateComponent, canActivate: [TeacherGuardService] },
     { path: 'calendar', component: CalendarComponent, canActivate: [UserGuardService] },
-    { path: 'paths', component: PathsComponent, canActivate: [UserGuardService] }
+    { path: 'paths', component: PathsComponent, canActivate: [UserGuardService] },
+    { path: 'composer', component: ComposerComponent, canActivate: [TeacherGuardService] }
   ] },
 
 
