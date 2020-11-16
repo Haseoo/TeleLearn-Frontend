@@ -1,63 +1,45 @@
-<div style="height: 50vh;">
-    <ngx-graph class="chart-container" [showMiniMap]="true"  [enableZoom]="false" [links]="[
-            {
-            id: 'a',
-            source: 'first',
-            target: 'second',
-            label: 'is parent of'
-            }, {
-            id: 'b',
-            source: 'first',
-            target: 'c1',
-            label: 'custom label'
-            }, {
-            id: 'd',
-            source: 'first',
-            target: 'c2',
-            label: 'custom label'
-            }, {
-            id: 'e',
-            source: 'c1',
-            target: 'd',
-            label: 'first link'
-            }, {
-            id: 'f',
-            source: 'c1',
-            target: 'd',
-            label: 'second link'
-            }
-        ]" [nodes]="[
-            {
-            id: 'first',
-            label: 'A'
-            }, {
-            id: 'second',
-            label: 'B'
-            }, {
-            id: 'c1',
-            label: 'C1'
-            }, {
-            id: 'c2',
-            label: 'C2'
-            }, {
-            id: 'd',
-            label: 'D'
-            }
-        ]" layout="dagreCluster">
+<div class="h4 text-center">Ścieżki kursu</div>
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"]></app-error-bar>
+<div *ngIf="course && IsCurrentUserTeacher()" class="add-task d-flex justify-content-center">
+    <a class="btn btn-primary d-flex align-items-center" routerLink="/course/{{ course.id }}/task/add">
+        <i class="material-icons">add_task</i>
+        <div class="separator"></div>
+         Dodaj zadanie
+    </a>
+</div>
+<div class="graph-container shadow-sm" *ngIf="course && tasks">
+        <ngx-graph class="chart-container" 
+        [update$] = "update$"
+        [draggingEnabled]="false"
+        [showMiniMap]="true"
+        [enableZoom]="false"
+        [autoCenter]="innerWidth > 700"
+        [links]="links"
+        [nodes]="nodes"
+        layout="dagreCluster">
         <ng-template #nodeTemplate let-node>
-            <svg:g
-            class="node"
-            ngx-tooltip
-            >
-            <svg:rect
-                [attr.width]="node.dimension.width"
-                [attr.height]="node.dimension.height"
-                [attr.fill]="node.data.color"
-            />
-            <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">
-                {{node.label}}
-            </svg:text>
+            <svg:g class="node">
+                <a class="task" [attr.href]="GetTaskPath(node.id)">
+                        <svg:rect
+                        [attr.width]="node.dimension.width"
+                        [attr.height]="node.dimension.height"
+                        [attr.fill] = "(IsTaskValid(node.task)) ? 'rgb(194, 233, 248)' : 'rgb(255, 84, 84)'"
+                        rx="10" ry="10" class="task-rect"
+                    />
+                    <svg:text alignment-baseline="central" y=".5em">
+                        <tspan text-anchor="middle" [attr.font-weight]="'bold'" [attr.x]="node.dimension.width / 2" dy=".6em">{{node.label}}</tspan>
+                        <tspan text-anchor="middle" [attr.x]="node.dimension.width / 2" dy="1.2em">{{node.task.dueDate | date:('dd.MM.yyyy')}}{{ (IsTaskValid(node.task)) ? '' : '!' }}</tspan>
+                    </svg:text>
+                </a>
             </svg:g>
+        </ng-template>
+        <ng-template #linkTemplate let-link>
+            <svg:g class="edge">
+                <svg:path class="line" [attr.stroke]="(link.source == 1 && link.target == 'second') ? 'red' : 'black'" stroke-width="2" marker-end="url(#arrow)"></svg:path>
+            </svg:g>
+            <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+                <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+            </svg:marker>
         </ng-template>
     </ngx-graph>
 </div>

@@ -57,7 +57,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { TaskUpdateComponent } from './Courses/Tasks/task-update/task-update.component';
 import { PathsComponent } from './Courses/Tasks/paths/paths.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddTaskComponent } from './Courses/Tasks/add-task/add-task.component'
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -109,7 +110,8 @@ FullCalendarModule.registerPlugins([
     TaskComponent,
     CalendarComponent,
     TaskUpdateComponent,
-    PathsComponent
+    PathsComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,

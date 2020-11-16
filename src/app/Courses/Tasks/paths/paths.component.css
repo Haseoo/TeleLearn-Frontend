@@ -1,0 +1,21 @@
+.graph-container {
+    height: 70vh;
+    border: solid rgb(230, 230, 230) 1px;
+}
+
+a.task {
+    text-decoration: none;
+}
+
+.task-rect {
+    stroke:darkgray;
+    stroke-width: 1px;
+}
+
+.add-task {
+    margin-bottom: .5em;
+}
+
+.separator {
+    margin: 0 .25em;
+}

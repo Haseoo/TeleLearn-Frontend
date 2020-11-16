@@ -19,6 +19,7 @@ export class TaskComposerComponent implements OnInit {
 
   @Input() task: Task;
   @Input() course: Course;
+  @Input() standAlone: boolean = true;
 
   @Output() save = new EventEmitter<string>();
 
@@ -66,7 +67,7 @@ export class TaskComposerComponent implements OnInit {
     if (this.task) {
       this.taskForm.patchValue({
         name: this.task.name,
-        content: this.task.description.replace("<br />", "\n"),
+        content: (this.task.description) ? this.task.description.replace("<br />", "\n") : this.task.description,
         dueDate: this.task.dueDate,
         minutesInterval: this.task.learningTimeMinutes,
         hoursInterval: this.task.learningTimeMinutes
@@ -75,6 +76,9 @@ export class TaskComposerComponent implements OnInit {
   }
 
   Submit() {
+    if (this.standAlone) {
+      window.scroll(0,0);
+    }
     this.submitted = true;
     if (!this.taskForm.valid) {
       return;
@@ -159,21 +163,24 @@ export class TaskComposerComponent implements OnInit {
         this.taskToDisplay.splice(currentTaskId, 1);
       }
     }
+    this.taskToDisplay.sort((t1, t2) => ('' + t1.name).localeCompare(t2.name));
   }
 
   private _UpdatePreviousAndNextTasks() {
-    this.courseTasks.forEach(el => {
-      this.task.previousTasks.forEach( el2 =>{
-        if (el.id === el2.id) {
-          this.previousTasks.push(el);
-        }
+    if (this.task) {
+      this.courseTasks.forEach(el => {
+        this.task.previousTasks.forEach( el2 =>{
+          if (el.id === el2.id) {
+            this.previousTasks.push(el);
+          }
+        });
+        this.task.nextTasks.forEach( el2 => {
+          if (el.id === el2.id) {
+            this.nextTasks.push(el);
+          }
+        })
       });
-      this.task.nextTasks.forEach( el2 => {
-        if (el.id === el2.id) {
-          this.nextTasks.push(el);
-        }
-      })
-    });
+    }
   }
 
   CheckPrevTaskDate(pTask: Task): boolean {
