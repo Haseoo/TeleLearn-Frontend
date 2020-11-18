@@ -83,7 +83,7 @@ export class TaskComposerComponent implements OnInit {
         content: (this.task.description) ? this.task.description.replace("<br />", "\n") : this.task.description,
         dueDate: this.task.dueDate,
         minutesInterval: this.task.learningTimeMinutes,
-        hoursInterval: this.task.learningTimeMinutes
+        hoursInterval: this.task.learningTimeHours
       });
     }
   }

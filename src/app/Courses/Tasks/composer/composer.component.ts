@@ -64,6 +64,7 @@ export class ComposerComponent implements OnInit {
   }
 
   OnTaskAdd() {
+    this.editMode = false;
     this.currentTask = undefined;
     this.taskMode = false;
     this.editMode = true;

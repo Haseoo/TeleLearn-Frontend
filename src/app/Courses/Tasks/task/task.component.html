@@ -17,6 +17,9 @@
     <div class="card-row">
         Data wykonania zadania: <span class="date">{{ task.dueDate | date:('dd.MM.yyyy') }}</span>
     </div>
+    <div class="card-row">
+        Poponowany czas wykonania zadania: <span class="date">{{ task.learningTimeHours }}:{{ task.learningTimeMinutes }}</span>
+    </div>
     <article class="card-text" [innerHTML]="task.description" *ngIf="task.description && task.description != 'null'"></article>
     <div *ngIf="task.attachments && task.attachments.length > 0">
         <span class="h5">Załączniki:</span>

@@ -19,26 +19,27 @@
     [nodes]="nodes"
     layout="dagreCluster">
     <ng-template #nodeTemplate let-node>
+        <ng-template #linkTemplate let-link>
+            <svg:g class="edge">
+                <svg:path class="line" [attr.stroke]="(link.source == 1 && link.target == 'second') ? 'red' : 'black'" stroke-width="2" marker-end="url(#arrow)"></svg:path>
+            </svg:g>
+            <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="6" markerHeight="6" orient="auto">
+                <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+            </svg:marker>
+        </ng-template>
         <svg:g class="node" (click)="OnTaskClick(node.task)">
             <svg:rect
                 [attr.width]="node.dimension.width"
                 [attr.height]="node.dimension.height"
                 [attr.fill] = "(IsTaskValid(node.task)) ? 'rgb(194, 233, 248)' : 'rgb(255, 84, 84)'"
                 rx="10" ry="10" class="task-rect"
+                [attr.stroke-width] = "(currentTask && currentTask.id == node.task.id) ? '5px': '1px'"
             />
             <svg:text alignment-baseline="central" y=".5em">
                 <tspan text-anchor="middle" [attr.font-weight]="'bold'" [attr.x]="node.dimension.width / 2" dy=".6em">{{node.label}}</tspan>
                 <tspan text-anchor="middle" [attr.x]="node.dimension.width / 2" dy="1.2em">{{node.task.dueDate | date:('dd.MM.yyyy')}}{{ (IsTaskValid(node.task)) ? '' : '!' }}</tspan>
             </svg:text>
         </svg:g>
-    </ng-template>
-    <ng-template #linkTemplate let-link>
-        <svg:g class="edge">
-            <svg:path class="line" [attr.stroke]="(link.source == 1 && link.target == 'second') ? 'red' : 'black'" stroke-width="2" marker-end="url(#arrow)"></svg:path>
-        </svg:g>
-        <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
-            <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
-        </svg:marker>
     </ng-template>
 </ngx-graph>
 </div>
