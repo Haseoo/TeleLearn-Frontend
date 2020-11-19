@@ -4,4 +4,6 @@ export class StudentUpdateRequest {
     surname: string;
     unit: string;
     title: string;
+    hours: number;
+    minutes: number;
 }

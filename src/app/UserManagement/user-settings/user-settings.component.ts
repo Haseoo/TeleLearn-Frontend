@@ -30,45 +30,51 @@ export class UserSettingsComponent implements OnInit {
   passwordChangeSuccess: boolean;
   readonly PASSWORD_MIN_LENGHT: number = 6;
 
-  isTeacher: boolean;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.userEditForm = this.formBuilder.group({
+    let group:any = {
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       unit: [''],
       title: ['']
-    });
+    };
+
+    if (this.IsStudent()) {
+      group.minutesInterval = ['0', [Validators.min(0), Validators.max(59)]];
+      group.hoursInterval = ['0', [Validators.min(0)]];
+    }
+    this.userEditForm = this.formBuilder.group(group);
 
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required, Validators.minLength(this.PASSWORD_MIN_LENGHT)]]
     });
 
-    if (this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT]) {
+    if (this.IsStudent()) {
       this.userService.getStudent(this.userService.GetCurrentUser().id).subscribe(
         dt => {
           this.userEditForm.patchValue({
             name: dt.name,
             surname: dt.surname,
             email: dt.email,
-            unit: dt.unit
+            unit: dt.unit,
+            minutesInterval: dt.dailyLearningTimeMinutes,
+            hoursInterval: dt.dailyLearningTimeHours
           })
         },
         err => {
           this.editResponseError = true;
           this.editResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
         }
-      )
-    } else if (this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER]) {
+      );
+    } else if (this.IsTeacher()) {
       this.userService.getTeacher(this.userService.GetCurrentUser().id).subscribe(
         dt => {
-          this.isTeacher = true;
           this.userEditForm.patchValue({
             name: dt.name,
             surname: dt.surname,
@@ -81,7 +87,7 @@ export class UserSettingsComponent implements OnInit {
           this.editResponseError = true;
           this.editResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
         }
-      )
+      );
     }
   }
 
@@ -116,13 +122,15 @@ export class UserSettingsComponent implements OnInit {
   UserEditSubmit() {
     this.userEditSubmitted = true;
     if (this.userEditForm.valid) {
-      if (this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT]) {
+      if (this.IsStudent()) {
         let request = new StudentUpdateRequest();
         let ctls = this.userEditForm.controls;
         request.email = ctls.email.value;
         request.name = ctls.name.value;
         request.surname = ctls.surname.value;
         request.unit = ctls.unit.value;
+        request.hours = ctls.hoursInterval.value;
+        request.minutes = ctls.minutesInterval.value;
         this.userService.updateStudent(this.userService.GetCurrentUser().id, request).subscribe(
           dt => {
             this.editResponseError = false;
@@ -135,7 +143,7 @@ export class UserSettingsComponent implements OnInit {
             this.editResponseError = true;
           }
         );
-      } else if (this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER]) {
+      } else if (this.IsTeacher()) {
         let request = new TeacherUpdateRequest();
         let ctls = this.userEditForm.controls;
         request.email = ctls.email.value;
@@ -155,5 +163,13 @@ export class UserSettingsComponent implements OnInit {
         );
       }
     }
+  }
+
+  IsTeacher():boolean {
+    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER];
+  }
+
+  IsStudent():boolean {
+    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
   }
 }

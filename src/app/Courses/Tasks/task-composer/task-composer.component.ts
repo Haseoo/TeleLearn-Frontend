@@ -63,7 +63,7 @@ export class TaskComposerComponent implements OnInit {
       name: ['', [Validators.required]],
       content: [],
       dueDate: ['', Validators.required],
-      minutesInterval: ['0', [Validators.min(0), Validators.max(60)]],
+      minutesInterval: ['0', [Validators.min(0), Validators.max(59)]],
       hoursInterval: ['0', [Validators.min(0)]],
       previousTask: []
     });
