@@ -63,8 +63,8 @@ export class UserSettingsComponent implements OnInit {
             surname: dt.surname,
             email: dt.email,
             unit: dt.unit,
-            minutesInterval: dt.dailyLearningTimeMinutes,
-            hoursInterval: dt.dailyLearningTimeHours
+            minutesInterval: dt.dailyLearningTime.minutes,
+            hoursInterval: dt.dailyLearningTime.hours
           })
         },
         err => {

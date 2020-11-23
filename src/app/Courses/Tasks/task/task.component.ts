@@ -3,8 +3,10 @@ import { Attachment } from 'src/app/Models/Attachment';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { AttachmentService } from 'src/app/Services/attachment.service';
 import * as FileSaver from 'file-saver';
-import { Course } from 'src/app/Models/Courses/Course';
 import { CourseBrief } from 'src/app/Models/Courses/CourseBrief';
+import { UserService } from 'src/app/Services/user.service';
+import { UserRole } from 'src/app/Models/UserRole';
+import { TaskFroStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 
 @Component({
   selector: 'app-task',
@@ -21,9 +23,15 @@ export class TaskComponent implements OnInit {
   @Output() update = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
 
-  constructor(private attachmentService: AttachmentService) { }
+  taskForStudent: TaskFroStudent;
+
+  constructor(private attachmentService: AttachmentService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
+    if(this._IsCurrentUserStudent()) {
+      this.taskForStudent = <TaskFroStudent>this.task;
+    }
   }
   
   DownloadFile(attachment: Attachment) {
@@ -35,6 +43,10 @@ export class TaskComponent implements OnInit {
         console.error(err);
       }
     )
+  }
+
+  private _IsCurrentUserStudent(): boolean {
+    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
   }
 
 }

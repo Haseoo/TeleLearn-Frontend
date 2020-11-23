@@ -28,12 +28,13 @@
                         <svg:rect
                         [attr.width]="node.dimension.width"
                         [attr.height]="node.dimension.height"
-                        [attr.fill] = "(IsTaskValid(node.task)) ? 'rgb(194, 233, 248)' : 'rgb(255, 84, 84)'"
+                        [attr.fill] = "GetTaskColor(node.task)"
                         rx="10" ry="10" class="task-rect"
                     />
                     <svg:text alignment-baseline="central" y=".5em">
                         <tspan text-anchor="middle" [attr.font-weight]="'bold'" [attr.x]="node.dimension.width / 2" dy=".6em">{{node.label}}</tspan>
                         <tspan text-anchor="middle" [attr.x]="node.dimension.width / 2" dy="1.2em">{{node.task.dueDate | date:('dd.MM.yyyy')}}{{ (IsTaskValid(node.task)) ? '' : '!' }}</tspan>
+                        <tspan text-anchor="middle" [attr.x]="node.dimension.width / 2" dy="1.2em" *ngIf="IsCurrentUserStudent()">{{ GetTaskForStudent(node.task).taskCompletion }}%</tspan>
                     </svg:text>
                 </a>
             </svg:g>

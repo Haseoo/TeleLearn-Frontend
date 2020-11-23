@@ -15,10 +15,16 @@
         Zadanie znależące do kusu <a href="/course/{{ course.id }}">{{ course.name }}</a>
     </div>
     <div class="card-row">
-        Data wykonania zadania: <span class="date">{{ task.dueDate | date:('dd.MM.yyyy') }}</span>
+        Data wykonania zadania: <span class="bold-span">{{ task.dueDate | date:('dd.MM.yyyy') }}</span>
     </div>
     <div class="card-row">
-        Poponowany czas wykonania zadania: <span class="date">{{ task.learningTimeHours }}:{{ task.learningTimeMinutes }}</span>
+        Poponowany czas wykonania zadania: <span class="bold-span">{{ task.learningTime.hours }}:{{ task.learningTime.minutes }}</span>
+    </div>
+    <div class="card-row" *ngIf="taskForStudent">
+        Postęp zadania <span class="bold-span">{{ taskForStudent.taskCompletion }}%</span>
+    </div>
+    <div class="card-row text-danger" *ngIf="taskForStudent && taskForStudent.isToRepeat">
+        <span class="bold-span">Zadanie do powtórki!</span>
     </div>
     <article class="card-text" [innerHTML]="task.description" *ngIf="task.description && task.description != 'null'"></article>
     <div *ngIf="task.attachments && task.attachments.length > 0">

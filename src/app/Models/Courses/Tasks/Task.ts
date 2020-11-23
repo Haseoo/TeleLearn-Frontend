@@ -1,12 +1,12 @@
 import { Attachment } from '../../Attachment';
+import { Time } from '../../Time';
 import { TaskBrief } from './TaskBrief';
 
 export class Task {
     id: number;
     name: string;
     description: string;
-    learningTimeHours: number;
-    learningTimeMinutes: number;
+    learningTime: Time;
     dueDate: Date;
     courseId: number;
     previousTasks: TaskBrief[];

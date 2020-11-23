@@ -8,6 +8,7 @@ import { CourseService } from 'src/app/Services/course.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { UserService } from 'src/app/Services/user.service';
 import { Node } from '@swimlane/ngx-graph';
+import { TaskFroStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 
 @Component({
   selector: 'app-paths',
@@ -68,6 +69,22 @@ export class PathsComponent implements OnInit {
 
   IsCurrentUserStudent(): boolean {
     return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
+  }
+
+  GetTaskForStudent(task: Task) {
+    return <TaskFroStudent>task;
+  }
+
+  GetTaskColor(task: Task): string {
+    if (this.IsCurrentUserStudent()) {
+      if (this.GetTaskForStudent(task).isToRepeat) {
+        return 'rgb(255, 248, 107)';
+      }
+      if (this.GetTaskForStudent(task).taskCompletion == 100) {
+        return 'rgb(105, 255, 162)';
+      }
+    }
+    return (this.IsTaskValid(task)) ? 'rgb(194, 233, 248)' : 'rgb(255, 84, 84)'
   }
 
   IsTaskValid(task: Task):boolean {

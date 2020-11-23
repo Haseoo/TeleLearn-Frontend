@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center" *ngIf="IsCurrentUserOwner() || course.areStudentsAllowedToPost">
         <button class="btn btn-primary" (click)="OnAddPost()">Dodaj nowy post</button>
     </div>
-    <div class="conversation container-fluid shadow-sm justify-content-center" *ngFor="let item of posts | paginate: { itemsPerPage: 20, currentPage: current }">
+    <div class="container-fluid justify-content-center" *ngFor="let item of posts | paginate: { itemsPerPage: 20, currentPage: current }">
         <app-post [post]="item"
             [showCommentCount]="true"
             [baseUrl]="GetBaseUrl()"
