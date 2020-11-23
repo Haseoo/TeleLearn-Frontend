@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 .bg {
     background: linear-gradient(150deg, rgb(92, 117, 255) 15%, #49f3ff 60%, #8bffcf 80%);
-    height: 25vh;
+    height: 200px;
     margin-bottom: 15px;
     padding: 15px;
 }
@@ -13,4 +13,10 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size:contain;
+}
+
+@media only screen and (max-width: 700px) {
+    .bg {
+        padding: 5px;
+    }
 }

@@ -22,7 +22,6 @@ export class UserInfoComponent implements OnInit {
   responseErrorMessage: string;
   coursesBriefs: CourseBrief[];
 
-  backUrl: string;
 
   constructor(private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -30,7 +29,6 @@ export class UserInfoComponent implements OnInit {
     private courseService: CourseService) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => this.backUrl = params.backUrl);
     this.activatedRoute.params.subscribe(params =>
         this.userService.getUser(params.id).subscribe(
           dt => {
@@ -66,10 +64,6 @@ export class UserInfoComponent implements OnInit {
           }
         )
       );
-  }
-
-  OnBack() {
-    this.router.navigate([this.backUrl]);
   }
 
   OnMessageClick(userId: number) {
