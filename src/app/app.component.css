@@ -3,7 +3,7 @@ nav {
 }
 
 main {
-    margin-top: 65px;
+    margin-top: 60px;
     width: 100%;
 }
 
@@ -27,7 +27,6 @@ footer {
     background-repeat: repeat;
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.6);
-    border-bottom: solid 1px lightgray;
 }
 
 .navbar-brand {

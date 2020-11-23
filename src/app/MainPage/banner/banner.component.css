@@ -1,23 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 .bg {
-    background: linear-gradient(150deg, rgb(78, 103, 247) 15%, #05d5ff 60%, #8bffcf 80%);
-    width: 100%;
-    height: 250px;
+    background: linear-gradient(150deg, rgb(92, 117, 255) 15%, #49f3ff 60%, #8bffcf 80%);
+    height: 25vh;
     margin-bottom: 15px;
-}
-.logo {
-    margin: 0 10%;
-    display: flex;
-}
-div.logo > h1 {
-    font-family: 'Architects Daughter', cursive;
-    font-size: 10vw;
-    margin-left: 10px;
+    padding: 15px;
 }
 
-img {
-    min-width: 100px;
-    min-height: 100px;
-    width: 10vw;
-    height: 10vw;
+.logo-img {
+    width: 100%;
+    height: 100%;
+    background-image: url("/assets/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
 }
