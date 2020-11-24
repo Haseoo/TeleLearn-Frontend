@@ -1,8 +1,8 @@
 <div class="d-flex bd-highlight flex-wrap">
     <div class="menu bd-highlight shadow">
-        <div class="menu-title d-flex align-items-center justify-content-center" [ngStyle]="{'margin-bottom': (innerWidth < 700 && !menuVisible) ? '0' : '10px'}" (click)="menuVisible = !menuVisible">Nawigacja
-             <i *ngIf="innerWidth < 700" class="material-icons">keyboard_arrow_down</i></div>
-        <app-user-nav  *ngIf="innerWidth > 700 || menuVisible"></app-user-nav>
+        <div class="menu-title d-flex align-items-center justify-content-center" [ngStyle]="{'margin-bottom': (innerWidth < 1000 && !menuVisible) ? '0' : '10px'}" (click)="menuVisible = !menuVisible">Nawigacja
+             <i *ngIf="innerWidth < 1000" class="material-icons">keyboard_arrow_down</i></div>
+        <app-user-nav  *ngIf="innerWidth > 1000 || menuVisible" (linkClick)="HideMenu()"></app-user-nav>
     </div>
     <div class="content-container flex-grow-1 justify-content-center">
         <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRole } from 'src/app/Models/UserRole';
 import { UserService } from 'src/app/Services/user.service';
@@ -16,6 +16,8 @@ export class UserNavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Output() linkClick = new EventEmitter<any>();
+
   isCurrentUserAdmin(): boolean {
     return this.checkUserRole(UserRole.ADMIN);
   }
@@ -30,10 +32,6 @@ export class UserNavComponent implements OnInit {
 
   private checkUserRole(role: UserRole): boolean {
     return this.userService.GetCurrentUser() && this.userService.GetCurrentUser().userRole.toString() === UserRole[role]
-  }
-
-  GetBackUrlParam(): string {
-    return `?backUrl=${this.router.url}`;
   }
 
 }

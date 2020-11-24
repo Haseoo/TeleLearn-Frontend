@@ -10,24 +10,24 @@
 </div>
 <div class="d-flex bd-highlight flex-wrap" *ngIf="!error">
     <div class="menu bd-highlight shadow" *ngIf="course">
-        <div class="menu-title d-flex align-items-center justify-content-center" [ngStyle]="{'margin-bottom': (innerWidth < 840 && !menuVisible) ? '0' : '10px'}" (click)="menuVisible = !menuVisible">Nawigacja po kursie
-            <i *ngIf="innerWidth < 840" class="material-icons">keyboard_arrow_down</i></div>
-       <div *ngIf="innerWidth > 840 || menuVisible">
+        <div class="menu-title d-flex align-items-center justify-content-center" [ngStyle]="{'margin-bottom': (innerWidth < 1000 && !menuVisible) ? '0' : '10px'}" (click)="menuVisible = !menuVisible">Nawigacja po kursie
+            <i *ngIf="innerWidth < 1000" class="material-icons">keyboard_arrow_down</i></div>
+       <div *ngIf="innerWidth > 1000 || menuVisible">
             <button class="nav-banner">
                 Sekcje kursu
             </button>
             <ul>
                 <li>
-                    <a href="/course/{{ course.id }}">Informacje</a>
+                    <a routerLink="/course/{{ course.id }}" (click)="menuVisible = false">Informacje</a>
                 </li>
                 <li>
-                    <a href="/course/{{ course.id }}/calendar">Kalendarz</a>
+                    <a routerLink="/course/{{ course.id }}/calendar" (click)="menuVisible = false">Kalendarz</a>
                 </li>
                 <li>
-                    <a href="/course/{{ course.id }}/board">Tablica wpisów</a>
+                    <a routerLink="/course/{{ course.id }}/board" (click)="menuVisible = false">Tablica wpisów</a>
                 </li>
                 <li>
-                    <a href="/course/{{ course.id }}/paths">Ścieżki</a>
+                    <a routerLink="/course/{{ course.id }}/paths" (click)="menuVisible = false">Ścieżki</a>
                 </li>
             </ul>
 
@@ -37,18 +37,18 @@
 
             <ul *ngIf="IsCurrentUserStudent()">
                 <li>
-                    <a href="/course/{{ course.id }}/participants">Lista uczestników</a>
+                    <a routerLink="/course/{{ course.id }}/participants" (click)="menuVisible = false">Lista uczestników</a>
                 </li>
                 <li>
-                    <a href="/course/{{ course.id }}/sign-out">Wypisz się z kursu</a>
+                    <a routerLink="/course/{{ course.id }}/sign-out" (click)="menuVisible = false">Wypisz się z kursu</a>
                 </li>
             </ul>
             <ul *ngIf="IsCurrentUserTeacher()">
                 <li>
-                    <a href="/course/{{ course.id }}/participants">Lista uczestników</a>
+                    <a routerLink="/course/{{ course.id }}/participants" (click)="menuVisible = false">Lista uczestników</a>
                 </li>
                 <li>
-                    <a href="/course/{{ course.id }}/update">Ustawienia kursu</a>
+                    <a routerLink="/course/{{ course.id }}/update" (click)="menuVisible = false">Ustawienia kursu</a>
                 </li>
             </ul>
         </div>

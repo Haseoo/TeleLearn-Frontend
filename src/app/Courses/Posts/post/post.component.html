@@ -9,7 +9,7 @@
         </button>
     </div>
     <div class="card-title">
-        <a href="/user/{{ post.author.id }}">
+        <a routerLink="/user/{{ post.author.id }}">
             {{ post.author.name }}
             {{ post.author.surname }}
         </a>
@@ -24,5 +24,5 @@
             </li>
         </ul>
     </div>
-    <a *ngIf="showCommentCount" href="{{ baseUrl }}/{{ post.id }}">Komentarze({{ post.commentCount }})</a>
+    <a *ngIf="showCommentCount" routerLink="{{ baseUrl }}/{{ post.id }}">Komentarze({{ post.commentCount }})</a>
 </div>

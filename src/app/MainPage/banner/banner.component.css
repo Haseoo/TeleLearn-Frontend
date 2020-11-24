@@ -15,7 +15,7 @@
     background-size:contain;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
     .bg {
         padding: 5px;
     }

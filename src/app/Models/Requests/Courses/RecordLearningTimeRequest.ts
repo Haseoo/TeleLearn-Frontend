@@ -1,6 +1,6 @@
 import { Time } from '../../Time';
 
-export class RecordLearningTime {
+export class RecordLearningTimeRequest {
     startTime: string;
     duration: Time;
 }

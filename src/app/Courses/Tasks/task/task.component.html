@@ -8,17 +8,29 @@
             <i class="material-icons md-18">delete_forever</i>Usuń zadanie
         </button>
     </div>
+    <div class="card-row d-flex justify-content-end btn-menu" *ngIf="showForStudent">
+        <button class="btn btn-success d-flex align-items-center"  (click)="updateProgress.emit()">
+            <i class="material-icons md-18">create</i>Aktualizuj postęp
+        </button>
+        <div class="seprataor"></div>
+        <button *ngIf="!taskForStudent.isToRepeat && taskForStudent.taskCompletion == 100" class="btn btn-warning d-flex align-items-center" (click)="markToRepeat.emit(true)">
+            <i class="material-icons md-18">notification_important</i>Ustaw do powtórki
+        </button>
+        <button *ngIf="taskForStudent.isToRepeat" class="btn btn-danger d-flex align-items-center" (click)="markToRepeat.emit(false)">
+            <i class="material-icons md-18">notification_important</i>Usuń z zadań do powtórki
+        </button>
+    </div>
     <div class="card-title">
         {{ task.name }}
     </div>
     <div class="card-subtitle" *ngIf="standalone">
-        Zadanie znależące do kusu <a href="/course/{{ course.id }}">{{ course.name }}</a>
+        Zadanie znależące do kusu <a routerLink="/course/{{ course.id }}">{{ course.name }}</a>
     </div>
     <div class="card-row">
         Data wykonania zadania: <span class="bold-span">{{ task.dueDate | date:('dd.MM.yyyy') }}</span>
     </div>
     <div class="card-row">
-        Poponowany czas wykonania zadania: <span class="bold-span">{{ task.learningTime.hours }}:{{ task.learningTime.minutes }}</span>
+        Poponowany czas wykonania zadania: <span class="bold-span">{{ task.learningTime.hours }}:{{ task.learningTime.minutes | number:'2.0' }}</span>
     </div>
     <div class="card-row" *ngIf="taskForStudent">
         Postęp zadania <span class="bold-span">{{ taskForStudent.taskCompletion }}%</span>
@@ -26,14 +38,24 @@
     <div class="card-row text-danger" *ngIf="taskForStudent && taskForStudent.isToRepeat">
         <span class="bold-span">Zadanie do powtórki!</span>
     </div>
+    <div class="card-row" *ngIf="task.description">
+        <span class="bold-span">Treść zadania:</span>
+    </div>
     <article class="card-text" [innerHTML]="task.description" *ngIf="task.description && task.description != 'null'"></article>
-    <div *ngIf="task.attachments && task.attachments.length > 0">
+    <div class="card-row" *ngIf="task.attachments && task.attachments.length > 0">
         <span class="h5">Załączniki:</span>
         <ul>
             <li *ngFor="let item of task.attachments">
                 <a class="link" (click)="DownloadFile(item)">{{ item.fileName }}</a>
             </li>
         </ul>
+    </div>
+    <div class="card-row" *ngIf="taskSchedule && taskSchedule.length > 0">
+        <span class="h5">Historia wykonywania zadania:</span>
+        <app-scheduled-task-card *ngFor="let item of taskSchedule"
+         [taskSchedule]="item"
+         [buttons]="['remove']"
+         [onTaskPage]="true"></app-scheduled-task-card>
     </div>
     <div *ngIf="standalone && (task.nextTasks.length > 0 || task.previousTasks.length > 0)" class="task-nav">
         <span class="h5">Powiazanie zadania:</span>

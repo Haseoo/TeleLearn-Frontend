@@ -5,6 +5,9 @@
     [course]="course"
     [standalone]="true"
     [showManagement]="ShowManagement"
+    [showForStudent]="ShowForStudent"
+    [taskSchedule]="taskSchedule"
     (delete)="OnTaskDelete()"
     (update)="OnTaskEdit()"
+    (markToRepeat)="OnTaskToRepeat($event)"
 ></app-task>

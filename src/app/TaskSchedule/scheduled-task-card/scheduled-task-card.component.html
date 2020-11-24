@@ -1,0 +1,40 @@
+<div class="card item">
+    <div class="d-flex align-items-center justify-content-end">
+        <i class="material-icons">
+            schedule
+        </i>
+        <div class="card">
+            <div class="card-row header" *ngIf="!onTaskPage">
+                <a routerLink="{{GetTaskLink()}}" class="card-link"> {{ taskSchedule.task.name }} </a>
+            </div>
+            <div class="card-row" *ngIf="!onTaskPage">
+                Stopień wykonania: <span class="bold">{{ taskSchedule.task.taskCompletion }}%</span>
+            </div>
+            <div class="card-row">
+            </div>
+            <div class="card-row">
+                Realizacja planu: <span class="bold">{{ taskSchedule.learningTime.hours }}:{{ taskSchedule.learningTime.minutes | number:'2.0' }}</span> / <span class="bold">{{ taskSchedule.plannedTime.hours }}:{{ taskSchedule.plannedTime.minutes | number:'2.0' }}</span>
+            </div>
+            <div class="card-row" *ngIf="onTaskPage">
+                Data: <span class="bold">{{ taskSchedule.date | date:'dd.MM.yyyy' }}</span>
+            </div>
+        </div>
+        <button *ngIf="buttons.includes('learn')" class="btn btn-primary d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Wykonuj zadanie">
+            <i class="material-icons">
+                play_arrow
+            </i>
+        </button>
+        <div class="separator" *ngIf="buttons.includes('learn')"></div>
+        <button *ngIf="buttons.includes('edit')" class="btn btn-success d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Edytuj wpis">
+            <i class="material-icons">
+                edit
+            </i>
+        </button>
+        <div class="separator" *ngIf="buttons.includes('edit')"></div>
+        <button *ngIf="buttons.includes('remove')" class="btn btn-danger d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Usuń z planu">
+            <i class="material-icons">
+                remove
+            </i>
+        </button>
+    </div>
+</div>

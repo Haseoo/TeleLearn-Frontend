@@ -21,4 +21,8 @@ export class MainPageComponent implements OnInit {
     this.innerWidth = window.innerWidth;
   }
 
+  HideMenu() {
+    this.menuVisible = false;
+  }
+
 }

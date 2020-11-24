@@ -1,0 +1,49 @@
+.card {
+    padding: 5px 20px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.item {
+    border: solid 1px rgb(230, 230, 230);
+}
+
+.header {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+i {
+    font-size: 48px;
+}
+
+.btn > i {
+    font-size: 32px;
+}
+
+.item:hover {
+    background-color: rgb(230, 230, 230);
+    cursor: pointer;
+}
+
+a.card-link {
+    color: black;
+}
+
+a.card-link:hover{
+    text-decoration: underline;
+    color: darkblue;
+}
+
+ .btn {
+     padding: 0;
+ }
+
+ .bold {
+     font-weight: bold;
+ }
+
+ .separator {
+     margin: 0 .25em;
+ }

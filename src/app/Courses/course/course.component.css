@@ -1,8 +1,7 @@
 .menu {
     border: solid rgb(230, 230, 230) 1px;
     padding: 10px 0;
-    flex: auto;
-    min-width: 210px;
+    width: 20%;
 }
 
 .menu-title {
@@ -13,7 +12,7 @@
 }
 
 .content-container {
-    flex: 75%;
+    width: 80%;
     padding: 10px;
     overflow: hidden;
 }
@@ -75,12 +74,14 @@ li:hover {
     background-color: aliceblue;
 }
 
-@media only screen and (max-width: 840px) {
+@media only screen and (max-width: 1000px) {
     .menu {
         margin-bottom: 1em;
+        width: 100%;
     }
 
     .content-container {
         padding: 0;
+        width: 100%;
     }
 }

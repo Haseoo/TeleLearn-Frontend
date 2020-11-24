@@ -3,7 +3,7 @@
 </button>
 <ul *ngIf="isCurrentUserAdmin()">
     <li>
-        <a href="/news/compose">Dodaj nowy artykuł na stronę główną</a>
+        <a routerLink="/news/compose" (click)="linkClick.emit()">Dodaj nowy artykuł na stronę główną</a>
     </li>
 </ul>
 
@@ -12,19 +12,22 @@
 </button>
 <ul *ngIf="isCurrentUserStudent()">
     <li>
-        <a href="/my-courses">Moje kursy</a>
+        <a routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
     </li>
     <li>
-        <a href="/learn">Ucz się</a>
+        <a routerLink="/learn" (click)="linkClick.emit()">Ucz się</a>
     </li>
     <li>
-        <a href="/my-schedulue">Zaplanuj naukę</a>
+        <a routerLink="/my-schedule" (click)="linkClick.emit()">Zaplanuj naukę</a>
     </li>
     <li>
-        <a href="/timer">Czasomierz</a>
+        <a routerLink="/timer" (click)="linkClick.emit()">Czasomierz</a>
     </li>
     <li>
-        <a href="/teachers">Znajdź nauczyciela</a>
+        <a routerLink="/stats" (click)="linkClick.emit()">Podsumowania i statystyki</a>
+    </li>
+    <li>
+        <a routerLink="/teachers" (click)="linkClick.emit()">Znajdź nauczyciela</a>
     </li>
 </ul>
 
@@ -34,10 +37,10 @@
 </button>
 <ul *ngIf="isCurrentUserTeacher()">
     <li>
-        <a href="/my-courses">Moje kursy</a>
+        <a routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
     </li>
     <li>
-        <a href="/new-course">Utwórz nowy kurs</a>
+        <a routerLink="/new-course" (click)="linkClick.emit()">Utwórz nowy kurs</a>
     </li>
 </ul>
 
@@ -47,24 +50,24 @@
 </button>
 <ul *ngIf="!userService.GetCurrentUser()">
     <li>
-        <a href="/login">Zaloguj się</a>
+        <a routerLink="/login" (click)="linkClick.emit()">Zaloguj się</a>
     </li>
     <li>
-        <a href="/register">Zarejestruj się</a>
+        <a routerLink="/register" (click)="linkClick.emit()">Zarejestruj się</a>
     </li>
 </ul>
 
 <ul *ngIf="userService.GetCurrentUser()">
     <li *ngIf="!isCurrentUserAdmin()">
-        <a href="/user/{{ userService.GetCurrentUser().id }}{{ GetBackUrlParam() }}">Mój profil</a>
+        <a routerLink="/user/{{ userService.GetCurrentUser().id }}" (click)="linkClick.emit()">Mój profil</a>
     </li>
     <li>
-        <a href="/messages">Wiadomości</a>
+        <a routerLink="/messages" (click)="linkClick.emit()">Wiadomości</a>
     </li>
     <li *ngIf="!isCurrentUserAdmin()">
-        <a href="/user/settings">Ustawienia konta</a>
+        <a routerLink="/user/settings" (click)="linkClick.emit()">Ustawienia konta</a>
     </li>
     <li>
-        <a href="/logout">Wyloguj</a>
+        <a routerLink="/logout" (click)="linkClick.emit()">Wyloguj</a>
     </li>
 </ul>

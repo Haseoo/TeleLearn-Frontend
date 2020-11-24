@@ -59,7 +59,10 @@ import { PathsComponent } from './Courses/Tasks/paths/paths.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddTaskComponent } from './Courses/Tasks/add-task/add-task.component';
-import { ComposerComponent } from './Courses/Tasks/composer/composer.component'
+import { ComposerComponent } from './Courses/Tasks/composer/composer.component';
+import { TaskSchedulerComponent } from './TaskSchedule/task-scheduler/task-scheduler.component';
+import { TaskToScheduleCardComponent } from './TaskSchedule/task-to-schedule-card/task-to-schedule-card.component';
+import { ScheduledTaskCardComponent } from './TaskSchedule/scheduled-task-card/scheduled-task-card.component'
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -113,7 +116,10 @@ FullCalendarModule.registerPlugins([
     TaskUpdateComponent,
     PathsComponent,
     AddTaskComponent,
-    ComposerComponent
+    ComposerComponent,
+    TaskSchedulerComponent,
+    TaskToScheduleCardComponent,
+    ScheduledTaskCardComponent
   ],
   imports: [
     BrowserModule,

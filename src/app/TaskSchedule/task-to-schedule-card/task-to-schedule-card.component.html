@@ -1,0 +1,29 @@
+<div class="card item" (click)="OnTaskClick()" *ngIf="taskToSchedule">
+    <div class="d-flex align-items-center justify-content-end">
+        <i class="material-icons">
+            assignment
+        </i>
+        <div class="card">
+            <div class="card-row header">
+                <a routerLink="{{GetTaskLink()}}" class="card-link"> {{ taskToSchedule.task.name }} </a>
+            </div>
+            <div class="card-row">
+                Stopień wykonania: <span class="bold">{{ taskToSchedule.task.taskCompletion }}%</span>
+            </div>
+            <div class="card-row" *ngIf="showDetails">
+                Czas porponowany: <span class="bold">{{ taskToSchedule.task.learningTime.hours }}:{{ taskToSchedule.task.learningTime.minutes | number:'2.0' }}</span>
+            </div>
+            <div class="card-row" *ngIf="showDetails">
+                Czas zaplanowany: <span class="bold">{{ taskToSchedule.totalPlannedLearningTime.hours }}:{{ taskToSchedule.totalPlannedLearningTime.minutes | number:'2.0' }}</span>
+            </div>
+            <div class="card-row" *ngIf="showDetails">
+                Czas spędzony na zadaniu: <span class="bold" [ngClass]="{'text-danger' : CheckLearningTime()}">{{ taskToSchedule.totalLearningTime.hours }}:{{ taskToSchedule.totalLearningTime.minutes | number:'2.0' }}</span>
+            </div>
+        </div>
+        <button class="btn btn-success d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Zapanuj zadanie">
+            <i class="material-icons">
+                keyboard_arrow_up
+            </i>
+        </button>
+    </div>
+</div>

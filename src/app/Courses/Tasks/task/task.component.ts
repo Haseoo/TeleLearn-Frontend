@@ -7,6 +7,7 @@ import { CourseBrief } from 'src/app/Models/Courses/CourseBrief';
 import { UserService } from 'src/app/Services/user.service';
 import { UserRole } from 'src/app/Models/UserRole';
 import { TaskFroStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
+import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
 
 @Component({
   selector: 'app-task',
@@ -18,20 +19,20 @@ export class TaskComponent implements OnInit {
   @Input() task: Task;
   @Input() course: CourseBrief;
   @Input() showManagement: boolean;
+  @Input() showForStudent: boolean;
   @Input() standalone: boolean;
+  @Input() taskSchedule: TaskSchedule[];
 
   @Output() update = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
+  @Output() updateProgress = new EventEmitter<any>();
+  @Output() markToRepeat = new EventEmitter<boolean>();
 
-  taskForStudent: TaskFroStudent;
 
   constructor(private attachmentService: AttachmentService,
     private userService: UserService) { }
 
   ngOnInit(): void {
-    if(this._IsCurrentUserStudent()) {
-      this.taskForStudent = <TaskFroStudent>this.task;
-    }
   }
   
   DownloadFile(attachment: Attachment) {
@@ -43,6 +44,14 @@ export class TaskComponent implements OnInit {
         console.error(err);
       }
     )
+  }
+
+  get taskForStudent(): TaskFroStudent {
+    if(this._IsCurrentUserStudent()) {
+      return <TaskFroStudent>this.task;
+    } else {
+      return undefined;
+    }
   }
 
   private _IsCurrentUserStudent(): boolean {

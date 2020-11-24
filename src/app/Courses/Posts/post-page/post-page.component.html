@@ -13,7 +13,7 @@
         </form>
         <div class="card" *ngFor="let item of comments | paginate: { itemsPerPage: 20, currentPage: current }">
             <div class="card-title">
-                <a href="/user/{{ post.author.id }}">
+                <a routerLink="/user/{{ post.author.id }}">
                     {{ item.author.name }}
                     {{ item.author.surname }}
                 </a>

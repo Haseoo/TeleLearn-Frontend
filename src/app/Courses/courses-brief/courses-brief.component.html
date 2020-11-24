@@ -1,5 +1,5 @@
 <div class="item container-fluid shadow-sm justify-content-center" *ngFor="let item of courseBriefs | paginate: { itemsPerPage: perPage, currentPage: current }">
-    <a class="card" href="/course/{{ item.id }}">
+    <a class="card" routerLink="/course/{{ item.id }}">
         <div class="d-flex align-items-center justify-content-end">
             <i class="material-icons">
                 menu_book
@@ -9,7 +9,7 @@
                     {{ item.name }}
                 </div>
                 <div class="card-row owner" *ngIf="showOwner">
-                    Prowadzi: <a href="/user/{{ item.owner.id }}"> {{ item.owner.name }} {{ item.owner.surname }} </a>
+                    Prowadzi: <a routerLink="/user/{{ item.owner.id }}"> {{ item.owner.name }} {{ item.owner.surname }} </a>
                 </div>
             </div>
             <i class="material-icons">

@@ -23,8 +23,10 @@
 }
 
 .card-text {
-    margin: 1em 0;
-    padding-left: .5em;
+    margin-bottom: .5em;
+    padding: .5em;
+    border-top: solid rgb(230, 230, 230) 1px;
+    border-bottom: solid rgb(230, 230, 230) 1px;
 }
 
 .bold-span {
