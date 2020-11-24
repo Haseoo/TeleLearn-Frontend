@@ -94,7 +94,7 @@ export class UserService {
     return this.httpClient.get<Map<string, Time>>(`${environment.api_url}/learning-time/${studentId}`);
   }
 
-  SetLearningTimeForStudent(request: LearningTimeRequest) {
+  SetLearningTimeForStudent(request: LearningTimeRequest): Observable<any> {
     return this.httpClient.put<Map<string, Time>>(`${environment.api_url}/learning-time`, request, { observe: 'response' });
   }
 
