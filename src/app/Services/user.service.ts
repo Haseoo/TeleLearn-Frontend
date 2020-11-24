@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApplicationRef, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LearningTimeRequest } from '../Models/Requests/LearningTimeRequest';
 import { LoginRequest } from '../Models/Requests/LoginRequest';
 import { PasswordChangeRequest } from '../Models/Requests/PasswordChangeRequest';
 import { StudentRegisterRequest } from '../Models/Requests/StudentRegisterRequest';
@@ -9,7 +10,9 @@ import { StudentUpdateRequest } from '../Models/Requests/StudentUpdateRequest';
 import { TeacherRegisterRequest } from '../Models/Requests/TeacherRegisterRequest';
 import { TeacherUpdateRequest } from '../Models/Requests/TeacherUpdateRequest';
 import { Student } from '../Models/Student';
+import { StudentStat } from '../Models/StudentStat';
 import { Teacher } from '../Models/Teacher';
+import { Time } from '../Models/Time';
 import { User } from '../Models/User';
 import { UserLoginResponse } from '../Models/UserLoginResponse';
 
@@ -81,6 +84,18 @@ export class UserService {
 
   GetTeachers(): Observable<Teacher[]> {
     return this.httpClient.get<Teacher[]>(`${environment.api_url}/user/teacher`);
+  }
+
+  GetStudentStats(studentId: number): Observable<StudentStat> {
+    return this.httpClient.get<StudentStat>(`${environment.api_url}/user/student/${studentId}/stat`)
+  }
+
+  GetLearningTimeForStudent(studentId: number): Observable<Map<string, Time>> {
+    return this.httpClient.get<Map<string, Time>>(`${environment.api_url}/learning-time/${studentId}`);
+  }
+
+  SetLearningTimeForStudent(request: LearningTimeRequest) {
+    return this.httpClient.put<Map<string, Time>>(`${environment.api_url}/learning-time`, request, { observe: 'response' });
   }
 
 }

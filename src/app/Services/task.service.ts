@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Task } from '../Models/Courses/Tasks/Task';
+import { TaskProgressRequest } from '../Models/Requests/Courses/TaskProgressRequest';
+import { TaskRepeatRequest } from '../Models/Requests/Courses/TaskRepeatRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,14 @@ export class TaskService {
 
   UpdateTask(id: number, request: FormData):Observable<any> {
     return this.httpClient.put(`${environment.api_url}/task/${id}`, request, { observe: 'response' });
+  }
+
+  SetTaskToRepeat(id: number, request: TaskRepeatRequest): Observable<any>{
+    return this.httpClient.patch(`${environment.api_url}/task/${id}/repeat`, request, { observe: 'response' });
+  }
+
+  SetTaskToProgress(id: number, request: TaskProgressRequest): Observable<any>{
+    return this.httpClient.patch(`${environment.api_url}/task/${id}/progress`, request, { observe: 'response' });
   }
 
   DeleteTask(id: number):Observable<any> {
