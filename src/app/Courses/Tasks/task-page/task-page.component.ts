@@ -65,8 +65,18 @@ export class TaskPageComponent implements OnInit {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
-    )
+    );
+  }
 
+  OnTaskProgressUpdate(progress: number) {
+    this.taskService.SetTaskProgress(this.task.id, {studentId: this.userService.GetCurrentUser().id, progress: progress}).subscribe(
+      dt => {
+        this._FetchTask(this.task.id);
+      },err => {
+        this.errorMessage = (err.error.message) ? err.error.message : err.message;
+        this.error = true;
+      }
+    );
   }
 
   get ShowManagement(): boolean {

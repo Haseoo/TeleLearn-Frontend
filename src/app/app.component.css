@@ -39,14 +39,14 @@ footer {
     margin-right: auto;
 }
 
-@media only screen and (min-width: 1250px) {
+@media only screen and (min-width: 1500px) {
     .content {
         width: 80vw;
         max-width: 80vw;
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1500px) {
     .nav-menu-elements {
         width: 100%;
     }

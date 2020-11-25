@@ -33,7 +33,7 @@ export class TaskService {
     return this.httpClient.patch(`${environment.api_url}/task/${id}/repeat`, request, { observe: 'response' });
   }
 
-  SetTaskToProgress(id: number, request: TaskProgressRequest): Observable<any>{
+  SetTaskProgress(id: number, request: TaskProgressRequest): Observable<any>{
     return this.httpClient.patch(`${environment.api_url}/task/${id}/progress`, request, { observe: 'response' });
   }
 

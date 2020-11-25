@@ -10,6 +10,7 @@ import { TaskToSchedule } from 'src/app/Models/Courses/Tasks/TaskToSchedule';
 export class TaskToScheduleCardComponent implements OnInit {
 
   @Input() taskToSchedule: TaskToSchedule;
+  @Input() selected: boolean = false;
 
   showDetails: boolean = false;
 

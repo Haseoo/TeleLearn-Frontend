@@ -1,0 +1,20 @@
+input[type="number"] {
+    max-width: 5em;
+}
+
+label {
+    margin: 0;
+}
+
+.separator {
+    margin: 0 5px;
+}
+
+.time-separator {
+    font-weight: bold;
+    padding: 0 .25em;
+}
+
+.btn {
+    padding: 0 6px;
+}

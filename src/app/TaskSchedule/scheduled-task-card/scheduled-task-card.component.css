@@ -47,3 +47,11 @@ a.card-link:hover{
  .separator {
      margin: 0 .25em;
  }
+
+ .selected {
+     background-color: rgb(255, 162, 128);
+ }
+
+ .selected:hover {
+    background-color: rgb(238, 115, 70)!important;
+ }

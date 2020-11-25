@@ -3,22 +3,38 @@
         <button class="btn btn-success d-flex align-items-center"  (click)="update.emit()">
             <i class="material-icons md-18">create</i>Edytuj zadanie
         </button>
-        <div class="seprataor"></div>
+        <div class="separator"></div>
         <button class="btn btn-danger d-flex align-items-center" (click)="delete.emit()">
             <i class="material-icons md-18">delete_forever</i>Usuń zadanie
         </button>
     </div>
     <div class="card-row d-flex justify-content-end btn-menu" *ngIf="showForStudent">
-        <button class="btn btn-success d-flex align-items-center"  (click)="updateProgress.emit()">
+        <button class="btn btn-success d-flex align-items-center"  (click)="OnProgressClick()">
             <i class="material-icons md-18">create</i>Aktualizuj postęp
         </button>
-        <div class="seprataor"></div>
+        <div class="separator"></div>
         <button *ngIf="!taskForStudent.isToRepeat && taskForStudent.taskCompletion == 100" class="btn btn-warning d-flex align-items-center" (click)="markToRepeat.emit(true)">
             <i class="material-icons md-18">notification_important</i>Ustaw do powtórki
         </button>
         <button *ngIf="taskForStudent.isToRepeat" class="btn btn-danger d-flex align-items-center" (click)="markToRepeat.emit(false)">
             <i class="material-icons md-18">notification_important</i>Usuń z zadań do powtórki
         </button>
+    </div>
+    <div class="card-row" *ngIf="showProgressUpdate">
+        <form [formGroup]="progressForm" class="d-flex align-content-center form-group" (submit)="OnProgressApply()">
+            <label class="align-self-center">Postęp zadania:</label>
+            <div class="separator"></div>
+            <input type="number" formControlName="progress" [min]=0 [max]=100 class="form-control" [ngClass]="{ 'invalid': progressForm.controls.progress.errors }"/>
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <button type="submit" class="btn btn-success d-flex align-items-center">
+                <i class="material-icons md-18">done</i>
+            </button>
+            <div class="separator"></div>
+            <button type="button" (click)="showProgressUpdate = false" class="btn btn-danger d-flex align-items-center">
+                <i class="material-icons md-18">cancel</i>
+            </button>
+        </form>
     </div>
     <div class="card-title">
         {{ task.name }}

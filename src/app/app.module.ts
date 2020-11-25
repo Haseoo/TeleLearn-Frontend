@@ -62,7 +62,8 @@ import { AddTaskComponent } from './Courses/Tasks/add-task/add-task.component';
 import { ComposerComponent } from './Courses/Tasks/composer/composer.component';
 import { TaskSchedulerComponent } from './TaskSchedule/task-scheduler/task-scheduler.component';
 import { TaskToScheduleCardComponent } from './TaskSchedule/task-to-schedule-card/task-to-schedule-card.component';
-import { ScheduledTaskCardComponent } from './TaskSchedule/scheduled-task-card/scheduled-task-card.component'
+import { ScheduledTaskCardComponent } from './TaskSchedule/scheduled-task-card/scheduled-task-card.component';
+import { TimeInputFormComponent } from './TaskSchedule/time-input-form/time-input-form.component'
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -119,7 +120,8 @@ FullCalendarModule.registerPlugins([
     ComposerComponent,
     TaskSchedulerComponent,
     TaskToScheduleCardComponent,
-    ScheduledTaskCardComponent
+    ScheduledTaskCardComponent,
+    TimeInputFormComponent
   ],
   imports: [
     BrowserModule,

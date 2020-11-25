@@ -43,3 +43,11 @@ a.card-link:hover{
  .bold {
      font-weight: bold;
  }
+
+ .selected {
+    background-color: rgb(255, 162, 128);
+}
+
+.selected:hover {
+   background-color: rgb(238, 115, 70)!important;
+}

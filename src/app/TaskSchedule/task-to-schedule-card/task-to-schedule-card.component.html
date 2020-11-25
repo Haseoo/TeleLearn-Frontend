@@ -1,4 +1,4 @@
-<div class="card item" (click)="OnTaskClick()" *ngIf="taskToSchedule">
+<div class="card item" (click)="OnTaskClick()" *ngIf="taskToSchedule" [ngClass]="{'selected' : selected}">
     <div class="d-flex align-items-center justify-content-end">
         <i class="material-icons">
             assignment

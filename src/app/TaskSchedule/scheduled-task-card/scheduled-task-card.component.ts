@@ -11,6 +11,7 @@ export class ScheduledTaskCardComponent implements OnInit {
   @Input() buttons: string[] = [];
   @Input() onTaskPage: boolean = false;
   @Input() taskSchedule: TaskSchedule;
+  @Input() selected: boolean = false;
 
   constructor() { }
 

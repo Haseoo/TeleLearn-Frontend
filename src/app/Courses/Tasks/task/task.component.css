@@ -33,7 +33,7 @@
     font-weight: bold;
 }
 
-.seprataor {
+.separator {
     margin: 0 5px;
 }
 
@@ -73,4 +73,12 @@ a.link:hover{
 *.task-link i {
     font-size: 30px;
     font-weight: bolder;
+}
+
+input[type="number"] {
+    max-width: 10em;
+}
+
+label {
+    margin: 0;
 }

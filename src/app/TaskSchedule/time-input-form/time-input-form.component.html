@@ -1,0 +1,18 @@
+<form [formGroup]="form" (submit)="OnSubmit()">
+    <div class="d-flex align-content-center form-group">
+        <label class="align-self-center">{{ labelText }}</label>
+        <div class="separator"></div>
+        <input type="number" formControlName="hours" [min]="0" class="form-control" [ngClass]="{ 'invalid': form.controls.hours.errors }"/>
+        <div class="time-separator align-self-center">:</div>
+        <input type="number" formControlName="minutes" [min]="0" [max]="59" class="form-control" [ngClass]="{ 'invalid': form.controls.minutes.errors }"/>
+        <div class="separator"></div>
+        <div class="separator"></div>
+        <button type="submit" class="btn btn-success d-flex align-items-center">
+            <i class="material-icons md-18">done</i>
+        </button>
+        <div class="separator"></div>
+        <button type="button" (click)="cancel.emit()" class="btn btn-danger d-flex align-items-center">
+            <i class="material-icons md-18">cancel</i>
+        </button>
+    </div>
+</form>

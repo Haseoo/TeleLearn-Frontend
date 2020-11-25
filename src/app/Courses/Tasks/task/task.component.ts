@@ -8,11 +8,12 @@ import { UserService } from 'src/app/Services/user.service';
 import { UserRole } from 'src/app/Models/UserRole';
 import { TaskFroStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css', '../../../../form-style.css']
 })
 export class TaskComponent implements OnInit {
 
@@ -25,14 +26,21 @@ export class TaskComponent implements OnInit {
 
   @Output() update = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
-  @Output() updateProgress = new EventEmitter<any>();
+  @Output() updateProgress = new EventEmitter<number>();
   @Output() markToRepeat = new EventEmitter<boolean>();
+
+  showProgressUpdate: boolean = false;
+  progressForm: FormGroup;
 
 
   constructor(private attachmentService: AttachmentService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.progressForm = this.formBuilder.group({
+      progress: [this.taskForStudent.taskCompletion, [Validators.required, Validators.min(0), Validators.max(100)]]
+    });
   }
   
   DownloadFile(attachment: Attachment) {
@@ -52,6 +60,17 @@ export class TaskComponent implements OnInit {
     } else {
       return undefined;
     }
+  }
+
+  OnProgressClick() {
+    this.showProgressUpdate = !this.showProgressUpdate;
+    this.progressForm.setValue({progress: this.taskForStudent.taskCompletion});
+  }
+
+  OnProgressApply() {
+    let newValue = this.progressForm.value.progress;
+    this.updateProgress.emit(newValue);
+    this.showProgressUpdate = false;
   }
 
   private _IsCurrentUserStudent(): boolean {
