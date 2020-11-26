@@ -25,4 +25,10 @@ export class ScheduledTaskCardComponent implements OnInit {
     return `/course/${this.taskSchedule.task.courseId}/task/${this.taskSchedule.task.id}`;
   }
 
+  IsCompleted(): boolean {
+    let scheduledTime = this.taskSchedule.plannedTime.hours * 60 + this.taskSchedule.plannedTime.minutes;
+    let learningTime = this.taskSchedule.learningTime.hours * 60 + this.taskSchedule.learningTime.minutes;
+    return learningTime >= scheduledTime;
+  }
+
 }

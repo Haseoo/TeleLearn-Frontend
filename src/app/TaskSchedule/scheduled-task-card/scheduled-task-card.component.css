@@ -46,3 +46,7 @@ a.card-link:hover{
  .separator {
      margin: 0 .25em;
  }
+
+ .completed {
+     background-color: rgb(225, 252, 225);
+ }

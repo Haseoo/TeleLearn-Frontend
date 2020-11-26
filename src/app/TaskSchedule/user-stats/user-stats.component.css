@@ -1,0 +1,24 @@
+i {
+    font-size: 64px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-text {
+    margin-left: 10px;
+    font-size: 15pt;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.separator {
+    margin: 0 .25em;
+}

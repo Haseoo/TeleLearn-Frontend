@@ -1,0 +1,54 @@
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
+<div class="container" *ngIf="stats">
+    <header class="h3 text-center">Podstawowe statystyki:</header>
+    <div class="card">
+        <div class="card-body d-flex align-content-center">
+            <i class="material-icons">schedule</i>
+            <div class="card-text flex-grow-1 align-self-center">Czas z nauki na ten tydzień wynikajacy z zadań: <span class="bold">{{ GetTimeDescription(stats.taskTimeForWeek) }}</span>.</div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body d-flex align-content-center">
+            <i class="material-icons">schedule</i>
+            <div class="card-text flex-grow-1 align-self-center">Na ten tydzień zaplanowałeś/aś <span class="bold">{{ GetTimeDescription(stats.plannedTimeForWeek) }}</span> nauki. </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body d-flex align-content-center">
+            <i class="material-icons">book</i>
+            <div class="card-text flex-grow-1 align-self-center">W tym tygodniu uczłeś/aś się już <span class="bold">{{ GetTimeDescription(stats.learningTimeForWeek) }}</span>. </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body d-flex align-content-center">
+            <i class="material-icons">leaderboard</i>
+            <div class="card-text flex-grow-1 align-self-center">Średnio uczysz się <span class="bold">{{ GetTimeDescription(stats.averageLearningTime) }}</span>. </div>
+        </div>
+    </div>
+    <header class="h3 text-center">Statystyki dla kursów:</header>
+    <div class="d-flex justify-content-end align-items-center">
+        <button class="btn" (click)="isAllDays=false" [ngClass]="!isAllDays ? 'btn-secondary' : 'btn-outline-secondary'">Ostatnie 7 dni</button>
+        <div class="separator"></div>
+        <button class="btn" (click)="isAllDays=true" [ngClass]="isAllDays ? 'btn-secondary' : 'btn-outline-secondary'">Cały okres</button>
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nazwa kursu</th>
+            <th scope="col">Czas spędzony na naukę (HH:mm)</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="isAllDays">
+          <tr *ngFor="let item of stats.learningTimeForCourseTotal | keyvalue">
+            <td>{{ item.key.name }}</td>
+            <td>{{ item.value.hours }}:{{ item.value.minutes | number:'2.0' }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="!isAllDays">
+            <tr *ngFor="let item of stats.learningTimeForCourseSevenDays | keyvalue">
+              <td>{{ item.key.name }}</td>
+              <td>{{ item.value.hours }}:{{ item.value.minutes | number:'2.0' }}</td>
+            </tr>
+          </tbody>
+    </table>
+</div>

@@ -1,4 +1,4 @@
-<div class="card item" *ngIf="taskSchedule">
+<div class="card item" [ngClass]="{'completed': IsCompleted()}" *ngIf="taskSchedule">
     <div class="d-flex align-items-center justify-content-end">
         <i class="material-icons">
             schedule
