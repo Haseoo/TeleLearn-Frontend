@@ -30,14 +30,14 @@ export class UserStatsComponent implements OnInit {
   }
 
   GetTimeDescription(time: Time): string {
-    return `${time.hours} godzin${this.GetHourSuffix(time.hours)} ${time.minutes} minut${this.GetMinuteSuffix(time.minutes)}`
+    return `${time.hours} godzin${this.GetHourSuffix(time.hours)} i ${time.minutes} minut${this.GetMinuteSuffix(time.minutes)}`
   }
 
   GetHourSuffix(hours: number): string {
     let lastDigit = hours % 10;
     if (hours == 1) {
       return 'a';
-    } else if (lastDigit < 5) {
+    } else if (lastDigit > 1 && lastDigit < 5) {
       return 'y';
     }
     return '';

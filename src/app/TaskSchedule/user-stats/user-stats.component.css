@@ -22,3 +22,11 @@ i {
 .separator {
     margin: 0 .25em;
 }
+
+.table {
+    margin-bottom: 2em;
+}
+
+.button-container {
+    margin-bottom: 1em;
+}
