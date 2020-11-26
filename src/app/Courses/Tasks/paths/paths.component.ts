@@ -8,7 +8,7 @@ import { CourseService } from 'src/app/Services/course.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { UserService } from 'src/app/Services/user.service';
 import { Node } from '@swimlane/ngx-graph';
-import { TaskFroStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
+import { TaskForStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 
 @Component({
   selector: 'app-paths',
@@ -72,7 +72,7 @@ export class PathsComponent implements OnInit {
   }
 
   GetTaskForStudent(task: Task) {
-    return <TaskFroStudent>task;
+    return <TaskForStudent>task;
   }
 
   GetTaskColor(task: Task): string {

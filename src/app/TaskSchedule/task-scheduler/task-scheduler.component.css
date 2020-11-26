@@ -38,9 +38,12 @@
 
 .task-card-container {
     padding: .5em 0;
-    height: 300px;
     border-bottom: solid rgb(230, 230, 230) 1px;
-    overflow-y: scroll;
+}
+
+.modal-header {
+    padding: 8px;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 1000px) {

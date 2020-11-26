@@ -66,6 +66,7 @@ import { ScheduledTaskCardComponent } from './TaskSchedule/scheduled-task-card/s
 import { TimeInputFormComponent } from './TaskSchedule/time-input-form/time-input-form.component'
 import localePL from '@angular/common/locales/pl'
 import { registerLocaleData } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localePL);
 
@@ -139,7 +140,8 @@ FullCalendarModule.registerPlugins([
     LoadingBarHttpClientModule,
     FullCalendarModule,
     NgxGraphModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
      
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },

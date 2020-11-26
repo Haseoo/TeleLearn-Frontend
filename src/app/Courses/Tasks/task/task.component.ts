@@ -6,7 +6,7 @@ import * as FileSaver from 'file-saver';
 import { CourseBrief } from 'src/app/Models/Courses/CourseBrief';
 import { UserService } from 'src/app/Services/user.service';
 import { UserRole } from 'src/app/Models/UserRole';
-import { TaskFroStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
+import { TaskForStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -54,9 +54,9 @@ export class TaskComponent implements OnInit {
     )
   }
 
-  get taskForStudent(): TaskFroStudent {
+  get taskForStudent(): TaskForStudent {
     if(this._IsCurrentUserStudent()) {
-      return <TaskFroStudent>this.task;
+      return <TaskForStudent>this.task;
     } else {
       return undefined;
     }

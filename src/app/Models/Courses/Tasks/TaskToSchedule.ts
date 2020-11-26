@@ -1,8 +1,8 @@
 import { Time } from '../../Time';
-import { TaskFroStudent } from './TaskForStudent';
+import { TaskForStudent } from './TaskForStudent';
 
 export class TaskToSchedule {
-    task: TaskFroStudent;
+    task: TaskForStudent;
     totalLearningTime: Time;
     totalPlannedLearningTime: Time;
 }

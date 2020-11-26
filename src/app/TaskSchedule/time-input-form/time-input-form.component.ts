@@ -11,7 +11,7 @@ export class TimeInputFormComponent implements OnInit {
 
   @Input() time: Time;
   @Input() labelText: string;
-  @Output() submit = new EventEmitter<Time>();
+  @Output() apply = new EventEmitter<Time>();
   @Output() cancel = new EventEmitter();
 
   form: FormGroup;
@@ -21,13 +21,13 @@ export class TimeInputFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       minutes: [(this.time) ? this.time.minutes : 0, [Validators.required, Validators.min(0), Validators.max(59)]],
-      hours: [(this.time) ? this.time.hours : 0, [Validators.required, Validators.min(0)]],
+      hours: [(this.time) ? this.time.hours : 0, [Validators.required, Validators.min(0), Validators.max(23)]],
     });
   }
 
   OnSubmit() {
     if (this.form.valid) {
-      this.submit.emit(this.form.value);
+      this.apply.emit(this.form.value);
     }
   }
 

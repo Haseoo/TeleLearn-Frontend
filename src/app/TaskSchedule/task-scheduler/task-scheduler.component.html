@@ -27,13 +27,17 @@
             [time]="TodaysLearningTime"
             [labelText]="'Nowy czas nauki:'"
             (cancel)="timeEdit=false"
-            (submit)="OnTimeUpdate($event)"
+            (apply)="OnTimeUpdate($event)"
             ></app-time-input-form>
         </div>
     </div>
     <div class="task-card-container">
         <div class="item-container" *ngFor="let item of TodaysSchedule">
-            <app-scheduled-task-card [taskSchedule]="item" [buttons]="['remove', 'edit']"></app-scheduled-task-card>
+            <app-scheduled-task-card [taskSchedule]="item" 
+            [buttons]="['remove', 'edit']"
+            (edit)="OpenModalEditSchedule(scheduleDialog, item)"
+            (remove)="OnScheduleDelete(item)"
+            ></app-scheduled-task-card>
         </div>
     </div>
     <div class="d-flex task-schedule-header">
@@ -51,7 +55,20 @@
     </div>
     <div class="task-card-container">
         <div class="item-container" *ngFor="let item of CurrentTaskToSchedule">
-            <app-task-to-schedule-card [taskToSchedule]="item" [showDate]="ShowDate()" (schedule)="OnTaskScheudle()"></app-task-to-schedule-card>
+            <app-task-to-schedule-card
+             [taskToSchedule]="item"
+             [showDate]="ShowDate()" 
+             (schedule)="OpenModalSchedule(scheduleDialog, item)
+             "></app-task-to-schedule-card>
         </div>
     </div>
 </div>
+
+<ng-template #scheduleDialog let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <span  class="modal-title h5" id="modal-basic-title">{{ DialogTitle }}</span>
+    </div>
+    <div class="modal-body d-flex justify-content-center align-content-center">
+      <app-time-input-form [time]="DialogTime" (cancel)="c('Cross click')" (apply)="OnDialogApply($event); c('Save click');"></app-time-input-form>
+    </div>
+  </ng-template>

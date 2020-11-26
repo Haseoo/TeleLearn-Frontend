@@ -7,12 +7,21 @@
         <input type="number" formControlName="minutes" [min]="0" [max]="59" class="form-control" [ngClass]="{ 'invalid': form.controls.minutes.errors }"/>
         <div class="separator"></div>
         <div class="separator"></div>
-        <button type="submit" class="btn btn-success d-flex align-items-center">
+        <button ngbAutofocus  type="submit" class="btn btn-success d-flex align-items-center">
             <i class="material-icons md-18">done</i>
         </button>
         <div class="separator"></div>
         <button type="button" (click)="cancel.emit()" class="btn btn-danger d-flex align-items-center">
             <i class="material-icons md-18">cancel</i>
         </button>
+    </div>
+    <div *ngIf="form.controls.hours.errors" class="text-danger">
+        <div *ngIf="form.controls.hours.errors.required">Podaj liczbę godzin</div>
+        <div *ngIf="form.controls.hours.errors.min">Nieprawidłowa liczba godzin</div>
+        <div *ngIf="form.controls.hours.errors.max">Nie można planować na więcej niż 1 dzień</div>
+    </div>
+    <div *ngIf="form.controls.minutes.errors" class="text-danger">
+        <div *ngIf="form.controls.minutes.errors.required">Podaj liczbę minut</div>
+        <div *ngIf="form.controls.minutes.errors.min || form.controls.minutes.errors.max">Nieprawidłowa liczba minut</div>
     </div>
 </form>

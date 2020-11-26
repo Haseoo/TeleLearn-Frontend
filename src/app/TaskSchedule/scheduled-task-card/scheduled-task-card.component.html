@@ -1,4 +1,4 @@
-<div class="card item" [ngClass]="{'selected' : selected}" *ngIf="taskSchedule">
+<div class="card item" *ngIf="taskSchedule">
     <div class="d-flex align-items-center justify-content-end">
         <i class="material-icons">
             schedule
@@ -11,6 +11,7 @@
                 Stopień wykonania: <span class="bold">{{ taskSchedule.task.taskCompletion }}%</span>
             </div>
             <div class="card-row">
+                Z kursu: <span class="bold">{{ taskSchedule.task.courseName }}</span>
             </div>
             <div class="card-row">
                 Realizacja planu: <span class="bold">{{ taskSchedule.learningTime.hours }}:{{ taskSchedule.learningTime.minutes | number:'2.0' }}</span>&nbsp;/&nbsp;<span class="bold">{{ taskSchedule.plannedTime.hours }}:{{ taskSchedule.plannedTime.minutes | number:'2.0' }}</span>
@@ -19,19 +20,19 @@
                 Data: <span class="bold">{{ taskSchedule.date | date:'dd.MM.yyyy' }}</span>
             </div>
         </div>
-        <button *ngIf="buttons.includes('learn')" class="btn btn-primary d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Wykonuj zadanie">
+        <button (click)="learn.emit()" *ngIf="buttons.includes('learn')" class="btn btn-primary d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Wykonuj zadanie">
             <i class="material-icons">
                 play_arrow
             </i>
         </button>
         <div class="separator" *ngIf="buttons.includes('learn')"></div>
-        <button *ngIf="buttons.includes('edit')" class="btn btn-success d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Edytuj wpis">
+        <button (click)="edit.emit()" *ngIf="buttons.includes('edit')" class="btn btn-success d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Edytuj wpis">
             <i class="material-icons">
                 edit
             </i>
         </button>
         <div class="separator" *ngIf="buttons.includes('edit')"></div>
-        <button *ngIf="buttons.includes('remove')" class="btn btn-danger d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Usuń z planu">
+        <button (click)="remove.emit()" *ngIf="buttons.includes('remove')" class="btn btn-danger d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Usuń z planu">
             <i class="material-icons">
                 remove
             </i>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
 
 @Component({
@@ -11,12 +11,14 @@ export class ScheduledTaskCardComponent implements OnInit {
   @Input() buttons: string[] = [];
   @Input() onTaskPage: boolean = false;
   @Input() taskSchedule: TaskSchedule;
-  @Input() selected: boolean = false;
+
+  @Output() edit = new EventEmitter()
+  @Output() remove = new EventEmitter()
+  @Output() learn = new EventEmitter()
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.taskSchedule);
   }
 
   GetTaskLink(): string {

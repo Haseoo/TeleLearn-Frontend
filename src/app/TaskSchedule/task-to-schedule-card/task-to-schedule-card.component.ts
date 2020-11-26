@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { TaskToSchedule } from 'src/app/Models/Courses/Tasks/TaskToSchedule';
 
 @Component({
@@ -10,7 +9,6 @@ import { TaskToSchedule } from 'src/app/Models/Courses/Tasks/TaskToSchedule';
 export class TaskToScheduleCardComponent implements OnInit {
 
   @Input() taskToSchedule: TaskToSchedule;
-  @Input() selected: boolean = false;
   @Input() showDate: boolean = false;
 
   @Output() schedule = new EventEmitter();

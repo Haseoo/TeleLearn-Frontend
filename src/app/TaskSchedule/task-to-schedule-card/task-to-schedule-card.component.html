@@ -1,4 +1,4 @@
-<div class="card item" (click)="OnTaskClick()" *ngIf="taskToSchedule" [ngClass]="{'selected' : selected}">
+<div class="card item" (click)="OnTaskClick()" *ngIf="taskToSchedule">
     <div class="d-flex align-items-center justify-content-end">
         <i class="material-icons">
             assignment
@@ -9,6 +9,9 @@
             </div>
             <div class="card-row">
                 Stopień wykonania: <span class="bold">{{ taskToSchedule.task.taskCompletion }}%</span>
+            </div>
+            <div class="card-row">
+                Z kursu: <span class="bold">{{ taskToSchedule.task.courseName }}</span>
             </div>
             <div class="card-row" *ngIf="showDate">
                 Termin: <span class="bold">{{ taskToSchedule.task.dueDate | date:'dd.MM.yyyy' }}</span>

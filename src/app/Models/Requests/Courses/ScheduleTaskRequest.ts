@@ -1,7 +1,7 @@
 export class ScheduleTaskRequest {
     taskId: number;
     studentId: number;
-    date: Date;
+    date: string;
     hours: number;
     minutes: number;
 }
