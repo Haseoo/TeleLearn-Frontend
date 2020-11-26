@@ -1,0 +1,22 @@
+.bold {
+    font-weight: bold;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+    display:table;
+    margin:0px auto 1em auto;
+}
+
+.button-container {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.button-header {
+    margin: 1em;
+}

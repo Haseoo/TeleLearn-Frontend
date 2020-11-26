@@ -7,7 +7,10 @@
 .task-schedule-header {
     border-bottom: solid rgb(230, 230, 230) 1px;
     font-size: 18pt;
-    padding: 10px 0;
+}
+
+.header-title {
+    margin: 5px 0;
 }
 
 .time-for-day {

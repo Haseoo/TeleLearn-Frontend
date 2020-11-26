@@ -67,6 +67,8 @@ import { TimeInputFormComponent } from './TaskSchedule/time-input-form/time-inpu
 import localePL from '@angular/common/locales/pl'
 import { registerLocaleData } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LearnComponent } from './TaskSchedule/learn/learn.component';
+import { LearnTaskComponent } from './TaskSchedule/learn-task/learn-task.component';
 
 registerLocaleData(localePL);
 
@@ -126,7 +128,9 @@ FullCalendarModule.registerPlugins([
     TaskSchedulerComponent,
     TaskToScheduleCardComponent,
     ScheduledTaskCardComponent,
-    TimeInputFormComponent
+    TimeInputFormComponent,
+    LearnComponent,
+    LearnTaskComponent
   ],
   imports: [
     BrowserModule,

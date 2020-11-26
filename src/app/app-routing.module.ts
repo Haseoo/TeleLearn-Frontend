@@ -37,6 +37,8 @@ import { PathsComponent } from './Courses/Tasks/paths/paths.component';
 import { AddTaskComponent } from './Courses/Tasks/add-task/add-task.component';
 import { ComposerComponent } from './Courses/Tasks/composer/composer.component';
 import { TaskSchedulerComponent } from './TaskSchedule/task-scheduler/task-scheduler.component';
+import { LearnComponent } from './TaskSchedule/learn/learn.component';
+import { LearnTaskComponent } from './TaskSchedule/learn-task/learn-task.component';
 
 
 const routes: Routes = [
@@ -53,7 +55,9 @@ const routes: Routes = [
     { path: 'new-course', component: CourseFormComponent, canActivate: [TeacherGuardService] },
     { path: 'sign-up-course/:course-id', component: CourseSignUpComponent, canActivate: [StudentGuardService] },
     { path: 'teachers', component: TeacherListComponent, canActivate: [AuthGuardService] },
-    { path: 'my-schedule', component: TaskSchedulerComponent, canActivate: [StudentGuardService] }
+    { path: 'my-schedule', component: TaskSchedulerComponent, canActivate: [StudentGuardService] },
+    { path: 'learn', component: LearnComponent, canActivate: [StudentGuardService] },
+    { path: 'learn/:id', component: LearnTaskComponent, canActivate: [StudentGuardService] }
     ]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
