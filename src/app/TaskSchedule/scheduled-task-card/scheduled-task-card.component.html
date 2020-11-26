@@ -13,7 +13,7 @@
             <div class="card-row">
             </div>
             <div class="card-row">
-                Realizacja planu: <span class="bold">{{ taskSchedule.learningTime.hours }}:{{ taskSchedule.learningTime.minutes | number:'2.0' }}</span> / <span class="bold">{{ taskSchedule.plannedTime.hours }}:{{ taskSchedule.plannedTime.minutes | number:'2.0' }}</span>
+                Realizacja planu: <span class="bold">{{ taskSchedule.learningTime.hours }}:{{ taskSchedule.learningTime.minutes | number:'2.0' }}</span>&nbsp;/&nbsp;<span class="bold">{{ taskSchedule.plannedTime.hours }}:{{ taskSchedule.plannedTime.minutes | number:'2.0' }}</span>
             </div>
             <div class="card-row" *ngIf="onTaskPage">
                 Data: <span class="bold">{{ taskSchedule.date | date:'dd.MM.yyyy' }}</span>

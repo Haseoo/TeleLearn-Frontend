@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill'
@@ -64,6 +64,10 @@ import { TaskSchedulerComponent } from './TaskSchedule/task-scheduler/task-sched
 import { TaskToScheduleCardComponent } from './TaskSchedule/task-to-schedule-card/task-to-schedule-card.component';
 import { ScheduledTaskCardComponent } from './TaskSchedule/scheduled-task-card/scheduled-task-card.component';
 import { TimeInputFormComponent } from './TaskSchedule/time-input-form/time-input-form.component'
+import localePL from '@angular/common/locales/pl'
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePL);
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -138,7 +142,8 @@ FullCalendarModule.registerPlugins([
     BrowserAnimationsModule
      
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+              { provide: LOCALE_ID, useValue: 'PL' }],
   bootstrap: [AppComponent]
 })
 

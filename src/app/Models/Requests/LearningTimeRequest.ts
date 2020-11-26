@@ -2,6 +2,6 @@ import { Time } from '../Time';
 
 export class LearningTimeRequest {
     studentId: number;
-    date: Date;
+    date: string;
     time: Time;
 }

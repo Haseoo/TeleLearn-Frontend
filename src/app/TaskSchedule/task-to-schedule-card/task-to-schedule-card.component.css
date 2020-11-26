@@ -1,12 +1,12 @@
 .card {
-    padding: 5px 20px;
+    padding: 5px 10px;
     width: 100%;
     background-color: transparent;
     border: none;
 }
 
 .item {
-    border: solid 1px rgb(230, 230, 230);
+    border: solid 1px gray;
 }
 
 .header {
@@ -36,11 +36,11 @@ a.card-link:hover{
     color: darkblue;
 }
 
- .btn {
+.btn {
      padding: 0;
  }
 
- .bold {
+.bold {
      font-weight: bold;
  }
 

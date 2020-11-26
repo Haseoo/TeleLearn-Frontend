@@ -1,5 +1,7 @@
 input[type="number"] {
     max-width: 5em;
+    height: auto;
+    border-radius: 0;
 }
 
 label {
@@ -17,4 +19,8 @@ label {
 
 .btn {
     padding: 0 6px;
+}
+
+.form-group {
+    margin: 0;
 }

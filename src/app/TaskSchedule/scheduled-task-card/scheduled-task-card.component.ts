@@ -16,6 +16,7 @@ export class ScheduledTaskCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.taskSchedule);
   }
 
   GetTaskLink(): string {

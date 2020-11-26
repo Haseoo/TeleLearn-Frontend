@@ -1,0 +1,53 @@
+.main {
+    border: solid rgb(230, 230, 230) 1px;
+    padding: 0;
+    margin: 15px;
+}
+
+.task-schedule-header {
+    border-bottom: solid rgb(230, 230, 230) 1px;
+    font-size: 18pt;
+    padding: 10px 0;
+}
+
+.time-for-day {
+    border-bottom: solid rgb(230, 230, 230) 1px;
+    padding: .5em .25em .5em .5em;
+    font-size: 14pt;
+}
+
+.btn {
+    padding: 6px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.separator {
+    margin: 0 .25em;
+}
+
+.time-overflow {
+    background-color: rgb(245, 204, 204);
+}
+
+.item-container {
+    padding: 0 2em .5em 2em;
+}
+
+.task-card-container {
+    padding: .5em 0;
+    height: 300px;
+    border-bottom: solid rgb(230, 230, 230) 1px;
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 1000px) {
+    .item-container {
+        padding: 0 0 .5em 0;
+    }
+    .main {
+        margin: 15px 5px;
+    }
+}

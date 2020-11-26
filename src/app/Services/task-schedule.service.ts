@@ -15,12 +15,12 @@ export class TaskScheduleService {
 
   constructor(private httpClient: HttpClient) { }
 
-  GetTaskToScheduleForStudent(studentId: number): Observable<Map<String, TaskSchedule[]>> {
-    return this.httpClient.get<Map<String, TaskSchedule[]>>(`${environment.api_url}/user/student/${studentId}/schedule`);
+  GetStudentSchedule(studentId: number): Observable<Map<string, TaskSchedule[]>> {
+    return this.httpClient.get<Map<string, TaskSchedule[]>>(`${environment.api_url}/user/student/${studentId}/schedule`);
   }
 
-  GetStudentSchedule(studentId: number): Observable<Map<String, TaskToSchedule[]>> {
-    return this.httpClient.get<Map<String, TaskToSchedule[]>>(`${environment.api_url}/user/student/${studentId}/tasks`);
+  GetTaskToScheduleForStudent(studentId: number): Observable<Map<string, TaskToSchedule[]>> {
+    return this.httpClient.get<Map<string, TaskToSchedule[]>>(`${environment.api_url}/user/student/${studentId}/tasks`);
   }
 
   GetTaskSchedule(taskId: number): Observable<TaskSchedule[]> {
