@@ -28,7 +28,7 @@ export class ScheduledTaskCardComponent implements OnInit {
   IsCompleted(): boolean {
     let scheduledTime = this.taskSchedule.plannedTime.hours * 60 + this.taskSchedule.plannedTime.minutes;
     let learningTime = this.taskSchedule.learningTime.hours * 60 + this.taskSchedule.learningTime.minutes;
-    return learningTime >= scheduledTime;
+    return learningTime >= scheduledTime || (this.taskSchedule.task.taskCompletion == 100 && !this.taskSchedule.task.isToRepeat);
   }
 
 }

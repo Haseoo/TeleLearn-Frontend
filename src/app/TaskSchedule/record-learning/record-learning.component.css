@@ -1,0 +1,19 @@
+.separator {
+    margin: 0 .25em;
+}
+
+label {
+    margin: 0;
+}
+
+input[type=number] {
+    max-width: 5em;
+    height: auto;
+    border-radius: 0;
+}
+
+input[type=time] {
+    max-width: 150px;
+    height: auto;
+    border-radius: 0;
+}

@@ -25,6 +25,7 @@
             <label class="align-self-center">Postęp zadania:</label>
             <div class="separator"></div>
             <input type="number" formControlName="progress" [min]=0 [max]=100 class="form-control" [ngClass]="{ 'invalid': progressForm.controls.progress.errors }"/>
+            <div class="align-self-center">%</div>
             <div class="separator"></div>
             <div class="separator"></div>
             <button type="submit" class="btn btn-success d-flex align-items-center">
@@ -67,11 +68,12 @@
         </ul>
     </div>
     <div class="card-row" *ngIf="taskSchedule && taskSchedule.length > 0 && standalone">
-        <span class="h5">Historia wykonywania zadania:</span>
-        <app-scheduled-task-card *ngFor="let item of taskSchedule"
-         [taskSchedule]="item"
-         [buttons]="['remove']"
-         [onTaskPage]="true"></app-scheduled-task-card>
+        <span class="h5">Rekordy planowania zadania:</span>
+        <div class="schedule-card" *ngFor="let item of taskSchedule">
+            <app-scheduled-task-card 
+            [taskSchedule]="item"
+            [onTaskPage]="true"></app-scheduled-task-card>
+         </div>
     </div>
     <div *ngIf="standalone && (task.nextTasks.length > 0 || task.previousTasks.length > 0)" class="task-nav">
         <span class="h5">Powiazanie zadania:</span>

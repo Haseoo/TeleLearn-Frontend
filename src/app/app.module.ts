@@ -70,6 +70,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LearnComponent } from './TaskSchedule/learn/learn.component';
 import { LearnTaskComponent } from './TaskSchedule/learn-task/learn-task.component';
 import { UserStatsComponent } from './TaskSchedule/user-stats/user-stats.component';
+import { RecordLearningComponent } from './TaskSchedule/record-learning/record-learning.component';
 
 registerLocaleData(localePL);
 
@@ -132,7 +133,8 @@ FullCalendarModule.registerPlugins([
     TimeInputFormComponent,
     LearnComponent,
     LearnTaskComponent,
-    UserStatsComponent
+    UserStatsComponent,
+    RecordLearningComponent
   ],
   imports: [
     BrowserModule,

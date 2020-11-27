@@ -8,9 +8,9 @@
                 <a routerLink="{{GetTaskLink()}}" class="card-link"> {{ taskSchedule.task.name }} </a>
             </div>
             <div class="card-row" *ngIf="!onTaskPage">
-                Stopień wykonania: <span class="bold">{{ taskSchedule.task.taskCompletion }}%</span>
+                Stopień wykonania zadania: <span class="bold">{{ taskSchedule.task.taskCompletion }}%</span>
             </div>
-            <div class="card-row">
+            <div class="card-row" *ngIf="!onTaskPage">
                 Z kursu: <span class="bold">{{ taskSchedule.task.courseName }}</span>
             </div>
             <div class="card-row">

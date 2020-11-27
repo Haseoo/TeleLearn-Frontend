@@ -82,3 +82,11 @@ input[type="number"] {
 label {
     margin: 0;
 }
+
+.card-row {
+    margin: .25em 0;
+}
+
+.schedule-card {
+    margin: .5em 0;
+}
