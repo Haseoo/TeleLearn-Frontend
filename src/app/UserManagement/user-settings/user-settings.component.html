@@ -46,7 +46,8 @@
                     <div *ngIf="ectls.minutesInterval.errors.max">Liczba minut nie może być większa niż 60</div>
                 </div>
                 <div *ngIf="userEditSubmitted && ectls.hoursInterval.errors" class="text-danger">
-                    <div *ngIf="ectls.hoursInterval.errors.min">Liczba minut nie może być ujemna</div>
+                    <div *ngIf="ectls.hoursInterval.errors.min">Liczba godzin nie może być ujemna</div>
+                    <div *ngIf="ectls.hoursInterval.errors.max">Nie można planować na więcej niż jeden dzień</div>
                 </div>
             </div>
             <div class="form-group d-flex justify-content-center sub-btn">

@@ -46,7 +46,7 @@ export class UserSettingsComponent implements OnInit {
 
     if (this.IsStudent()) {
       group.minutesInterval = ['0', [Validators.min(0), Validators.max(59)]];
-      group.hoursInterval = ['0', [Validators.min(0)]];
+      group.hoursInterval = ['0', [Validators.min(0), Validators.max(23)]];
     }
     this.userEditForm = this.formBuilder.group(group);
 
