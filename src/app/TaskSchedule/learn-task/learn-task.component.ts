@@ -65,8 +65,14 @@ export class LearnTaskComponent implements OnInit {
 
   private _FetchData(id: number) {
     this.taskScheduleService.GetById(id).subscribe(
-      dt => this.scheduleRecord = dt,
-      err => {
+      dt => {
+        if (dt.task.isLearnable) {
+          this.scheduleRecord = dt;
+        } else {
+          this.errorMessage = "Aby wykonać to zadanie, należy ukończyć wszytskie zadania poprzedzające.";
+          this.error = true;
+        }
+      }, err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }

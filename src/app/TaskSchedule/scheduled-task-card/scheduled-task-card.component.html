@@ -19,8 +19,11 @@
             <div class="card-row" *ngIf="onTaskPage">
                 Data: <span class="bold">{{ taskSchedule.date | date:'dd.MM.yyyy' }}</span>
             </div>
+            <div class="card-row" *ngIf="taskSchedule.scheduleTime">
+                Godzina: <span class="bold">{{ taskSchedule.scheduleTime }}</span>
+            </div>
         </div>
-        <button (click)="learn.emit()" *ngIf="buttons.includes('learn')" class="btn btn-primary d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Wykonuj zadanie">
+        <button (click)="learn.emit()" *ngIf="buttons.includes('learn')" class="btn d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Wykonuj zadanie" [ngClass]="(taskSchedule.task.isLearnable) ? 'btn-primary' : 'btn-secondary'" [disabled]="!taskSchedule.task.isLearnable">
             <i class="material-icons">
                 play_arrow
             </i>

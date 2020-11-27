@@ -29,6 +29,7 @@ export class LearnComponent implements OnInit {
         let schedule = dt[formatDate(new Date(), 'dd.MM.yyyy', 'PL')];
         if(schedule) {
           this.schedule = schedule;
+          this.schedule.sort(this._SortSchedule);
         }
       }, err => {
         this.errorMessage = (err.error.message) ? err.error.message: err.message;
@@ -38,6 +39,22 @@ export class LearnComponent implements OnInit {
 
   OnTaskLearn(tts: TaskSchedule) {
     this.router.navigate([`${tts.id}`], {relativeTo: this.activatedRoute});
+  }
+
+  private _SortSchedule(ts1: TaskSchedule, ts2: TaskSchedule) {
+    if (ts2.scheduleTime === null) {
+      return 1;
+    }
+    else if (ts1.scheduleTime === null) {
+      return -1;
+    }
+    if (ts1.scheduleTime < ts2.scheduleTime) {
+      return -1;
+    }
+    if (ts1.scheduleTime > ts2.scheduleTime) {
+      return 1;
+    }
+    return 0;
   }
 
 }

@@ -39,8 +39,8 @@ export class TaskScheduleService {
     return this.httpClient.patch(`${environment.api_url}/schedule/${id}/learning-time`, {startTime: startTime, duration: duration}, { observe: 'response' });
   }
 
-  UpdatePlannedTime(id: number, request: Time): Observable<any> {
-    return this.httpClient.patch(`${environment.api_url}/schedule/${id}/planned-time`, request, { observe: 'response' });
+  UpdateSchedule(id: number, newDuration: Time, newTime: string): Observable<any> {
+    return this.httpClient.put(`${environment.api_url}/schedule/${id}/planned-time`, {duration: newDuration, startTime: newTime}, { observe: 'response' });
   }
 
   DeleteSchedule(id: number): Observable<any> {

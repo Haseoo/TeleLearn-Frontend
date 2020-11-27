@@ -9,4 +9,5 @@ export class TaskSchedule {
     learningTime: Time;
     student: Student;
     task: TaskForStudent;
+    scheduleTime: string;
 }
