@@ -23,10 +23,10 @@ export class CourseFormComponent implements OnInit {
   course: Course;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private courseService: CourseService,
-    private userService: UserService,
-    private formBuilder: FormBuilder,
-    private router: Router) { }
+              private courseService: CourseService,
+              private userService: UserService,
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.courseForm = this.formBuilder.group({
@@ -47,11 +47,11 @@ export class CourseFormComponent implements OnInit {
               publicCourse: this.course.isPublicCourse,
               autoAccept: this.course.isAutoAccept,
               studentsAllowedToPost: this.course.areStudentsAllowedToPost
-            })
+            });
           }
         );
       }
-    })
+    });
   }
 
   get ctls() {
@@ -59,13 +59,13 @@ export class CourseFormComponent implements OnInit {
   }
 
   Submit() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.submited = true;
     if (!this.courseForm.valid) {
       return;
     }
-    let request = new CourseRequest();
-    let ctls = this.courseForm.controls;
+    const request = new CourseRequest();
+    const ctls = this.courseForm.controls;
     request.ownerId = this.userService.GetCurrentUser().id;
     request.name = ctls.name.value;
     request.welcomePageHtmlContent = ctls.welcomePageHtmlContent.value;
@@ -81,22 +81,22 @@ export class CourseFormComponent implements OnInit {
           this.errorMessage = (err.error.message) ? err.error.message : err.message;
           this.error = true;
         }
-      )
+      );
     } else {
       this.courseService.AddCourse(request).subscribe(
         dt => {
-          let id = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
+          const id = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
           this.router.navigate([`/course/${id}`]);
         }, err => {
           this.errorMessage = (err.error.message) ? err.error.message : err.message;
           this.error = true;
         }
-      )
+      );
     }
   }
 
   OnCourseDelete() {
-    if (confirm("Operacja jest nieodwracalna, kontynuować?")) {
+    if (confirm('Operacja jest nieodwracalna, kontynuować?')) {
       this.courseService.DeleteCourse(this.course.id).subscribe(
         dt => {
           this.router.navigate(['my-courses']);
@@ -104,7 +104,7 @@ export class CourseFormComponent implements OnInit {
           this.errorMessage = (err.error.message) ? err.error.message : err.message;
           this.error = true;
         }
-      )
+      );
     }
   }
 

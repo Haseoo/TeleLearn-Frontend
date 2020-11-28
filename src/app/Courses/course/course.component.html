@@ -10,9 +10,9 @@
 </div>
 <div class="d-flex bd-highlight flex-wrap" *ngIf="!error">
     <div class="menu bd-highlight shadow" *ngIf="course">
-        <div class="menu-title d-flex align-items-center justify-content-center" [ngStyle]="{'margin-bottom': (innerWidth < 1000 && !menuVisible) ? '0' : '10px'}" (click)="menuVisible = !menuVisible">Nawigacja po kursie
-            <i *ngIf="innerWidth < 1000" class="material-icons">keyboard_arrow_down</i></div>
-       <div *ngIf="innerWidth > 1000 || menuVisible">
+        <div class="menu-title d-flex align-items-center justify-content-center" [ngStyle]="{'margin-bottom': (innerWidth < breakPoint && !menuVisible) ? '0' : '10px'}" (click)="menuVisible = !menuVisible">Nawigacja po kursie
+            <i *ngIf="innerWidth < breakPoint" class="material-icons">keyboard_arrow_down</i></div>
+       <div *ngIf="innerWidth > breakPoint || menuVisible">
             <button class="nav-banner">
                 Sekcje kursu
             </button>

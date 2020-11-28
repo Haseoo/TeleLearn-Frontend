@@ -6,10 +6,10 @@
                 <div class="flex-grow-1 bd-highlight app-name align-self-center">
                     <a class="navbar-brand" href="/">{{ appName }}</a>
                 </div>
-                <span *ngIf="innerWidth > 1000 && !currentUser" class="bd-highlight align-self-center">Niezalogowany/a (<a routerLink="/login">zaloguj się</a>)</span>
-                <span *ngIf="innerWidth <= 1000 && !currentUser" class="bd-highlight align-self-center"><a routerLink="/login">zaloguj się</a></span>
-                <span *ngIf="innerWidth > 1000 && currentUser" class="bd-highlight align-self-center">Zalogowany jako {{currentUser.name}} {{currentUser.surname}} (<a routerLink="/logout">wyloguj</a>)</span>
-                <span *ngIf="innerWidth <= 1000 && currentUser" class="bd-highlight align-self-center"><a routerLink="/logout">wyloguj</a></span>
+                <span *ngIf="innerWidth > breakPont && !currentUser" class="bd-highlight align-self-center">Niezalogowany/a (<a routerLink="/login">zaloguj się</a>)</span>
+                <span *ngIf="innerWidth <= breakPont && !currentUser" class="bd-highlight align-self-center"><a routerLink="/login">zaloguj się</a></span>
+                <span *ngIf="innerWidth > breakPont && currentUser" class="bd-highlight align-self-center">Zalogowany jako {{currentUser.name}} {{currentUser.surname}} (<a routerLink="/logout">wyloguj</a>)</span>
+                <span *ngIf="innerWidth <= breakPont && currentUser" class="bd-highlight align-self-center"><a routerLink="/logout">wyloguj</a></span>
             </div>
         </div>
     </nav>

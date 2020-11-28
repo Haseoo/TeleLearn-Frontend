@@ -43,11 +43,11 @@ export class PostComposerComponent implements OnInit {
   attachmentUpload: ElementRef;
 
   constructor(private formBuilder: FormBuilder,
-    private postService: PostService,
-    private activatedRoute: ActivatedRoute,
-    private courseService: CourseService,
-    private userService: UserService,
-    private router: Router) { }
+              private postService: PostService,
+              private activatedRoute: ActivatedRoute,
+              private courseService: CourseService,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.postForm = this.formBuilder.group({
@@ -68,12 +68,12 @@ export class PostComposerComponent implements OnInit {
         this.courseId = params['course-id'];
         this.courseService.GetCourseById(this.courseId).subscribe(
           dt => {
-            let currentUser = this.userService.GetCurrentUser();
+            const currentUser = this.userService.GetCurrentUser();
             if (currentUser.userRole.toString() === UserRole[UserRole.STUDENT] && !dt.areStudentsAllowedToPost) {
               this.router.navigate(['/auth-error']);
             }
           }
-        )
+        );
       }
     );
 
@@ -83,7 +83,7 @@ export class PostComposerComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       if (file.size > environment.max_file_size) {
-        alert("Plik może mieć maksymalnie 10 MB!");
+        alert('Plik może mieć maksymalnie 10 MB!');
         return;
       }
       this.filesToUpload.push(file);
@@ -92,16 +92,15 @@ export class PostComposerComponent implements OnInit {
   }
 
   Submit() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.submitted = true;
     if (this.postForm.valid) {
-      let request = new FormData();
-      let ctls = this.postForm.controls;
+      const request = new FormData();
+      const ctls = this.postForm.controls;
       request.append('commentingAllowed', ctls.commentingAllowed.value);
-      request.append('content', ctls.content.value.replace(/<[^>]*>/g, '').replace("\n","<br />"));
+      request.append('content', ctls.content.value.replace(/<[^>]*>/g, '').replace('\n', '<br />'));
       request.append('postVisibility', ctls.postVisibility.value);
       request.append('courseId', this.courseId.toString());
-      
       this.filesToUpload.forEach(file => {
         request.append('files', file);
       });
@@ -123,7 +122,7 @@ export class PostComposerComponent implements OnInit {
       } else {
         this.postService.AddPost(request).subscribe(
           dt => {
-            let postId = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
+            const postId = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
             this.router.navigate([`post/${postId}`], {relativeTo: this.activatedRoute.parent});
           }, err => {
             this.errorMessage = (err.error.message) ?  err.error.message : err.message;
@@ -135,12 +134,12 @@ export class PostComposerComponent implements OnInit {
   }
 
   OnFileToUploadDelete(file: File) {
-    let index = this.filesToUpload.indexOf(file);
+    const index = this.filesToUpload.indexOf(file);
     this.filesToUpload.splice(index, 1);
   }
 
   OnAddedFileDelete(file: Attachment) {
-    let index = this.post.attachments.indexOf(file);
+    const index = this.post.attachments.indexOf(file);
     this.post.attachments.splice(index, 1);
     this.fileIdsToDelete.push(file.id);
   }
@@ -154,7 +153,7 @@ export class PostComposerComponent implements OnInit {
       dt => {
         this.post = dt;
         this.postForm.setValue ({
-          content: this.post.content.replace("<br />", "\n"),
+          content: this.post.content.replace('<br />', '\n'),
           postVisibility: this.post.postVisibility,
           commentingAllowed: this.post.commentingAllowed
         });

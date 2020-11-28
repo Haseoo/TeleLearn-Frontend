@@ -22,10 +22,10 @@ export class NewsComposerComponent implements OnInit {
   newsForm: FormGroup;
   submited: boolean;
   constructor(private activatedRoute: ActivatedRoute,
-    private newsService: GlobalNewsService,
-    private userService: UserService,
-    private formBuilder: FormBuilder,
-    private router: Router) { }
+              private newsService: GlobalNewsService,
+              private userService: UserService,
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.newsForm = this.formBuilder.group({
@@ -51,9 +51,9 @@ export class NewsComposerComponent implements OnInit {
             this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
             this.responseError = true;
           }
-        )
+        );
       }
-    })
+    });
   }
 
   get ctls() {
@@ -61,11 +61,11 @@ export class NewsComposerComponent implements OnInit {
   }
 
   Submit() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.submited = true;
     if (this.newsForm.valid) {
-      let request = new GlobalNewsRequest();
-      let ctls = this.newsForm.controls;
+      const request = new GlobalNewsRequest();
+      const ctls = this.newsForm.controls;
       request.authorId = this.userService.GetCurrentUser().id;
       request.title = ctls.title.value;
       request.brief = ctls.brief.value;
@@ -75,7 +75,7 @@ export class NewsComposerComponent implements OnInit {
       if (!this.article) {
         this.newsService.addArticle(request).subscribe(
           dt => {
-            let id = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
+            const id = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
             this.router.navigate([`/news/${id}`]);
           },
           err => {
@@ -85,7 +85,7 @@ export class NewsComposerComponent implements OnInit {
         );
       } else {
         this.newsService.updateArticle(this.article.id, request).subscribe(
-          dt => {
+          () => {
             this.router.navigate([`/news/${this.article.id}`]);
           },
           err => {

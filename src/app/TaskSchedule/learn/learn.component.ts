@@ -19,20 +19,20 @@ export class LearnComponent implements OnInit {
   schedule: TaskSchedule[] = [];
 
   constructor(private userService: UserService,
-    private taskScheduleService: TaskScheduleService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+              private taskScheduleService: TaskScheduleService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.taskScheduleService.GetStudentSchedule(this.userService.GetCurrentUser().id).subscribe(
       dt => {
-        let schedule = dt[formatDate(new Date(), 'dd.MM.yyyy', 'PL')];
-        if(schedule) {
+        const schedule = dt[formatDate(new Date(), 'dd.MM.yyyy', 'PL')];
+        if (schedule) {
           this.schedule = schedule;
           this.schedule.sort(this._SortSchedule);
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message: err.message;
+        this.errorMessage = (err.error.message) ? err.error.message : err.message;
       }
     );
   }

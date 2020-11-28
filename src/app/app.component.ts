@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { APP_NAME } from './constants'
+import { environment } from 'src/environments/environment';
+import { APP_NAME } from './constants';
 import { UserLoginResponse } from './Models/UserLoginResponse';
 import { UserService } from './Services/user.service';
 
@@ -11,6 +12,7 @@ import { UserService } from './Services/user.service';
 export class AppComponent implements OnInit{
   title = APP_NAME;
   appName = APP_NAME;
+  breakPont = environment.break_point;
 
   constructor(private userService: UserService){
 
@@ -23,7 +25,7 @@ export class AppComponent implements OnInit{
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     this.innerWidth = window.innerWidth;
   }
 

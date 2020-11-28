@@ -15,7 +15,7 @@ export class CalendarComponent implements OnInit {
   error: boolean;
   errorMessage: string;
 
-  timeout:boolean = false;
+  timeout = false;
   events: any[] = [];
   tasks: Task[];
   courseId: number;
@@ -42,11 +42,11 @@ export class CalendarComponent implements OnInit {
   }
 
   constructor(private activatedRoute: ActivatedRoute,
-    private taskService: TaskService) { }
+              private taskService: TaskService) { }
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
-    setTimeout(()=> this.timeout=true, 100);
+    setTimeout(() => this.timeout = true, 100);
     this.calendarOptions.dayMaxEventRows = (this.innerWidth > 900) ? 1 : 0;
     this.activatedRoute.parent.params.subscribe(
         params => {
@@ -56,9 +56,9 @@ export class CalendarComponent implements OnInit {
             this.tasks = dt;
             this._PrepareEvents();
           }, err => {
-            this.errorMessage = (err.error.message) ? err.error.message: err.message;
+            this.errorMessage = (err.error.message) ? err.error.message : err.message;
           }
-        )
+        );
       }
     );
   }

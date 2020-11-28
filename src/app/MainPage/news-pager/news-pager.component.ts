@@ -12,15 +12,15 @@ import { Utils } from 'src/Utlis';
 export class NewsPagerComponent implements OnInit, IError {
 
   collection: GlobalNews[] = [];
-  current: number = 1;
-  perPage: number = 10;
-  total: number = 0;
+  current = 1;
+  perPage = 10;
+  total = 0;
   error: boolean;
   errorMessage: string;
 
   constructor(private globalNewsService: GlobalNewsService) {
   }
-  
+
 
   ngOnInit(): void {
     this.getPage();

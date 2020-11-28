@@ -17,9 +17,9 @@ export class CourseSignUpComponent implements OnInit {
   course: CourseBrief;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private userService: UserService,
-    private courseService: CourseService) { }
+              private router: Router,
+              private userService: UserService,
+              private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
@@ -29,7 +29,7 @@ export class CourseSignUpComponent implements OnInit {
           this.errorMessage = (err.error.message) ? err.error.message : err.message;
           this.error = true;
         }
-      )
+      );
     });
   }
 
@@ -45,7 +45,7 @@ export class CourseSignUpComponent implements OnInit {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
-    )
+    );
   }
 
 }

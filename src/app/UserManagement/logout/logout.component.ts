@@ -12,7 +12,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
   private timeout: any;
 
   constructor(private userService: UserService,
-    private router: Router) { }
+              private router: Router) { }
   ngOnDestroy(): void {
     clearTimeout(this.timeout);
   }

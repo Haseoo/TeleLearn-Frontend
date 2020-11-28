@@ -19,9 +19,9 @@ export class TaskUpdateComponent implements OnInit {
   errorMessage: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private taskService: TaskService,
-    private courseService: CourseService) { }
+              private router: Router,
+              private taskService: TaskService,
+              private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
@@ -30,12 +30,12 @@ export class TaskUpdateComponent implements OnInit {
           dt => {
             this.task = dt;
             this.courseService.GetCourseById(this.task.courseId).subscribe(
-              dt => this.course = dt,
+              dt2 => this.course = dt2,
               err => {
                 this.errorMessage = (err.error.message) ? err.error.message : err.message;
                 this.error = true;
               }
-            )
+            );
           }, err => {
             this.errorMessage = (err.error.message) ? err.error.message : err.message;
             this.error = true;

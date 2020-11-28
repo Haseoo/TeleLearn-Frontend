@@ -25,7 +25,7 @@ export class TaskComposerComponent implements OnInit {
   @Output() save = new EventEmitter<string>();
   @Output() taskSelection = new EventEmitter<boolean>();
 
-  taskSelectionMode: boolean = false;
+  taskSelectionMode = false;
 
   error: boolean;
   errorMessage: string;
@@ -47,13 +47,13 @@ export class TaskComposerComponent implements OnInit {
   attachmentUpload: ElementRef;
 
   constructor(private formBuilder: FormBuilder,
-    private taskService: TaskService) { }
+              private taskService: TaskService) { }
 
   ngOnInit(): void {
     if (this.addPreviousTask$) {
       this.addPreviousTask$.subscribe(task => {
-        if ((!this.task || task.id != this.task.id) &&
-           this.previousTasks.filter(t => t.id == task.id).length === 0) {
+        if ((!this.task || task.id !== this.task.id) &&
+           this.previousTasks.filter(t => t.id === task.id).length === 0) {
           this.previousTasks.push(task);
         }
         this.taskSelectionMode = false;
@@ -67,7 +67,7 @@ export class TaskComposerComponent implements OnInit {
       hoursInterval: ['0', [Validators.min(0)]],
       previousTask: []
     });
-    this.taskService.GetCourseTasks(this.course.id).subscribe( 
+    this.taskService.GetCourseTasks(this.course.id).subscribe(
       dt => {
         this.courseTasks = dt;
         this._UpdatePreviousAndNextTasks();
@@ -80,7 +80,7 @@ export class TaskComposerComponent implements OnInit {
     if (this.task) {
       this.taskForm.patchValue({
         name: this.task.name,
-        content: (this.task.description) ? this.task.description.replace("<br />", "\n") : this.task.description,
+        content: (this.task.description) ? this.task.description.replace('<br />', '\n') : this.task.description,
         dueDate: this.task.dueDate,
         minutesInterval: this.task.learningTime.minutes,
         hoursInterval: this.task.learningTime.hours
@@ -90,18 +90,18 @@ export class TaskComposerComponent implements OnInit {
 
   Submit() {
     if (this.standalone) {
-      window.scroll(0,0);
+      window.scroll(0, 0);
     }
     this.submitted = true;
     if (!this.taskForm.valid) {
       return;
     }
-    let ctls = this.taskForm.controls;
-    let request = new FormData();
-    request.append('courseId', this.course.id.toString()); 
+    const ctls = this.taskForm.controls;
+    const request = new FormData();
+    request.append('courseId', this.course.id.toString());
     request.append('name', ctls.name.value);
-    if (ctls.content.value && ctls.content.value != 'null') {
-      request.append('description', ctls.content.value.replace(/<[^>]*>/g, '').replace("\n","<br />"));
+    if (ctls.content.value && ctls.content.value !== 'null') {
+      request.append('description', ctls.content.value.replace(/<[^>]*>/g, '').replace('\n', '<br />'));
     }
     request.append('dueDate', ctls.dueDate.value);
     request.append('learningTimeHours', ctls.hoursInterval.value);
@@ -111,13 +111,13 @@ export class TaskComposerComponent implements OnInit {
     });
     this.fileIdsToDelete.forEach(id => request.append('attachmentIdsToDelete', id.toString()));
     this.previousTasks.forEach(task => request.append('previousTaskIds', task.id.toString()));
-    let observable: Observable<any>;
+    let obs: Observable<any>;
     if (this.task) {
-      observable = this.taskService.UpdateTask(this.task.id, request);
+      obs = this.taskService.UpdateTask(this.task.id, request);
     } else {
-      observable = this.taskService.AddTask(request);
+      obs = this.taskService.AddTask(request);
     }
-    observable.subscribe(
+    obs.subscribe(
       dt => {
         if (this.task) {
           this.save.emit(this.task.id.toString());
@@ -128,7 +128,7 @@ export class TaskComposerComponent implements OnInit {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
-    )    
+    );
   }
 
   get ctls() {
@@ -139,7 +139,7 @@ export class TaskComposerComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       if (file.size > environment.max_file_size) {
-        alert("Plik może mieć maksymalnie 10 MB!");
+        alert('Plik może mieć maksymalnie 10 MB!');
         return;
       }
       this.filesToUpload.push(file);
@@ -148,18 +148,18 @@ export class TaskComposerComponent implements OnInit {
   }
 
   OnFileToUploadDelete(file: File) {
-    let index = this.filesToUpload.indexOf(file);
+    const index = this.filesToUpload.indexOf(file);
     this.filesToUpload.splice(index, 1);
   }
 
   OnAddedFileDelete(file: Attachment) {
-    let index = this.task.attachments.indexOf(file);
+    const index = this.task.attachments.indexOf(file);
     this.task.attachments.splice(index, 1);
     this.fileIdsToDelete.push(file.id);
   }
 
   OnPreviousTaskAdd() {
-    let task = this.taskForm.controls.previousTask.value;
+    const task = this.taskForm.controls.previousTask.value;
     if (task) {
       this.previousTasks.push(task);
       this._UpdateTasktoDisplay();
@@ -174,8 +174,8 @@ export class TaskComposerComponent implements OnInit {
   private _UpdateTasktoDisplay() {
     this.taskToDisplay = this.courseTasks.filter(task => !this.previousTasks.includes(task) && !this.nextTasks.includes(task));
     if (this.task) {
-      let currentTask: Task =this.taskToDisplay.filter(task => task.id === this.task.id)[0];
-      let currentTaskId = this.taskToDisplay.indexOf(currentTask);
+      const currentTask: Task = this.taskToDisplay.filter(task => task.id === this.task.id)[0];
+      const currentTaskId = this.taskToDisplay.indexOf(currentTask);
       if (currentTaskId > -1) {
         this.taskToDisplay.splice(currentTaskId, 1);
       }
@@ -186,7 +186,7 @@ export class TaskComposerComponent implements OnInit {
   private _UpdatePreviousAndNextTasks() {
     if (this.task) {
       this.courseTasks.forEach(el => {
-        this.task.previousTasks.forEach( el2 =>{
+        this.task.previousTasks.forEach( el2 => {
           if (el.id === el2.id) {
             this.previousTasks.push(el);
           }
@@ -195,13 +195,13 @@ export class TaskComposerComponent implements OnInit {
           if (el.id === el2.id) {
             this.nextTasks.push(el);
           }
-        })
+        });
       });
     }
   }
 
   CheckPrevTaskDate(pTask: Task): boolean {
-    let currentTaskDate = this.taskForm.controls.dueDate.value;
+    const currentTaskDate = this.taskForm.controls.dueDate.value;
     return currentTaskDate >= pTask.dueDate;
   }
 

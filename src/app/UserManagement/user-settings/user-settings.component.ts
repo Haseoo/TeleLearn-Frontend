@@ -32,11 +32,11 @@ export class UserSettingsComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router) { }
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    let group:any = {
+    const group: any = {
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -65,7 +65,7 @@ export class UserSettingsComponent implements OnInit {
             unit: dt.unit,
             minutesInterval: dt.dailyLearningTime.minutes,
             hoursInterval: dt.dailyLearningTime.hours
-          })
+          });
         },
         err => {
           this.editResponseError = true;
@@ -81,7 +81,7 @@ export class UserSettingsComponent implements OnInit {
             email: dt.email,
             unit: dt.unit,
             title: dt.title
-          })
+          });
         },
         err => {
           this.editResponseError = true;
@@ -102,7 +102,7 @@ export class UserSettingsComponent implements OnInit {
   PasswordSubmit() {
     this.passwordSubmitted = true;
     if (this.passwordForm.valid) {
-      let request = new PasswordChangeRequest(this.passwordForm.controls.oldPassword.value,
+      const request = new PasswordChangeRequest(this.passwordForm.controls.oldPassword.value,
         this.passwordForm.controls.newPassword.value);
       this.userService.changePassword(this.userService.GetCurrentUser().id, request).subscribe (
         dt => {
@@ -115,7 +115,7 @@ export class UserSettingsComponent implements OnInit {
           this.passwordResponseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.passwordResponseError = true;
         }
-      )
+      );
     }
   }
 
@@ -123,8 +123,8 @@ export class UserSettingsComponent implements OnInit {
     this.userEditSubmitted = true;
     if (this.userEditForm.valid) {
       if (this.IsStudent()) {
-        let request = new StudentUpdateRequest();
-        let ctls = this.userEditForm.controls;
+        const request = new StudentUpdateRequest();
+        const ctls = this.userEditForm.controls;
         request.email = ctls.email.value;
         request.name = ctls.name.value;
         request.surname = ctls.surname.value;
@@ -144,8 +144,8 @@ export class UserSettingsComponent implements OnInit {
           }
         );
       } else if (this.IsTeacher()) {
-        let request = new TeacherUpdateRequest();
-        let ctls = this.userEditForm.controls;
+        const request = new TeacherUpdateRequest();
+        const ctls = this.userEditForm.controls;
         request.email = ctls.email.value;
         request.name = ctls.name.value;
         request.surname = ctls.surname.value;
@@ -165,11 +165,11 @@ export class UserSettingsComponent implements OnInit {
     }
   }
 
-  IsTeacher():boolean {
+  IsTeacher(): boolean {
     return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER];
   }
 
-  IsStudent():boolean {
+  IsStudent(): boolean {
     return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
   }
 }

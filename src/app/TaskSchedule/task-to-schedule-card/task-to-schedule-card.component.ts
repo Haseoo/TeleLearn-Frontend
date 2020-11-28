@@ -9,11 +9,11 @@ import { TaskToSchedule } from 'src/app/Models/Courses/Tasks/TaskToSchedule';
 export class TaskToScheduleCardComponent implements OnInit {
 
   @Input() taskToSchedule: TaskToSchedule;
-  @Input() showDate: boolean = false;
+  @Input() showDate = false;
 
   @Output() schedule = new EventEmitter();
 
-  showDetails: boolean = false;
+  showDetails = false;
 
   constructor() { }
 
@@ -29,8 +29,8 @@ export class TaskToScheduleCardComponent implements OnInit {
   }
 
   CheckLearningTime() {
-    let total = this.taskToSchedule.totalLearningTime.hours * 60 + this.taskToSchedule.totalLearningTime.minutes;
-    let prop = this.taskToSchedule.task.learningTime.hours * 60 + this.taskToSchedule.task.learningTime.minutes;
+    const total = this.taskToSchedule.totalLearningTime.hours * 60 + this.taskToSchedule.totalLearningTime.minutes;
+    const prop = this.taskToSchedule.task.learningTime.hours * 60 + this.taskToSchedule.task.learningTime.minutes;
     return prop < total;
   }
 

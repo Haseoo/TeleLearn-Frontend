@@ -20,10 +20,10 @@ import { TimeView } from './TimeView';
 export class LearnTimerComponent implements OnInit, OnDestroy, IError {
 
   constructor(private learnTimerService: LearnTimerService,
-    private taskScheduleService: TaskScheduleService,
-    private taskService: TaskService,
-    private userService: UserService,
-    private router: Router) { }
+              private taskScheduleService: TaskScheduleService,
+              private taskService: TaskService,
+              private userService: UserService,
+              private router: Router) { }
 
   error: boolean;
   errorMessage: string;
@@ -80,10 +80,10 @@ export class LearnTimerComponent implements OnInit, OnDestroy, IError {
       this.scheduleRecord.id,
       request.startTime.toString(),
       { hours: request.hours, minutes: request.minutes }).subscribe(
-        dt => {
+        () => {
           this.taskService.SetTaskProgress(this.scheduleRecord.task.id,
             { studentId: this.userService.GetCurrentUser().id, progress: request.progress }).subscribe(
-              dt => {
+              () => {
                 this.learnTimerService.RemoveTimer();
                 this.router.navigateByUrl(`/learn/${this.scheduleRecord.id}`);
               }, err => Utils.HandleError(this, err)
@@ -93,38 +93,23 @@ export class LearnTimerComponent implements OnInit, OnDestroy, IError {
   }
 
   get TimeForForm(): Time {
-    return {hours: this.currentTime.hours, minutes: this.currentTime.minutes}
+    return {hours: this.currentTime.hours, minutes: this.currentTime.minutes};
   }
 
   get isPaused(): boolean {
-    return this.timer.state == TimerState.PAUSED;
+    return this.timer.state === TimerState.PAUSED;
   }
 
   get isStopped(): boolean {
-    return this.timer.state == TimerState.STOPPED;
+    return this.timer.state === TimerState.STOPPED;
   }
 
   get isRunning(): boolean {
-    return this.timer.state == TimerState.RUNNING;
+    return this.timer.state === TimerState.RUNNING;
   }
 
   get startTime(): string {
-    let date = new Date(this.timer.start);
-    let hours: number = date.getHours();
-    let hoursStr: string;
-    let minutes: number = date.getMinutes();
-    let minutesStr: string;
-    if (hours < 10) {
-      hoursStr = '0' + hours.toString();
-    } else {
-      hoursStr = hours.toString();
-    }
-    if (minutes < 10) {
-      minutesStr = '0' + minutes.toString();
-    } else {
-      minutesStr = minutes.toString();
-    }
-    return `${hoursStr}:${minutesStr}`
+    return Utils.GetTimeString(new Date(this.timer.start));
   }
 
   private _UpdateTimer() {
@@ -134,7 +119,7 @@ export class LearnTimerComponent implements OnInit, OnDestroy, IError {
       this._NoScheduleError();
       return;
     }
-    this.currentTime = new TimeView(this.timer.value)
+    this.currentTime = new TimeView(this.timer.value);
   }
 
   private _FetchSchedule(id: number) {

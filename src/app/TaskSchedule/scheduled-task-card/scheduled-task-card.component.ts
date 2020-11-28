@@ -9,12 +9,12 @@ import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
 export class ScheduledTaskCardComponent implements OnInit {
 
   @Input() buttons: string[] = [];
-  @Input() onTaskPage: boolean = false;
+  @Input() onTaskPage = false;
   @Input() taskSchedule: TaskSchedule;
 
-  @Output() edit = new EventEmitter()
-  @Output() remove = new EventEmitter()
-  @Output() learn = new EventEmitter()
+  @Output() edit = new EventEmitter();
+  @Output() remove = new EventEmitter();
+  @Output() learn = new EventEmitter();
 
   constructor() { }
 
@@ -26,9 +26,9 @@ export class ScheduledTaskCardComponent implements OnInit {
   }
 
   IsCompleted(): boolean {
-    let scheduledTime = this.taskSchedule.plannedTime.hours * 60 + this.taskSchedule.plannedTime.minutes;
-    let learningTime = this.taskSchedule.learningTime.hours * 60 + this.taskSchedule.learningTime.minutes;
-    return learningTime >= scheduledTime || (this.taskSchedule.task.taskCompletion == 100 && !this.taskSchedule.task.isToRepeat);
+    const scheduledTime = this.taskSchedule.plannedTime.hours * 60 + this.taskSchedule.plannedTime.minutes;
+    const learningTime = this.taskSchedule.learningTime.hours * 60 + this.taskSchedule.learningTime.minutes;
+    return learningTime >= scheduledTime || (this.taskSchedule.task.taskCompletion === 100 && !this.taskSchedule.task.isToRepeat);
   }
 
 }

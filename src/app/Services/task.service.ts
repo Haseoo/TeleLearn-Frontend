@@ -21,11 +21,11 @@ export class TaskService {
     return this.httpClient.get<Task>(`${environment.api_url}/task/${id}`);
   }
 
-  AddTask(request: FormData):Observable<any> {
+  AddTask(request: FormData): Observable<any> {
     return this.httpClient.post(`${environment.api_url}/task`, request, { observe: 'response' });
   }
 
-  UpdateTask(id: number, request: FormData):Observable<any> {
+  UpdateTask(id: number, request: FormData): Observable<any> {
     return this.httpClient.put(`${environment.api_url}/task/${id}`, request, { observe: 'response' });
   }
 
@@ -37,7 +37,7 @@ export class TaskService {
     return this.httpClient.patch(`${environment.api_url}/task/${id}/progress`, request, { observe: 'response' });
   }
 
-  DeleteTask(id: number):Observable<any> {
+  DeleteTask(id: number): Observable<any> {
     return this.httpClient.delete(`${environment.api_url}/task/${id}`, { observe: 'response' });
   }
 }

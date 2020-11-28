@@ -12,18 +12,18 @@ import { UserService } from '../Services/user.service';
 export class TeacherListComponent implements OnInit {
   error: boolean;
   errorMessage: string;
-  perPage: number = 20;
-  current: number = 1;
+  perPage = 20;
+  current = 1;
 
-  formVisible: boolean = false;
+  formVisible = false;
   filterForm: FormGroup;
 
   private _teachers: Teacher[];
   displayedTeachers: Teacher[];
 
   constructor(private userService: UserService,
-    private router: Router,
-    private formBuilder: FormBuilder) { }
+              private router: Router,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.userService.GetTeachers().subscribe(
@@ -55,7 +55,7 @@ export class TeacherListComponent implements OnInit {
 
   Submit() {
     this.formVisible = false;
-    let ctls = this.filterForm.controls;
+    const ctls = this.filterForm.controls;
     let result = [...this._teachers];
     if (ctls.name.value) {
       result = result.filter(e => e.name.toUpperCase() === ctls.name.value.toUpperCase());
@@ -72,7 +72,7 @@ export class TeacherListComponent implements OnInit {
   }
 
   ResetFilter() {
-    this.filterForm.reset;
+    this.filterForm.reset();
     this.displayedTeachers = this._teachers;
     this.formVisible = false;
   }

@@ -18,16 +18,16 @@ export class LearnTaskComponent implements OnInit {
   error: boolean;
   errorMessage: string;
 
-  showManualRecordFrom: boolean = false;
+  showManualRecordFrom = false;
 
   scheduleRecord: TaskSchedule;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private taskScheduleService: TaskScheduleService,
-    private taskService: TaskService,
-    private userService: UserService,
-    private learnTimerService: LearnTimerService) { }
+              private router: Router,
+              private taskScheduleService: TaskScheduleService,
+              private taskService: TaskService,
+              private userService: UserService,
+              private learnTimerService: LearnTimerService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
@@ -42,10 +42,10 @@ export class LearnTaskComponent implements OnInit {
       this.scheduleRecord.id,
       request.startTime.toString(),
       { hours: request.hours, minutes: request.minutes }).subscribe(
-        dt => {
+        () => {
           this.taskService.SetTaskProgress(this.scheduleRecord.task.id,
             { studentId: this.userService.GetCurrentUser().id, progress: request.progress }).subscribe(
-              dt => {
+              () => {
                 this._FetchData(this.scheduleRecord.id);
                 this.showManualRecordFrom = false;
               }, err => {
@@ -64,12 +64,12 @@ export class LearnTaskComponent implements OnInit {
     if (this.learnTimerService.SetTimer(this.scheduleRecord.id)) {
       this.router.navigateByUrl('/timer');
     } else {
-      Utils.HandleError(this, {error: {message: 'Czasomierz jest już ustawiony. Aby go uruchomić dla nowego zadania, zresetuj go w sekcji "czasomierz".'}})
+      Utils.HandleError(this, {error: {message: 'Czasomierz jest już ustawiony. Aby go uruchomić dla nowego zadania, zresetuj go w sekcji "czasomierz".'}});
     }
   }
 
   get TimeForForm(): Time {
-    if (this.scheduleRecord.learningTime.hours + this.scheduleRecord.learningTime.minutes != 0) {
+    if (this.scheduleRecord.learningTime.hours + this.scheduleRecord.learningTime.minutes !== 0) {
       return this.scheduleRecord.learningTime;
     }
     return this.scheduleRecord.plannedTime;
@@ -81,7 +81,7 @@ export class LearnTaskComponent implements OnInit {
         if (dt.task.isLearnable) {
           this.scheduleRecord = dt;
         } else {
-          this.errorMessage = "Aby wykonać to zadanie, należy ukończyć wszytskie zadania poprzedzające.";
+          this.errorMessage = 'Aby wykonać to zadanie, należy ukończyć wszytskie zadania poprzedzające.';
           this.error = true;
         }
       }, err => {

@@ -9,6 +9,7 @@ import { TaskService } from 'src/app/Services/task.service';
 import { UserService } from 'src/app/Services/user.service';
 import { Node } from '@swimlane/ngx-graph';
 import { TaskForStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-paths',
@@ -29,15 +30,17 @@ export class PathsComponent implements OnInit {
 
   update$: Subject<boolean> = new Subject();
 
+  breakPoint = environment.break_point;
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
   }
 
   constructor(private activatedRoute: ActivatedRoute,
-    private courseService: CourseService,
-    private taskService: TaskService,
-    private userService: UserService ) { }
+              private courseService: CourseService,
+              private taskService: TaskService,
+              private userService: UserService ) { }
 
   ngOnInit(): void {
     this.activatedRoute.parent.params.subscribe(
@@ -51,10 +54,10 @@ export class PathsComponent implements OnInit {
             this._SetNodes();
             this._SetLinks();
           }, err => {
-            this.errorMessage = (err.error.message) ? err.error.message: err.message;
+            this.errorMessage = (err.error.message) ? err.error.message : err.message;
             this.error = true;
           }
-        )
+        );
       }
     );
   }
@@ -72,7 +75,7 @@ export class PathsComponent implements OnInit {
   }
 
   GetTaskForStudent(task: Task) {
-    return <TaskForStudent>task;
+    return task as TaskForStudent;
   }
 
   GetTaskColor(task: Task): string {
@@ -80,14 +83,14 @@ export class PathsComponent implements OnInit {
       if (this.GetTaskForStudent(task).isToRepeat) {
         return 'rgb(255, 248, 107)';
       }
-      if (this.GetTaskForStudent(task).taskCompletion == 100) {
+      if (this.GetTaskForStudent(task).taskCompletion === 100) {
         return 'rgb(105, 255, 162)';
       }
     }
-    return (this.IsTaskValid(task)) ? 'rgb(194, 233, 248)' : 'rgb(255, 84, 84)'
+    return (this.IsTaskValid(task)) ? 'rgb(194, 233, 248)' : 'rgb(255, 84, 84)';
   }
 
-  IsTaskValid(task: Task):boolean {
+  IsTaskValid(task: Task): boolean {
     let returnValue = true;
     task.previousTasks.forEach(pTask => {
       returnValue = returnValue && task.dueDate >= this._GetTaskById(pTask.id).dueDate;
@@ -96,26 +99,26 @@ export class PathsComponent implements OnInit {
   }
 
   private _SetNodes() {
-    this.tasks.forEach(task => this.nodes.push({id: task.id.toString(), label: task.name, task: task}));
+    this.tasks.forEach(task => this.nodes.push({id: task.id.toString(), label: task.name, task}));
   }
 
   private _SetLinks() {
-    let inceptiveTasks = this._FindInceptiveTasks();
+    const inceptiveTasks = this._FindInceptiveTasks();
     inceptiveTasks.forEach(task => this._SetLinksForTask(task));
   }
 
   private _SetLinksForTask(task: Task) {
     task.nextTasks.forEach(nTask => {
-      let id = `L${task.id}-${nTask.id}`;
+      const id = `L${task.id}-${nTask.id}`;
       if (this.links.filter(link => link.id === id).length === 0) {
-        this.links.push({id: id, source: task.id, target: nTask.id});
+        this.links.push({id, source: task.id, target: nTask.id});
       }
       this._SetLinksForTask(this._GetTaskById(nTask.id));
-    })
+    });
   }
 
   private _FindInceptiveTasks(): Task[] {
-    return this.tasks.filter(task => task.previousTasks.length == 0);
+    return this.tasks.filter(task => task.previousTasks.length === 0);
   }
 
   private _GetTaskById(id: number): Task {

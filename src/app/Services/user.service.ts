@@ -31,7 +31,7 @@ export class UserService {
     return this.httpClient.post<UserLoginResponse>(`${environment.api_url}/user/login`, loginRequest);
   }
 
-  storeLogin(userLoginResponse: UserLoginResponse) : void {
+  storeLogin(userLoginResponse: UserLoginResponse): void {
     setTimeout(() => localStorage.setItem('currentUser', JSON.stringify(userLoginResponse)));
   }
 
@@ -68,14 +68,14 @@ export class UserService {
   }
 
   updateCurrentUserInfo() {
-    let user = this.GetCurrentUser();
+    const user = this.GetCurrentUser();
     this.getUser(user.id).subscribe(
-      dt=> {
+      dt => {
         user.name = dt.name;
         user.surname = dt.surname;
         this.storeLogin(user);
       }
-    )
+    );
   }
 
   changePassword(id: number, request: PasswordChangeRequest): Observable<any> {
@@ -87,7 +87,7 @@ export class UserService {
   }
 
   GetStudentStats(studentId: number): Observable<StudentStat> {
-    return this.httpClient.get<StudentStat>(`${environment.api_url}/user/student/${studentId}/stat`)
+    return this.httpClient.get<StudentStat>(`${environment.api_url}/user/student/${studentId}/stat`);
   }
 
   GetLearningTimeForStudent(studentId: number): Observable<Map<string, Time>> {

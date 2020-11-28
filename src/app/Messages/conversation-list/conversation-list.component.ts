@@ -12,24 +12,23 @@ import { UserService } from 'src/app/Services/user.service';
 export class ConversationListComponent implements OnInit {
 
   collection: Conversation[] = [];
-  current: number = 1;
-  perPage: number = 20;
+  current = 1;
+  perPage = 20;
   fetchError: boolean;
   errorMessage: string;
 
   constructor(private messagesService: MessagesService,
-    private userService: UserService,
-    private router: Router) { }
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.messagesService.getConversations(this.userService.GetCurrentUser().id).subscribe(
       dt => {
         this.collection = dt;
-        this.collection.sort((first, second) => {return new Date(second.lastMessageTime).valueOf() - new Date(first.lastMessageTime).valueOf()})
+        this.collection.sort((first, second) => new Date(second.lastMessageTime).valueOf() - new Date(first.lastMessageTime).valueOf());
       }, err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.fetchError = true;
       }
-    )
+    );
   }
 }

@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute) {
+              private userService: UserService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]]
     });
 
-    this.route.queryParams.subscribe( params => {
-      this.isRedirectFromRegistration = params['redirect'] === 'registration';
-      this.returnUrl = params['returnUrl'];
+    this.route.queryParams.subscribe(params => {
+      this.isRedirectFromRegistration = params.redirect === 'registration';
+      this.returnUrl = params.returnUrl;
     }
     );
   }
@@ -48,21 +48,21 @@ export class LoginComponent implements OnInit {
     } else {
       const request = new LoginRequest(this.loginForm.controls.login.value,
         this.loginForm.controls.password.value);
-        this.userService.PreformLogin(request).subscribe(
-          dt => {
-            this.userService.storeLogin(dt);
-            if (this.returnUrl) {
-              setTimeout(() =>
+      this.userService.PreformLogin(request).subscribe(
+        dt => {
+          this.userService.storeLogin(dt);
+          if (this.returnUrl) {
+            setTimeout(() =>
               this.router.navigate([this.returnUrl]));
-            } else {
-              this.router.navigate(['/']);
-            }
-          },
-          err => {
-            this.responseErrorMessage =  (err.error.message) ? err.error.message : err.message;
-            this.responseError = true;
+          } else {
+            this.router.navigate(['/']);
           }
-        )
+        },
+        err => {
+          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
+          this.responseError = true;
+        }
+      );
     }
   }
 }

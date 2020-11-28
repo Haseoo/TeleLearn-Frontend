@@ -3,7 +3,7 @@ import { Time } from '../../Time';
 import { TaskForStudent } from './TaskForStudent';
 
 export class TaskSchedule {
-    id : number;
+    id: number;
     date: Date;
     plannedTime: Time;
     learningTime: Time;

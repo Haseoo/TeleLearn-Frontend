@@ -13,16 +13,16 @@ export class CourseMainPageComponent implements OnInit {
   course: Course;
 
   constructor(private courseService: CourseService,
-    private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       params => {
         this.courseService.GetCourseById(params['course-id']).subscribe (
           dt => this.course = dt
-        )
+        );
       }
-    )
+    );
   }
 
 }

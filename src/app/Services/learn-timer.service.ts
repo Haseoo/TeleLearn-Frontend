@@ -24,7 +24,7 @@ export class LearnTimerService {
   }
 
   private _saveTimer(timer: LearnTimer) {
-    let map = this._getTimerMap();
+    const map = this._getTimerMap();
     map[this.userService.GetCurrentUser().id] = timer;
     localStorage.setItem('timers', JSON.stringify(map));
   }
@@ -33,7 +33,7 @@ export class LearnTimerService {
     if (this._getUserTimer()) {
       return false;
     }
-    let timer = new LearnTimer();
+    const timer = new LearnTimer();
     timer.start = Date.now();
     timer.scheduleId = scheduleId;
     this._saveTimer(timer);
@@ -41,11 +41,11 @@ export class LearnTimerService {
   }
 
   PauseTimer(): boolean {
-    let timer = this._getUserTimer();
+    const timer = this._getUserTimer();
     if (!timer) {
       return false;
     }
-    if (timer.pauses.length > 0 && !timer.pauses[timer.pauses.length -1].stop) {
+    if (timer.pauses.length > 0 && !timer.pauses[timer.pauses.length - 1].stop) {
       return false;
     }
     timer.pauses.push({start: Date.now(), stop: null});
@@ -54,11 +54,11 @@ export class LearnTimerService {
   }
 
   ResumeTimer(): boolean {
-    let timer = this._getUserTimer();
+    const timer = this._getUserTimer();
     if (!timer) {
       return false;
     }
-    let lastPause = timer.pauses[timer.pauses.length - 1];
+    const lastPause = timer.pauses[timer.pauses.length - 1];
     if (!lastPause || !lastPause.start || lastPause.stop) {
       return false;
     }
@@ -68,7 +68,7 @@ export class LearnTimerService {
   }
 
   stopTimer(): boolean {
-    let timer = this._getUserTimer();
+    const timer = this._getUserTimer();
     if (!timer) {
       return false;
     }
@@ -90,7 +90,7 @@ export class LearnTimerService {
   }
 
   RemoveTimer() {
-    let timers = this._getTimerMap();
+    const timers = this._getTimerMap();
     timers[this.userService.GetCurrentUser().id] = null;
     localStorage.setItem('timers', JSON.stringify(timers));
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CourseBrief } from 'src/app/Models/Courses/CourseBrief';
 import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
@@ -17,11 +18,11 @@ export class MyCoursesComponent implements OnInit {
   courseBriefs: CourseBrief[] = [];
 
   constructor(private courseService: CourseService,
-    private userService: UserService) { }
+              private userService: UserService) { }
 
   ngOnInit(): void {
-    let currentUser = this.userService.GetCurrentUser();
-    let observaleBriefs;
+    const currentUser = this.userService.GetCurrentUser();
+    let observaleBriefs: Observable<CourseBrief[]>;
     if (currentUser.userRole.toString() === UserRole[UserRole.STUDENT]) {
       observaleBriefs = this.courseService.GetMyCoursesForStudent(currentUser.id);
     } else if (currentUser.userRole.toString() === UserRole[UserRole.TEACHER]){
@@ -35,7 +36,7 @@ export class MyCoursesComponent implements OnInit {
         this.error = true;
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
       }
-    )
+    );
   }
 
   get ShowOwner(): boolean {

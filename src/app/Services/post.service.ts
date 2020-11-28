@@ -16,7 +16,7 @@ export class PostService {
     return this.httpClient.post(`${environment.api_url}/post`, request,  { observe: 'response' });
   }
 
-  GetPostById(id: number) : Observable<Post> {
+  GetPostById(id: number): Observable<Post> {
     return this.httpClient.get<Post>(`${environment.api_url}/post/${id}`);
   }
 
@@ -37,7 +37,7 @@ export class PostService {
   }
 
   AddComment(postId: number, content: string): Observable<any> {
-    return this.httpClient.post(`${environment.api_url}/post/${postId}/comment`, {content: content},  { observe: 'response' });
+    return this.httpClient.post(`${environment.api_url}/post/${postId}/comment`, {content},  { observe: 'response' });
   }
 
   DeleteComment(id: number): Observable<any> {

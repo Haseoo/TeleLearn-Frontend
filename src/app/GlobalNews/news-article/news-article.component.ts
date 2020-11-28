@@ -19,8 +19,8 @@ export class NewsArticleComponent implements OnInit {
   deleteSuccess: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private newsService: GlobalNewsService,
-    private userService: UserService,) { }
+              private newsService: GlobalNewsService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -30,8 +30,8 @@ export class NewsArticleComponent implements OnInit {
           this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.responseError = true;
         }
-      )
-    })
+      );
+    });
   }
 
   ShowManagement(): boolean {
@@ -49,7 +49,7 @@ export class NewsArticleComponent implements OnInit {
           this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.responseError = true;
         }
-      )
+      );
     }
   }
 

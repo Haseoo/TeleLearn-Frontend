@@ -15,14 +15,14 @@ export class CourseSignOutComponent implements OnInit {
   errorMessage: string;
 
   constructor(private router: Router,
-    private actvatedRoute: ActivatedRoute,
-    private userService: UserService,
-    private courseService: CourseService) { }
+              private actvatedRoute: ActivatedRoute,
+              private userService: UserService,
+              private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.actvatedRoute.parent.params.subscribe(
       params => this.courseId = params['course-id']
-    )
+    );
   }
 
   OnSignOut() {
@@ -31,7 +31,7 @@ export class CourseSignOutComponent implements OnInit {
       err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
       }
-    )
+    );
   }
 
 }

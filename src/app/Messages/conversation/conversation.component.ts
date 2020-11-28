@@ -26,17 +26,17 @@ export class ConversationComponent implements OnInit {
   @ViewChild('messageContainer') private myScrollContainer: ElementRef;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private messagesService: MessagesService,
-    private loadingBarService: LoadingBarService) { }
+              private router: Router,
+              private formBuilder: FormBuilder,
+              private userService: UserService,
+              private messagesService: MessagesService,
+              private loadingBarService: LoadingBarService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       params => {
         this.loadingBarService.useRef('fetchMessages').start();
-        this.userService.getUser(params['id']).subscribe (
+        this.userService.getUser(params.id).subscribe (
           dt => {
             this.participant = dt;
             this.FetchMessages();
@@ -47,7 +47,7 @@ export class ConversationComponent implements OnInit {
             this.responseError = true;
             this.loadingBarService.useRef('fetchMessages').stop();
           }
-        )
+        );
       }
     );
     this.sendMessageForm = this.formBuilder.group({
@@ -57,18 +57,18 @@ export class ConversationComponent implements OnInit {
 
 
   GetUserUrl(): string {
-    return `/user/${this.participant.id}?backUrl=${this.router.url}`
+    return `/user/${this.participant.id}?backUrl=${this.router.url}`;
   }
 
   SendMessage() {
     this.responseError = false;
-    let msg = this.sendMessageForm.controls.message.value;
+    const msg = this.sendMessageForm.controls.message.value;
     if (!msg) {
-      this.responseErrorMessage = "Nie można wysłać pustej wiadomości"
+      this.responseErrorMessage = 'Nie można wysłać pustej wiadomości';
       this.responseError = true;
       return;
     }
-    let request = new SendMessageRequest();
+    const request = new SendMessageRequest();
     request.content = msg;
     request.senderId = this.userService.GetCurrentUser().id;
     request.receiverId = this.participant.id;
@@ -84,7 +84,7 @@ export class ConversationComponent implements OnInit {
   }
 
   SanitazeMessage(message: string): string{
-    return message.replace(/<[^>]*>/g, '').replace("\n","<br />");
+    return message.replace(/<[^>]*>/g, '').replace('\n', '<br />');
   }
 
   FetchMessages() {
@@ -96,11 +96,11 @@ export class ConversationComponent implements OnInit {
           this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
           this.responseError = true;
       }
-    )
+    );
   }
 
   GetAuthorFromMessage(message: Message) {
-    return `${message.sender.name} ${message.sender.surname}`
+    return `${message.sender.name} ${message.sender.surname}`;
   }
 
   IsMessageSendByParticipant(message: Message) {

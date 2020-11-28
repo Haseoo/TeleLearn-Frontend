@@ -13,6 +13,7 @@ import { ScheduleTaskRequest } from 'src/app/Models/Requests/Courses/ScheduleTas
 import { Time } from 'src/app/Models/Time';
 import { TaskScheduleService } from 'src/app/Services/task-schedule.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 import { TaskToScheduleSection } from '../TaskToScheduleSection';
 
 @Component({
@@ -26,7 +27,7 @@ export class TaskSchedulerComponent implements OnInit {
   error: boolean;
   errorMessage: string;
 
-  timeEdit: boolean = false;
+  timeEdit = false;
 
   private _tasksToSchedule: Map<string, TaskToSchedule[]>;
   private _studentSchedule: Map<string, TaskSchedule[]>;
@@ -42,10 +43,10 @@ export class TaskSchedulerComponent implements OnInit {
   dialogForm: FormGroup;
 
   constructor(private userService: UserService,
-    private taskScheduleService: TaskScheduleService,
-    config: NgbModalConfig,
-    private modalService: NgbModal,
-    private formBuilder: FormBuilder) {
+              private taskScheduleService: TaskScheduleService,
+              config: NgbModalConfig,
+              private modalService: NgbModal,
+              private formBuilder: FormBuilder) {
     config.backdrop = 'static';
     config.keyboard = false;
     config.centered = true;
@@ -164,7 +165,7 @@ export class TaskSchedulerComponent implements OnInit {
   OnDialogApply(formData: any) {
     let observable: Observable<any>;
     if (this._selectedTaskToSchedule) {
-      let request = new ScheduleTaskRequest();
+      const request = new ScheduleTaskRequest();
       request.taskId = this._selectedTaskToSchedule.task.id;
       request.hours = formData.hours;
       request.minutes = formData.minutes;
@@ -174,7 +175,7 @@ export class TaskSchedulerComponent implements OnInit {
       this._selectedTaskToSchedule = null;
       observable = this.taskScheduleService.Schedule(request);
     } else if (this._selectedScheduledTask) {
-      let id = this._selectedScheduledTask.id;
+      const id = this._selectedScheduledTask.id;
       this._selectedScheduledTask.id = null;
       observable = this.taskScheduleService.UpdateSchedule(id, { hours: formData.hours, minutes: formData.minutes }, formData.startTime);
     }
@@ -194,18 +195,18 @@ export class TaskSchedulerComponent implements OnInit {
   }
 
   get CurrentScheduleDate(): string {
-    return formatDate(this._currentScheduleDateValue, "dd.MM.yyyy", "PL");
+    return formatDate(this._currentScheduleDateValue, 'dd.MM.yyyy', 'PL');
   }
 
   get CurrentTaskToScheduleSection(): string {
     if (this._currentSection === TaskToScheduleSection.DATE) {
-      return formatDate(this._currentTaskDateValue, "dd.MM.yyyy", "PL");
+      return formatDate(this._currentTaskDateValue, 'dd.MM.yyyy', 'PL');
     }
     return this._currentSection;
   }
 
   get TodaysLearningTime(): Time {
-    let value = this._learningTimeForDay[this.CurrentScheduleDate];
+    const value = this._learningTimeForDay[this.CurrentScheduleDate];
     if (value) {
       return value;
     } else {
@@ -214,7 +215,7 @@ export class TaskSchedulerComponent implements OnInit {
   }
 
   get TodaysSchedule(): TaskSchedule[] {
-    let schedule: [] = this._studentSchedule[this.CurrentScheduleDate];
+    const schedule: [] = this._studentSchedule[this.CurrentScheduleDate];
     if (schedule) {
       schedule.sort(this._SortSchedule);
     }
@@ -222,7 +223,7 @@ export class TaskSchedulerComponent implements OnInit {
   }
 
   get CurrentTaskToSchedule(): TaskToSchedule[] {
-    let taskToSchedule = this._tasksToSchedule[this._TaskToSchedulePropertyName];
+    const taskToSchedule = this._tasksToSchedule[this._TaskToSchedulePropertyName];
     if (taskToSchedule) {
       taskToSchedule.sort(this._SortTaskToSchedule);
     }
@@ -239,7 +240,7 @@ export class TaskSchedulerComponent implements OnInit {
   get TotalScheduledTime(): Time {
     let totalMinutes = 0;
     this.TodaysSchedule.forEach(e => totalMinutes = totalMinutes + e.plannedTime.hours * 60 + e.plannedTime.minutes);
-    let totalHours = Math.floor(totalMinutes / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
     totalMinutes = totalMinutes - totalHours * 60;
     return { hours: totalHours, minutes: totalMinutes };
   }
@@ -262,31 +263,16 @@ export class TaskSchedulerComponent implements OnInit {
   }
 
   private get _currentTime(): string {
-    let date = new Date();
-    let hours: number = date.getHours();
-    let hoursStr: string;
-    let minutes: number = date.getMinutes();
-    let minutesStr: string;
-    if (hours < 10) {
-      hoursStr = '0' + hours.toString();
-    } else {
-      hoursStr = hours.toString();
-    }
-    if (minutes < 10) {
-      minutesStr = '0' + minutes.toString();
-    } else {
-      minutesStr = minutes.toString();
-    }
-    return `${hoursStr}:${minutesStr}`
+    return Utils.GetTimeString(new Date());
   }
 
   private get _TaskToSchedulePropertyName() {
-    if (this._currentSection == TaskToScheduleSection.DELAYED) {
-      return "delayedTask";
-    } else if (this._currentSection == TaskToScheduleSection.TO_REPEAT) {
-      return "taskToRepeat";
-    } else if (this._currentSection == TaskToScheduleSection.DATE) {
-      return formatDate(this._currentTaskDateValue, "dd.MM.yyyy", "PL");
+    if (this._currentSection === TaskToScheduleSection.DELAYED) {
+      return 'delayedTask';
+    } else if (this._currentSection === TaskToScheduleSection.TO_REPEAT) {
+      return 'taskToRepeat';
+    } else if (this._currentSection === TaskToScheduleSection.DATE) {
+      return formatDate(this._currentTaskDateValue, 'dd.MM.yyyy', 'PL');
     }
   }
 

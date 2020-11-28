@@ -10,7 +10,7 @@ export class AttachmentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAttachment(id: number): Observable<any> {   
+  public getAttachment(id: number): Observable<any> {
     return this.httpClient.get(`${environment.api_url}/file/${id}`, { responseType: 'blob', observe: 'response' });
   }
 }

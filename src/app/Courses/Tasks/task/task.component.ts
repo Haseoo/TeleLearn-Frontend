@@ -29,34 +29,34 @@ export class TaskComponent implements OnInit {
   @Output() updateProgress = new EventEmitter<number>();
   @Output() markToRepeat = new EventEmitter<boolean>();
 
-  showProgressUpdate: boolean = false;
+  showProgressUpdate = false;
   progressForm: FormGroup;
 
 
   constructor(private attachmentService: AttachmentService,
-    private userService: UserService,
-    private formBuilder: FormBuilder) { }
+              private userService: UserService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.progressForm = this.formBuilder.group({
       progress: [this.taskForStudent.taskCompletion, [Validators.required, Validators.min(0), Validators.max(100)]]
     });
   }
-  
+
   DownloadFile(attachment: Attachment) {
     this.attachmentService.getAttachment(attachment.id).subscribe(
       dt => {
-        let file = new File([dt.body], attachment.fileName, {type: dt.body.type});
+        const file = new File([dt.body], attachment.fileName, {type: dt.body.type});
         FileSaver.saveAs(file);
       }, err => {
         console.error(err);
       }
-    )
+    );
   }
 
   get taskForStudent(): TaskForStudent {
-    if(this._IsCurrentUserStudent()) {
-      return <TaskForStudent>this.task;
+    if (this._IsCurrentUserStudent()) {
+      return this.task as TaskForStudent;
     } else {
       return undefined;
     }
@@ -68,7 +68,7 @@ export class TaskComponent implements OnInit {
   }
 
   OnProgressApply() {
-    let newValue = this.progressForm.value.progress;
+    const newValue = this.progressForm.value.progress;
     this.updateProgress.emit(newValue);
     this.showProgressUpdate = false;
   }

@@ -13,7 +13,7 @@ export class UserStatsComponent implements OnInit {
   error: boolean;
   errorMessage: string;
 
-  isAllDays: boolean = true;
+  isAllDays = true;
 
   stats: StudentStat;
 
@@ -26,16 +26,16 @@ export class UserStatsComponent implements OnInit {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
-    )
+    );
   }
 
   GetTimeDescription(time: Time): string {
-    return `${time.hours} godzin${this.GetHourSuffix(time.hours)} i ${time.minutes} minut${this.GetMinuteSuffix(time.minutes)}`
+    return `${time.hours} godzin${this.GetHourSuffix(time.hours)} i ${time.minutes} minut${this.GetMinuteSuffix(time.minutes)}`;
   }
 
   GetHourSuffix(hours: number): string {
-    let lastDigit = hours % 10;
-    if (hours == 1) {
+    const lastDigit = hours % 10;
+    if (hours === 1) {
       return 'a';
     } else if (lastDigit > 1 && lastDigit < 5) {
       return 'y';
@@ -44,11 +44,11 @@ export class UserStatsComponent implements OnInit {
   }
 
   GetMinuteSuffix(minute: number): string {
-    let lastDigit = minute % 10;
-    if (minute == 1) {
+    const lastDigit = minute % 10;
+    if (minute === 1) {
       return 'a';
-    } else if(minute > 10 && lastDigit == 1) {
-      return ''
+    } else if (minute > 10 && lastDigit === 1) {
+      return '';
     } else if (minute > 10 && minute < 20) {
       return '';
     }

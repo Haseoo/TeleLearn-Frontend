@@ -24,9 +24,9 @@ export class UserInfoComponent implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute,
-    private userService: UserService,
-    private router: Router,
-    private courseService: CourseService) { }
+              private userService: UserService,
+              private router: Router,
+              private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>
@@ -35,28 +35,28 @@ export class UserInfoComponent implements OnInit {
             this.user = dt;
             if (this.user.userRole.toString() === UserRole[UserRole.STUDENT]) {
               this.userService.getStudent(this.user.id).subscribe (
-                dt => this.student = dt,
+                dt2 => this.student = dt2,
                 err => {
                   this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
                   this.responseError = true;
                 }
-              )
+              );
             } else if (this.user.userRole.toString() === UserRole[UserRole.TEACHER]) {
               this.userService.getTeacher(this.user.id).subscribe (
-                dt => {
-                  this.teacher = dt;
+                dt2 => {
+                  this.teacher = dt2;
                   this.courseService.GetMyCoursesForTeacher(this.teacher.id).subscribe(
-                    dt => this.coursesBriefs = dt,
+                    dt3 => this.coursesBriefs = dt3,
                     err => {
                       this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
                       this.responseError = true;
                     }
-                  )
+                  );
                 }, err => {
                   this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
                   this.responseError = true;
                 }
-              )
+              );
             }
           }, err => {
             this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;

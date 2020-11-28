@@ -18,8 +18,8 @@ export class StudentListComponent implements OnInit {
   erorMessage: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private courseService: CourseService,
-    private userService: UserService) { }
+              private courseService: CourseService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.activatedRoute.parent.params.subscribe(params => {
@@ -28,7 +28,6 @@ export class StudentListComponent implements OnInit {
       }
     });
   }
-  
 
   IsCurrentUserTeacher(): boolean {
     return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER];
@@ -65,7 +64,7 @@ export class StudentListComponent implements OnInit {
         this.course.allowedStudents.sort(this._StudentCompare);
         this.course.requestedStudents.sort(this._StudentCompare);
       }
-    )
+    );
   }
 
   private _StudentCompare(student1: Student, student2: Student) {

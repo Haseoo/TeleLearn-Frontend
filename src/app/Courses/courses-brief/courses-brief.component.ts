@@ -10,8 +10,8 @@ export class CoursesBriefComponent implements OnInit {
 
   @Input() courseBriefs: CourseBrief[] = [];
   @Input() showOwner = true;
-  @Input() current: number = 1;
-  @Input() perPage: number = 20;
+  @Input() current = 1;
+  @Input() perPage = 20;
 
   constructor() { }
 

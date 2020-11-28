@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APP_NAME } from '../../constants'
+import { APP_NAME } from '../../constants';
 
 
 @Component({
@@ -9,11 +9,11 @@ import { APP_NAME } from '../../constants'
 })
 export class BannerComponent implements OnInit {
 
+  appName = APP_NAME;
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  appName = APP_NAME;
 
 }

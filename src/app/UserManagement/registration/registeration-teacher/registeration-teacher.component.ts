@@ -15,11 +15,11 @@ export class RegisterationTeacherComponent implements OnInit {
   submitted: boolean;
   responseError: boolean;
   responseErrorMessage: string;
-  readonly PASSWORD_MIN_LENGHT:number = 6;
+  readonly PASSWORD_MIN_LENGHT = 6;
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router) {
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class RegisterationTeacherComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       unit: [''],
       title: [''],
-      tos:[false]
+      tos: [false]
     });
   }
 
@@ -40,13 +40,13 @@ export class RegisterationTeacherComponent implements OnInit {
   }
 
   Submit() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.submitted = true;
     if (!this.registerationForm.valid || !this.registerationForm.controls.tos.value) {
       return;
     } else {
-      let ctls = this.registerationForm.controls;
-      let request = new TeacherRegisterRequest(ctls.login.value,
+      const ctls = this.registerationForm.controls;
+      const request = new TeacherRegisterRequest(ctls.login.value,
         ctls.password.value,
         ctls.email.value,
         ctls.name.value,

@@ -33,8 +33,8 @@ export class ComposerComponent implements OnInit {
   currentTask: Task;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private courseService: CourseService,
-    private taskService: TaskService) { }
+              private courseService: CourseService,
+              private taskService: TaskService) { }
 
   ngOnInit(): void {
     this.activatedRoute.parent.params.subscribe(
@@ -44,7 +44,7 @@ export class ComposerComponent implements OnInit {
     );
   }
 
-  IsTaskValid(task: Task):boolean {
+  IsTaskValid(task: Task): boolean {
     let returnValue = true;
     task.previousTasks.forEach(pTask => {
       returnValue = returnValue && task.dueDate >= this._GetTaskById(pTask.id).dueDate;
@@ -71,7 +71,7 @@ export class ComposerComponent implements OnInit {
   }
 
   OnTaskSave(id: string) {
-    this._FetchData(this.course.id, Number.parseInt(id));
+    this._FetchData(this.course.id, Number.parseInt(id, 10));
     this.selectionMode = false;
   }
 
@@ -90,37 +90,37 @@ export class ComposerComponent implements OnInit {
           this.errorMessage = (err.error.message) ? err.error.message : err.message;
           this.error = true;
         }
-      )
+      );
     }
   }
 
   OnSelectionChange(selection: boolean) {
     this.selectionMode = selection;
   }
-  
+
   private _SetNodes() {
     this.nodes = [];
-    this.tasks.forEach(task => this.nodes.push({id: task.id.toString(), label: task.name, task: task}));
+    this.tasks.forEach(task => this.nodes.push({id: task.id.toString(), label: task.name, task}));
   }
 
   private _SetLinks() {
     this.links = [];
-    let inceptiveTasks = this._FindInceptiveTasks();
+    const inceptiveTasks = this._FindInceptiveTasks();
     inceptiveTasks.forEach(task => this._SetLinksForTask(task));
   }
 
   private _SetLinksForTask(task: Task) {
     task.nextTasks.forEach(nTask => {
-      let id = `L${task.id}-${nTask.id}`;
+      const id = `L${task.id}-${nTask.id}`;
       if (this.links.filter(link => link.id === id).length === 0) {
-        this.links.push({id: id, source: task.id, target: nTask.id});
+        this.links.push({id, source: task.id, target: nTask.id});
       }
       this._SetLinksForTask(this._GetTaskById(nTask.id));
-    })
+    });
   }
 
   private _FindInceptiveTasks(): Task[] {
-    return this.tasks.filter(task => task.previousTasks.length == 0);
+    return this.tasks.filter(task => task.previousTasks.length === 0);
   }
 
   private _GetTaskById(id: number): Task {
@@ -143,7 +143,7 @@ export class ComposerComponent implements OnInit {
           this.taskMode = true;
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message: err.message;
+        this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
     );

@@ -19,23 +19,22 @@ export class PostBoardComponent implements OnInit {
   posts: Post[];
   course: Course;
 
-  current: number = 1;
+  current = 1;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private postService: PostService,
-    private courseService: CourseService,
-    private userService: UserService) { }
+              private router: Router,
+              private postService: PostService,
+              private courseService: CourseService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.activatedRoute.parent.params.subscribe(
       params => {
-        let courseId = params['course-id'];
+        const courseId = params['course-id'];
         if (courseId) {
           this.courseService.GetCourseById(courseId).subscribe (
-            dt => { 
-              this.course = dt;
-            }, err => {
+            dt => this.course = dt,
+            err => {
               this.errorMessage = (err.error.message) ? err.error.message : err.message;
               this.error = true;
             }
@@ -70,7 +69,7 @@ export class PostBoardComponent implements OnInit {
   }
 
   OnPostDelete(post: Post) {
-    if (confirm("Operacja jest niedwracalna! Kontynować?")) {
+    if (confirm('Operacja jest niedwracalna! Kontynować?')) {
       this.postService.DeletePost(post.id).subscribe(
         dt => this._FetchPosts(this.course.id),
         err => {
@@ -80,7 +79,6 @@ export class PostBoardComponent implements OnInit {
       );
     }
   }
-  
   OnPostEdit(post: Post) {
     this.router.navigate([`post/edit/${post.id}`], {relativeTo: this.activatedRoute.parent});
   }

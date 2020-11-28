@@ -25,14 +25,14 @@ export class PostPageComponent implements OnInit {
 
   commentForm: FormGroup;
 
-  current: number = 1;
+  current = 1;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private userService: UserService,
-    private courseService: CourseService,
-    private postService: PostService,
-    private router: Router,
-    private formBuilder: FormBuilder) { }
+              private userService: UserService,
+              private courseService: CourseService,
+              private postService: PostService,
+              private router: Router,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.commentForm = this.formBuilder.group({content: ['']});
@@ -42,7 +42,7 @@ export class PostPageComponent implements OnInit {
           dt => {
             this.post = dt;
             this.courseService.GetCourseById(this.post.courseId).subscribe(
-              dt => this.course = dt,
+              dt2 => this.course = dt2,
               err => {
                 this.errorMessage = (err.error.message) ? err.error.message : err.message;
                 this.error = true;
@@ -53,18 +53,18 @@ export class PostPageComponent implements OnInit {
             this.errorMessage = (err.error.message) ? err.error.message : err.message;
             this.error = true;
           }
-        )
+        );
       }
     );
   }
 
   HasCurrentUserRightsToDelete(item: any): boolean {
-    let currentUser = this.userService.GetCurrentUser();
+    const currentUser = this.userService.GetCurrentUser();
     return currentUser.userRole.toString() === UserRole[UserRole.TEACHER] || item.author.id === currentUser.id;
   }
 
   HasCurrentUserRightsEdit(item: any): boolean {
-    let currentUser = this.userService.GetCurrentUser();
+    const currentUser = this.userService.GetCurrentUser();
     return item.author.id === currentUser.id;
   }
 
@@ -73,7 +73,7 @@ export class PostPageComponent implements OnInit {
   }
 
   OnPostDelete() {
-    if (confirm("Operacja jest niedwracalna! Kontynować?")) {
+    if (confirm('Operacja jest niedwracalna! Kontynować?')) {
       this.postService.DeletePost(this.post.id).subscribe(
         dt => this.router.navigate(['board'], {relativeTo: this.activatedRoute.parent}),
         err => {
@@ -85,8 +85,8 @@ export class PostPageComponent implements OnInit {
   }
 
   OnAddComment() {
-    let content = this.commentForm.controls.content.value;
-    if(content) {
+    const content = this.commentForm.controls.content.value;
+    if (content) {
       this.postService.AddComment(this.post.id, content).subscribe(
         dt => {
           this.commentForm.reset();

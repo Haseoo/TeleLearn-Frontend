@@ -25,11 +25,11 @@ export class TaskPageComponent implements OnInit {
   deleteSucces: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private taskService: TaskService,
-    private taskScheduleService: TaskScheduleService,
-    private courseService: CourseService,
-    private userService: UserService) { }
+              private router: Router,
+              private taskService: TaskService,
+              private taskScheduleService: TaskScheduleService,
+              private courseService: CourseService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
@@ -44,24 +44,24 @@ export class TaskPageComponent implements OnInit {
       this.taskService.DeleteTask(this.task.id).subscribe(
         dt => {
           this.deleteSucces = true;
-          this.task= null;
+          this.task = null;
         }, err => {
           this.errorMessage = (err.error.message) ? err.error.message : err.message;
           this.error = true;
         }
-      )
+      );
     }
   }
 
   OnTaskEdit() {
-    this.router.navigate(['update'], {relativeTo: this.activatedRoute});    
+    this.router.navigate(['update'], {relativeTo: this.activatedRoute});
   }
 
   OnTaskToRepeat(isToRepeat: boolean) {
-    this.taskService.SetTaskToRepeat(this.task.id, {studentId: this.userService.GetCurrentUser().id, isToRepeat: isToRepeat}).subscribe(
+    this.taskService.SetTaskToRepeat(this.task.id, {studentId: this.userService.GetCurrentUser().id, isToRepeat}).subscribe(
       dt => {
         this._FetchTask(this.task.id);
-      },err => {
+      }, err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
@@ -69,10 +69,10 @@ export class TaskPageComponent implements OnInit {
   }
 
   OnTaskProgressUpdate(progress: number) {
-    this.taskService.SetTaskProgress(this.task.id, {studentId: this.userService.GetCurrentUser().id, progress: progress}).subscribe(
+    this.taskService.SetTaskProgress(this.task.id, {studentId: this.userService.GetCurrentUser().id, progress}).subscribe(
       dt => {
         this._FetchTask(this.task.id);
-      },err => {
+      }, err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;
         this.error = true;
       }
@@ -90,22 +90,22 @@ export class TaskPageComponent implements OnInit {
   private _FetchTask(id: number) {
     this.taskService.GetById(id).subscribe (
       dt => {
-        this.task = dt;        
+        this.task = dt;
         this.courseService.GetCourseById(this.task.courseId).subscribe(
-          dt => this.course = dt,
+          dt2 => this.course = dt2,
           err => {
             this.errorMessage = (err.error.message) ? err.error.message : err.message;
             this.error = true;
           }
         );
-        if(this.ShowForStudent) {
+        if (this.ShowForStudent) {
           this.taskScheduleService.GetTaskSchedule(this.task.id).subscribe(
-            dt => this.taskSchedule = dt,
+            dt2 => this.taskSchedule = dt2,
             err => {
               this.errorMessage = (err.error.message) ? err.error.message : err.message;
               this.error = true;
             }
-          )
+          );
         }
       }, err => {
         this.errorMessage = (err.error.message) ? err.error.message : err.message;

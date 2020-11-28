@@ -4,6 +4,7 @@ import { Course } from 'src/app/Models/Courses/Course';
 import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-course',
@@ -16,19 +17,21 @@ export class CourseComponent implements OnInit {
   errorMessage: string;
   course: Course;
 
-  menuVisible: boolean = false;
+  menuVisible = false;
   innerWidth: number;
 
+  breakPoint = environment.break_point;
+
   constructor(private activatedRoute: ActivatedRoute,
-    private courseService: CourseService,
-    private userService: UserService,
-    private router: Router) { }
+              private courseService: CourseService,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.activatedRoute.params.subscribe(
       params => {
-        let courseId = params['course-id'];
+        const courseId = params['course-id'];
         if (!courseId) {
           this.errorMessage = 'Nie podano id kursu';
           this.error = true;
@@ -43,10 +46,10 @@ export class CourseComponent implements OnInit {
               this.errorMessage = (err.error.message) ? err.error.message : err.message;
               this.error = true;
             }
-          )
+          );
         }
       }
-    )
+    );
   }
 
   IsCurrentUserTeacher(): boolean {

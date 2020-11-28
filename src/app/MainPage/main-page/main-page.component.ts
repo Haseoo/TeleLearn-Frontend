@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main-page',
@@ -7,8 +8,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  menuVisible: boolean = false;
+  menuVisible = false;
   innerWidth: number;
+
+  breakPoint = environment.break_point;
 
   constructor() { }
 
@@ -17,7 +20,7 @@ export class MainPageComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     this.innerWidth = window.innerWidth;
   }
 

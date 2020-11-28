@@ -17,8 +17,8 @@ export class AddTaskComponent implements OnInit {
   errorMessage: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private courseService: CourseService) { }
+              private router: Router,
+              private courseService: CourseService) { }
 
     ngOnInit(): void {
       this.activatedRoute.parent.params.subscribe(
@@ -34,7 +34,6 @@ export class AddTaskComponent implements OnInit {
         }
       );
     }
-  
     OnSave(id: string) {
       this.router.navigate([`../${id}`], {relativeTo: this.activatedRoute});
     }
