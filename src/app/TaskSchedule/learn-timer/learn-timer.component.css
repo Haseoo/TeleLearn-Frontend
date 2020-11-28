@@ -1,0 +1,50 @@
+p {
+    margin-bottom: 8px;
+}
+.timer-main {
+    padding: 25px;
+    background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgb(53, 53, 53) 75%, rgb(66, 66, 66) 100%);
+    border: solid 2px  rgb(49, 49, 49);
+    border-radius: 1em;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+.digit-container {
+    color: white;
+    background-color: rgb(170, 40, 40);
+    border: solid 2px  rgb(94, 10, 10);
+    font-size: 50px;
+    padding: 10px;
+}
+
+.digit-separator {
+    margin: 0 5px;
+    color:white;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.separator {
+    margin: 0 .5em;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+i {
+    font-size: 30px;
+}
+
+.btn {
+    padding: 6px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.task-info {
+    margin: 10px 0;
+}

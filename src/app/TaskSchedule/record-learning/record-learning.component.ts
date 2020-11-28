@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaskForStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
+import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
 import { Time } from 'src/app/Models/Time';
 
 @Component({
@@ -10,8 +11,9 @@ import { Time } from 'src/app/Models/Time';
 })
 export class RecordLearningComponent implements OnInit {
 
-  @Input() task: TaskForStudent;
+  @Input() schedule: TaskSchedule;
   @Input() defaultTime: Time;
+  @Input() startTime: string;
   @Output() apply = new EventEmitter<any>();
   @Output() cancel = new EventEmitter();
 
@@ -21,10 +23,10 @@ export class RecordLearningComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      startTime: [null ,[Validators.required]],
+      startTime: [(this.startTime) ? this.startTime : this.schedule.scheduleTime ,[Validators.required]],
       hours: [this.defaultTime.hours, [Validators.required, Validators.min(0), Validators.max(23)]],
       minutes: [this.defaultTime.minutes, [Validators.required, Validators.min(0), Validators.max(59)]],
-      progress: [this.task.taskCompletion, [Validators.required, Validators.min(0), Validators.max(100)]]
+      progress: [this.schedule.task.taskCompletion, [Validators.required, Validators.min(0), Validators.max(100)]]
     });
   }
 

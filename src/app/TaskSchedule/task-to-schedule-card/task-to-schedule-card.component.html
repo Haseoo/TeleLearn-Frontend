@@ -17,13 +17,13 @@
                 Termin: <span class="bold">{{ taskToSchedule.task.dueDate | date:'dd.MM.yyyy' }}</span>
             </div>
             <div class="card-row" *ngIf="showDetails">
-                Czas porponowany: <span class="bold">{{ taskToSchedule.task.learningTime.hours }}:{{ taskToSchedule.task.learningTime.minutes | number:'2.0' }}</span>
+                Czas porponowany: <span class="bold">{{ taskToSchedule.task.learningTime.hours }}:{{ taskToSchedule.task.learningTime.minutes | number:'2.0-0' }}</span>
             </div>
             <div class="card-row" *ngIf="showDetails">
-                Czas zaplanowany: <span class="bold">{{ taskToSchedule.totalPlannedLearningTime.hours }}:{{ taskToSchedule.totalPlannedLearningTime.minutes | number:'2.0' }}</span>
+                Czas zaplanowany: <span class="bold">{{ taskToSchedule.totalPlannedLearningTime.hours }}:{{ taskToSchedule.totalPlannedLearningTime.minutes | number:'2.0-0' }}</span>
             </div>
             <div class="card-row" *ngIf="showDetails">
-                Czas spędzony na zadaniu: <span class="bold" [ngClass]="{'text-danger' : CheckLearningTime()}">{{ taskToSchedule.totalLearningTime.hours }}:{{ taskToSchedule.totalLearningTime.minutes | number:'2.0' }}</span>
+                Czas spędzony na zadaniu: <span class="bold" [ngClass]="{'text-danger' : CheckLearningTime()}">{{ taskToSchedule.totalLearningTime.hours }}:{{ taskToSchedule.totalLearningTime.minutes | number:'2.0-0' }}</span>
             </div>
         </div>
         <button class="btn btn-success d-flex align-items-center justify-content-center" (click)="$event.stopPropagation(); schedule.emit()" title="Zapanuj zadanie">

@@ -47,7 +47,7 @@
         Data wykonania zadania: <span class="bold-span">{{ task.dueDate | date:('dd.MM.yyyy') }}</span>
     </div>
     <div class="card-row">
-        Proponowany czas wykonania zadania: <span class="bold-span">{{ task.learningTime.hours }}:{{ task.learningTime.minutes | number:'2.0' }}</span>
+        Proponowany czas wykonania zadania: <span class="bold-span">{{ task.learningTime.hours }}:{{ task.learningTime.minutes | number:'2.0-0' }}</span>
     </div>
     <div class="card-row" *ngIf="taskForStudent">
         Postęp zadania <span class="bold-span">{{ taskForStudent.taskCompletion }}%</span>

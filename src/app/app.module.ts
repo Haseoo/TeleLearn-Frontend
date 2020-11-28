@@ -71,6 +71,7 @@ import { LearnComponent } from './TaskSchedule/learn/learn.component';
 import { LearnTaskComponent } from './TaskSchedule/learn-task/learn-task.component';
 import { UserStatsComponent } from './TaskSchedule/user-stats/user-stats.component';
 import { RecordLearningComponent } from './TaskSchedule/record-learning/record-learning.component';
+import { LearnTimerComponent } from './TaskSchedule/learn-timer/learn-timer.component';
 
 registerLocaleData(localePL);
 
@@ -134,7 +135,8 @@ FullCalendarModule.registerPlugins([
     LearnComponent,
     LearnTaskComponent,
     UserStatsComponent,
-    RecordLearningComponent
+    RecordLearningComponent,
+    LearnTimerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
 import { Time } from 'src/app/Models/Time';
+import { LearnTimerService } from 'src/app/Services/learn-timer.service';
 import { TaskScheduleService } from 'src/app/Services/task-schedule.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-learn-task',
@@ -21,9 +23,11 @@ export class LearnTaskComponent implements OnInit {
   scheduleRecord: TaskSchedule;
 
   constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
     private taskScheduleService: TaskScheduleService,
     private taskService: TaskService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private learnTimerService: LearnTimerService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
@@ -54,6 +58,14 @@ export class LearnTaskComponent implements OnInit {
           this.error = true;
         }
       );
+  }
+
+  OnTimerOption() {
+    if (this.learnTimerService.SetTimer(this.scheduleRecord.id)) {
+      this.router.navigateByUrl('/timer');
+    } else {
+      Utils.HandleError(this, {error: {message: 'Czasomierz jest już ustawiony. Aby go uruchomić dla nowego zadania, zresetuj go w sekcji "czasomierz".'}})
+    }
   }
 
   get TimeForForm(): Time {

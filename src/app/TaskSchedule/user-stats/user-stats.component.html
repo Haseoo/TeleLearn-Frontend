@@ -41,13 +41,13 @@
         <tbody *ngIf="isAllDays">
           <tr *ngFor="let item of stats.learningTimeForCourseTotal | keyvalue">
             <td>{{ item.key.name }}</td>
-            <td>{{ item.value.hours }}:{{ item.value.minutes | number:'2.0' }}</td>
+            <td>{{ item.value.hours }}:{{ item.value.minutes | number:'2.0-0' }}</td>
           </tr>
         </tbody>
         <tbody *ngIf="!isAllDays">
             <tr *ngFor="let item of stats.learningTimeForCourseSevenDays | keyvalue">
               <td>{{ item.key.name }}</td>
-              <td>{{ item.value.hours }}:{{ item.value.minutes | number:'2.0' }}</td>
+              <td>{{ item.value.hours }}:{{ item.value.minutes | number:'2.0-0' }}</td>
             </tr>
           </tbody>
     </table>

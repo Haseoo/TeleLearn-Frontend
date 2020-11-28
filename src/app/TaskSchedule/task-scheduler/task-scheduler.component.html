@@ -15,7 +15,7 @@
     </div>
     <div class="d-flex align-items-center time-for-day" [ngClass]="{'time-overflow': IsTimeOverflow()}">
         <div class="flex-grow-1" *ngIf="!timeEdit">
-            Planowany czas nauki na dzień:  <span class="bold" [ngClass]="{'text-danger': IsTimeOverflow()}">{{ TotalScheduledTime.hours }}:{{ TotalScheduledTime.minutes | number:'2.0' }}</span>&nbsp;/&nbsp;<span class="bold">{{ TodaysLearningTime.hours }}:{{ TodaysLearningTime.minutes | number:'2.0' }}</span>
+            Planowany czas nauki na dzień:  <span class="bold" [ngClass]="{'text-danger': IsTimeOverflow()}">{{ TotalScheduledTime.hours }}:{{ TotalScheduledTime.minutes | number:'2.0-0' }}</span>&nbsp;/&nbsp;<span class="bold">{{ TodaysLearningTime.hours }}:{{ TodaysLearningTime.minutes | number:'2.0-0' }}</span>
         </div>
         <button *ngIf="!timeEdit" (click)="timeEdit=true" class="btn btn-success d-flex align-self-center align-items-center justify-content-center" title="Zmień czas nauki">
             <i class="material-icons">
