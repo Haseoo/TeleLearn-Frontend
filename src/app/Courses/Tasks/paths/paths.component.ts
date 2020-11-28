@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Course } from 'src/app/Models/Courses/Course';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
@@ -7,7 +7,6 @@ import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { UserService } from 'src/app/Services/user.service';
-import { Node } from '@swimlane/ngx-graph';
 import { TaskForStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 import { environment } from 'src/environments/environment';
 

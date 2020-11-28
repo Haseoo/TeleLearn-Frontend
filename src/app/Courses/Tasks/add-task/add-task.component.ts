@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/Models/Courses/Course';
-import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { CourseService } from 'src/app/Services/course.service';
-import { TaskService } from 'src/app/Services/task.service';
 
 @Component({
   selector: 'app-add-task',

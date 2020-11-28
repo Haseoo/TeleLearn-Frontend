@@ -1,7 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CalendarOptions, EventClickArg } from '@fullcalendar/angular';
+import { ActivatedRoute, } from '@angular/router';
+import { CalendarOptions } from '@fullcalendar/angular';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { TaskService } from 'src/app/Services/task.service';
 
@@ -36,7 +35,7 @@ export class CalendarComponent implements OnInit {
   };
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     this.innerWidth = window.innerWidth;
     this.calendarOptions.dayMaxEventRows = (this.innerWidth > 900) ? 1 : 0;
   }

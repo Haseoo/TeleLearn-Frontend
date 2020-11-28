@@ -18,7 +18,7 @@ export class StudentGuardService implements CanActivate {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
-    if (currentUser.userRole.toString() == UserRole[UserRole.STUDENT]) {
+    if (currentUser.userRole.toString() === UserRole[UserRole.STUDENT]) {
         return true;
     }
     this.router.navigate(['/auth-error']);

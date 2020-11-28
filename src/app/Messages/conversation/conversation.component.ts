@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingBarComponent, LoadingBarService } from '@ngx-loading-bar/core';
+import { LoadingBarService } from '@ngx-loading-bar/core';
 import { Message } from 'src/app/Models/Message';
 import { SendMessageRequest } from 'src/app/Models/Requests/SendMessageRequest';
 import { User } from 'src/app/Models/User';

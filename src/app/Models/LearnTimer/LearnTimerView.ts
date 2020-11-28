@@ -1,5 +1,4 @@
 import { LearnTimer } from './LearnTimer';
-import { TimerPause } from './TimerPause';
 import { TimerState } from './TimerState';
 
 export class LearnTimerView {

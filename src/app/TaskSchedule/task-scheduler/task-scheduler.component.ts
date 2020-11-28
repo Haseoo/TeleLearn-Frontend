@@ -1,12 +1,8 @@
 import { formatDate } from '@angular/common';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ContentRef } from '@ng-bootstrap/ng-bootstrap/util/popup';
 import { Observable } from 'rxjs';
-import { Task } from 'src/app/Models/Courses/Tasks/Task';
-import { TaskForStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 import { TaskSchedule } from 'src/app/Models/Courses/Tasks/TaskSchedule';
 import { TaskToSchedule } from 'src/app/Models/Courses/Tasks/TaskToSchedule';
 import { ScheduleTaskRequest } from 'src/app/Models/Requests/Courses/ScheduleTaskRequest';

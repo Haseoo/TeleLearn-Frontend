@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { Course } from '../Models/Courses/Course';
 import { CourseBrief } from '../Models/Courses/CourseBrief';
 import { CourseRequest } from '../Models/Requests/Courses/CourseRequest';
-import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'

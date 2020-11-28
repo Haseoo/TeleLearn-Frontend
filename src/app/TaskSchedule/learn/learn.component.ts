@@ -4,7 +4,6 @@ import { TaskScheduleService } from 'src/app/Services/task-schedule.service';
 import { UserService } from 'src/app/Services/user.service';
 import { formatDate } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TaskToSchedule } from 'src/app/Models/Courses/Tasks/TaskToSchedule';
 
 @Component({
   selector: 'app-learn',

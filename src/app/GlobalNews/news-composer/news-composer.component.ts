@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalNews } from 'src/app/Models/GlobalNews';
 import { GlobalNewsRequest } from 'src/app/Models/Requests/GlobalNewsRequest';

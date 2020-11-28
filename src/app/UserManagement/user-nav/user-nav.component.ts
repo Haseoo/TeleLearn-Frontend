@@ -10,8 +10,7 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class UserNavComponent implements OnInit {
 
-  constructor(public userService: UserService,
-              private router: Router) { }
+  constructor(public userService: UserService) { }
 
   @Output() linkClick = new EventEmitter<any>();
 

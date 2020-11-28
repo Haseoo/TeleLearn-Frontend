@@ -18,7 +18,7 @@ export class AdminGuardService implements CanActivate {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
-    if (currentUser.userRole.toString() == UserRole[UserRole.ADMIN]) {
+    if (currentUser.userRole.toString() === UserRole[UserRole.ADMIN]) {
         return true;
     }
     this.router.navigate(['/auth-error']);

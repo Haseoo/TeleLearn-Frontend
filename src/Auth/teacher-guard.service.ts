@@ -18,7 +18,7 @@ export class TeacherGuardService implements CanActivate {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
-    if (currentUser.userRole.toString() == UserRole[UserRole.TEACHER]) {
+    if (currentUser.userRole.toString() === UserRole[UserRole.TEACHER]) {
         return true;
     }
     this.router.navigate(['/auth-error']);

@@ -10,7 +10,7 @@ export class JwtInterceptorService implements HttpInterceptor {
   constructor(private userService: UserService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      let currentUser = this.userService.GetCurrentUser();
+      const currentUser = this.userService.GetCurrentUser();
       if (currentUser && currentUser.token) {
           request = request.clone({
               setHeaders: {

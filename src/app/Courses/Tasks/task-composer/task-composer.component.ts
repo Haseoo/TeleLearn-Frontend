@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Attachment } from 'src/app/Models/Attachment';
 import { Course } from 'src/app/Models/Courses/Course';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
