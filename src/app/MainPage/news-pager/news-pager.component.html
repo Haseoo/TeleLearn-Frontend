@@ -3,7 +3,7 @@
         <h2>Aktualności</h2>
     </div>
     <div class="row justify-content-center">
-        <div *ngIf="!fetchError">
+        <div *ngIf="!error">
             <div class="card-row justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current, totalItems: total }">
                 <app-news-card [news]="item"></app-news-card>
             </div>
@@ -12,5 +12,5 @@
             </div>
         </div>
     </div>
-    <app-error-bar *ngIf="fetchError" [errorMessage]="errorMessage"></app-error-bar>
+    <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
 </div>

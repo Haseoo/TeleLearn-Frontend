@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://192.168.1.16:2137/api',
+  api_url: 'http://localhost:2137/api',
   max_file_size: 10000000,
 };
 
