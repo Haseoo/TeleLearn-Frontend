@@ -7,16 +7,18 @@ import { SendMessageRequest } from 'src/app/Models/Requests/SendMessageRequest';
 import { User } from 'src/app/Models/User';
 import { MessagesService } from 'src/app/Services/messages.service';
 import { UserService } from 'src/app/Services/user.service';
+import { IError } from 'src/IError';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.component.html',
   styleUrls: ['./conversation.component.css']
 })
-export class ConversationComponent implements OnInit {
+export class ConversationComponent implements OnInit, IError {
 
-  responseError: boolean;
-  responseErrorMessage: string;
+  error: boolean;
+  errorMessage: string;
 
   participant: User;
   messages: Message[] = [];
@@ -43,8 +45,7 @@ export class ConversationComponent implements OnInit {
             this.loadingBarService.useRef('fetchMessages').stop();
           },
           err => {
-            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-            this.responseError = true;
+            Utils.HandleError(err, this);
             this.loadingBarService.useRef('fetchMessages').stop();
           }
         );
@@ -61,11 +62,11 @@ export class ConversationComponent implements OnInit {
   }
 
   SendMessage() {
-    this.responseError = false;
+    this.error = false;
     const msg = this.sendMessageForm.controls.message.value;
     if (!msg) {
-      this.responseErrorMessage = 'Nie można wysłać pustej wiadomości';
-      this.responseError = true;
+      this.errorMessage = 'Nie można wysłać pustej wiadomości';
+      this.error = true;
       return;
     }
     const request = new SendMessageRequest();
@@ -76,8 +77,7 @@ export class ConversationComponent implements OnInit {
       dt => {
         this.FetchMessages();
       }, err => {
-        this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-        this.responseError = true;
+        Utils.HandleError(err, this);
       }
     );
     this.sendMessageForm.reset();
@@ -93,8 +93,7 @@ export class ConversationComponent implements OnInit {
         this.messages = dt;
         setTimeout(() => this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight);
       }, err => {
-          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-          this.responseError = true;
+         Utils.HandleError(err, this);
       }
     );
   }

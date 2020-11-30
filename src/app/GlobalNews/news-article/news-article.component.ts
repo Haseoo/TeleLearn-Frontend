@@ -4,6 +4,8 @@ import { GlobalNews } from 'src/app/Models/GlobalNews';
 import { UserRole } from 'src/app/Models/UserRole';
 import { GlobalNewsService } from 'src/app/Services/global-news.service';
 import { UserService } from 'src/app/Services/user.service';
+import { IError } from 'src/IError';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-news-article',
@@ -11,11 +13,11 @@ import { UserService } from 'src/app/Services/user.service';
   styleUrls: ['./news-article.component.css'],
   styles: []
 })
-export class NewsArticleComponent implements OnInit {
+export class NewsArticleComponent implements OnInit, IError {
 
   article: GlobalNews;
-  responseError: boolean;
-  responseErrorMessage: string;
+  error: boolean;
+  errorMessage: string;
   deleteSuccess: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -27,8 +29,7 @@ export class NewsArticleComponent implements OnInit {
       this.newsService.getAricle(params.id).subscribe(
         dt => this.article = dt,
         err => {
-          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-          this.responseError = true;
+          Utils.HandleError(err, this);
         }
       );
     });
@@ -46,8 +47,7 @@ export class NewsArticleComponent implements OnInit {
           this.article = null;
         },
         err => {
-          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-          this.responseError = true;
+          Utils.HandleError(err, this);
         }
       );
     }

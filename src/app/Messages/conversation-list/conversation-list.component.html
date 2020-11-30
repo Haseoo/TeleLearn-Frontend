@@ -1,7 +1,7 @@
 <div class="justify-content-center">
     <h2 class="text-center">Konwersacje</h2>
 </div>
-<div *ngIf="!fetchError">
+<div *ngIf="!error">
     <div class="conversation container-fluid shadow-sm justify-content-center" *ngFor="let item of collection | paginate: { itemsPerPage: perPage, currentPage: current }">
         <a routerLink="/messages/{{ item.participant.id }}">
             <div class="d-flex align-items-center justify-content-end">
@@ -36,4 +36,4 @@
         <pagination-controls nextLabel="następna" previousLabel="poprzednia" (pageChange)="current = $event"></pagination-controls>
     </div>
 </div>
-<app-error-bar *ngIf="fetchError" [errorMessage]="errorMessage"></app-error-bar>
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>

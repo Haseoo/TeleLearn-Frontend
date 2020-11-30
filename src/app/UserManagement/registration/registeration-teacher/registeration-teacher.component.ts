@@ -3,24 +3,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TeacherRegisterRequest } from 'src/app/Models/Requests/TeacherRegisterRequest';
 import { UserService } from 'src/app/Services/user.service';
+import { IError } from 'src/IError';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-registeration-teacher',
   templateUrl: './registeration-teacher.component.html',
   styleUrls: ['./registeration-teacher.component.css', './../../../../form-style.css']
 })
-export class RegisterationTeacherComponent implements OnInit {
+export class RegisterationTeacherComponent implements OnInit, IError {
 
   registerationForm: FormGroup;
   submitted: boolean;
-  responseError: boolean;
-  responseErrorMessage: string;
   readonly PASSWORD_MIN_LENGHT = 6;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private router: Router) {
   }
+  error: boolean;
+  errorMessage: string;
 
   ngOnInit(): void {
     this.registerationForm = this.formBuilder.group({
@@ -55,8 +57,7 @@ export class RegisterationTeacherComponent implements OnInit {
       this.userService.registerTeacher(request).subscribe(
         dt => this.router.navigate(['/login'], {queryParams: {redirect: 'registration'}}),
         err => {
-          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-          this.responseError = true;
+          Utils.HandleError(err, this);
         }
       );
     }

@@ -77,8 +77,7 @@ export class CourseFormComponent implements OnInit {
           this.editSuccess = true;
           setTimeout(() => this.editSuccess = false, 5000);
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(this, err);
         }
       );
     } else {
@@ -87,8 +86,7 @@ export class CourseFormComponent implements OnInit {
           const id = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
           this.router.navigate([`/course/${id}`]);
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -100,8 +98,7 @@ export class CourseFormComponent implements OnInit {
         dt => {
           this.router.navigate(['my-courses']);
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(this, err);
         }
       );
     }

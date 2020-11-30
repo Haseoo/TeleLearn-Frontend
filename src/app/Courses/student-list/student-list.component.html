@@ -1,4 +1,4 @@
-<app-error-bar *ngIf="error" [errorMessage]="erorMessage"></app-error-bar>
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
 <div *ngIf="course && IsCurrentUserTeacher() && course.requestedStudents.length > 0">
     <div class="h4 text-center">Lista uczniów oczekujących na akceptację:</div>
     <table class="table table-striped">

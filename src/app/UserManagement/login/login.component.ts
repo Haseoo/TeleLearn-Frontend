@@ -3,18 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginRequest } from 'src/app/Models/Requests/LoginRequest';
 import { UserService } from 'src/app/Services/user.service';
+import { IError } from 'src/IError';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./../../../form-style.css', './login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, IError {
 
   loginForm: FormGroup;
   submitted: boolean;
-  responseError: boolean;
-  responseErrorMessage: string;
   isRedirectFromRegistration: boolean;
   returnUrl: string;
 
@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) {
   }
+  error: boolean;
+  errorMessage: string;
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -59,8 +61,7 @@ export class LoginComponent implements OnInit {
           }
         },
         err => {
-          this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-          this.responseError = true;
+          Utils.HandleError(err, this);
         }
       );
     }

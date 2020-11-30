@@ -4,6 +4,7 @@ import { TaskScheduleService } from 'src/app/Services/task-schedule.service';
 import { UserService } from 'src/app/Services/user.service';
 import { formatDate } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-learn',
@@ -31,7 +32,7 @@ export class LearnComponent implements OnInit {
           this.schedule.sort(this._SortSchedule);
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
+        Utils.HandleError(err, this);
       }
     );
   }

@@ -1,4 +1,4 @@
-<app-error-bar *ngIf="responseError" [errorMessage]="responseErrorMessage"></app-error-bar>
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
 <app-success-bar *ngIf="deleteSuccess" [message]="'Pomyślnie usunięto artykuł'"></app-success-bar>
 <section class="card" *ngIf="article">
     <div class="d-flex justify-content-end" *ngIf="ShowManagement()">

@@ -9,6 +9,7 @@ import { TaskService } from 'src/app/Services/task.service';
 import { UserService } from 'src/app/Services/user.service';
 import { TaskForStudent } from 'src/app/Models/Courses/Tasks/TaskForStudent';
 import { environment } from 'src/environments/environment';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-paths',
@@ -53,8 +54,7 @@ export class PathsComponent implements OnInit {
             this._SetNodes();
             this._SetLinks();
           }, err => {
-            this.errorMessage = (err.error.message) ? err.error.message : err.message;
-            this.error = true;
+            Utils.HandleError(err, this);
           }
         );
       }

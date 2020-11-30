@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentStat } from 'src/app/Models/StudentStat';
 import { Time } from 'src/app/Models/Time';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-user-stats',
@@ -23,8 +24,7 @@ export class UserStatsComponent implements OnInit {
     this.userSerivce.GetStudentStats(this.userSerivce.GetCurrentUser().id).subscribe(
       dt => this.stats = dt,
       err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

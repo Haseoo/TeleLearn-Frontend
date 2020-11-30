@@ -4,6 +4,7 @@ import { CourseBrief } from 'src/app/Models/Courses/CourseBrief';
 import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-my-courses',
@@ -33,8 +34,7 @@ export class MyCoursesComponent implements OnInit {
         this.courseBriefs = dt;
         this.courseBriefs.sort(this._CourseCompare);
       }, err => {
-        this.error = true;
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
+        Utils.HandleError(err, this);
       }
     );
   }

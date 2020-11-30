@@ -7,19 +7,19 @@ import { User } from 'src/app/Models/User';
 import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
+import { IError } from 'src/IError';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.css']
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit, IError {
 
   user: User;
   student: Student;
   teacher: Teacher;
-  responseError: boolean;
-  responseErrorMessage: string;
   coursesBriefs: CourseBrief[];
 
 
@@ -27,6 +27,8 @@ export class UserInfoComponent implements OnInit {
               private userService: UserService,
               private router: Router,
               private courseService: CourseService) { }
+  error: boolean;
+  errorMessage: string;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params =>
@@ -37,8 +39,7 @@ export class UserInfoComponent implements OnInit {
               this.userService.getStudent(this.user.id).subscribe (
                 dt2 => this.student = dt2,
                 err => {
-                  this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-                  this.responseError = true;
+                  Utils.HandleError(err, this);
                 }
               );
             } else if (this.user.userRole.toString() === UserRole[UserRole.TEACHER]) {
@@ -48,19 +49,16 @@ export class UserInfoComponent implements OnInit {
                   this.courseService.GetMyCoursesForTeacher(this.teacher.id).subscribe(
                     dt3 => this.coursesBriefs = dt3,
                     err => {
-                      this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-                      this.responseError = true;
+                      Utils.HandleError(err, this);
                     }
                   );
                 }, err => {
-                  this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-                  this.responseError = true;
+                  Utils.HandleError(err, this);
                 }
               );
             }
           }, err => {
-            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-            this.responseError = true;
+            Utils.HandleError(err, this);
           }
         )
       );

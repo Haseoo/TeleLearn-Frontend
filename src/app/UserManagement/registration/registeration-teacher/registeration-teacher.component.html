@@ -1,4 +1,4 @@
-<app-error-bar [errorMessage]="responseErrorMessage" *ngIf="responseError"></app-error-bar>
+<app-error-bar [errorMessage]="errorMessage" *ngIf="error"></app-error-bar>
 <div class="login-form">
     <form [formGroup]="registerationForm" (ngSubmit)="Submit()">
         <div class="form-group">

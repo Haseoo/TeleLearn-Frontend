@@ -8,6 +8,7 @@ import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { PostService } from 'src/app/Services/post.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-post-page',
@@ -44,14 +45,12 @@ export class PostPageComponent implements OnInit {
             this.courseService.GetCourseById(this.post.courseId).subscribe(
               dt2 => this.course = dt2,
               err => {
-                this.errorMessage = (err.error.message) ? err.error.message : err.message;
-                this.error = true;
+                Utils.HandleError(err, this);
               }
             );
             this._FetchComments();
           }, err => {
-            this.errorMessage = (err.error.message) ? err.error.message : err.message;
-            this.error = true;
+            Utils.HandleError(err, this);
           }
         );
       }
@@ -77,8 +76,7 @@ export class PostPageComponent implements OnInit {
       this.postService.DeletePost(this.post.id).subscribe(
         dt => this.router.navigate(['board'], {relativeTo: this.activatedRoute.parent}),
         err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }
@@ -92,8 +90,7 @@ export class PostPageComponent implements OnInit {
           this.commentForm.reset();
           this._FetchComments();
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }
@@ -104,8 +101,7 @@ export class PostPageComponent implements OnInit {
       this.postService.DeleteComment(comment.id).subscribe(
         dt => this._FetchComments(),
         err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }
@@ -115,8 +111,7 @@ export class PostPageComponent implements OnInit {
     this.postService.GetComments(this.post.id).subscribe(
       dt => this.comments = dt,
       err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

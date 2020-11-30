@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-course-sign-out',
@@ -27,9 +28,9 @@ export class CourseSignOutComponent implements OnInit {
 
   OnSignOut() {
     this.courseService.SignOutStudent(this.courseId, this.userService.GetCurrentUser().id).subscribe(
-      dt => this.router.navigate(['/my-courses']),
+      () => this.router.navigate(['/my-courses']),
       err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
+        Utils.HandleError(this, err);
       }
     );
   }

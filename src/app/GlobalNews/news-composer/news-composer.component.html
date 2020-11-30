@@ -1,7 +1,7 @@
 <div class="container-fluid content-container shadow">
     <h3 *ngIf="!article" class="text-center" id="top">Dodawanie artykułu</h3>
     <h3 *ngIf="article" class="text-center" id="top">Edycja artykułu "{{ article.title }}"</h3>
-    <app-error-bar *ngIf="responseError" [errorMessage]="responseErrorMessage"></app-error-bar>
+    <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
     <form [formGroup]="newsForm" (ngSubmit)="Submit()">
         <div class="form-group">
             <label>Tytuł(*)</label>

@@ -133,8 +133,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
     this.userService.SetLearningTimeForStudent({ studentId: this.userService.GetCurrentUser().id, time: newTime, date: this.CurrentScheduleDate }).subscribe(
       dt => this._FetchLearningTime(),
       err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }
@@ -146,8 +145,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
           this._FetchSchedule();
           this._FetchTasksToSchedule();
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }
@@ -277,8 +275,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
       dt => {
         this._learningTimeForDay = dt;
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }
@@ -288,8 +285,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
       dt => {
         this._studentSchedule = dt;
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }
@@ -299,8 +295,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
       dt => {
         this._tasksToSchedule = dt;
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

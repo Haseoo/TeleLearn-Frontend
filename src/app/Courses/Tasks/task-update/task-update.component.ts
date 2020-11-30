@@ -4,6 +4,7 @@ import { Course } from 'src/app/Models/Courses/Course';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { CourseService } from 'src/app/Services/course.service';
 import { TaskService } from 'src/app/Services/task.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-task-update',
@@ -32,13 +33,11 @@ export class TaskUpdateComponent implements OnInit {
             this.courseService.GetCourseById(this.task.courseId).subscribe(
               dt2 => this.course = dt2,
               err => {
-                this.errorMessage = (err.error.message) ? err.error.message : err.message;
-                this.error = true;
+                Utils.HandleError(err, this);
               }
             );
           }, err => {
-            this.errorMessage = (err.error.message) ? err.error.message : err.message;
-            this.error = true;
+            Utils.HandleError(err, this);
           }
         );
       }

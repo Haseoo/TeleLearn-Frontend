@@ -8,6 +8,7 @@ import { CourseService } from 'src/app/Services/course.service';
 import { TaskScheduleService } from 'src/app/Services/task-schedule.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-task-page',
@@ -46,8 +47,7 @@ export class TaskPageComponent implements OnInit {
           this.deleteSucces = true;
           this.task = null;
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }
@@ -62,8 +62,7 @@ export class TaskPageComponent implements OnInit {
       dt => {
         this._FetchTask(this.task.id);
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }
@@ -73,8 +72,7 @@ export class TaskPageComponent implements OnInit {
       dt => {
         this._FetchTask(this.task.id);
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }
@@ -94,22 +92,19 @@ export class TaskPageComponent implements OnInit {
         this.courseService.GetCourseById(this.task.courseId).subscribe(
           dt2 => this.course = dt2,
           err => {
-            this.errorMessage = (err.error.message) ? err.error.message : err.message;
-            this.error = true;
+            Utils.HandleError(err, this);
           }
         );
         if (this.ShowForStudent) {
           this.taskScheduleService.GetTaskSchedule(this.task.id).subscribe(
             dt2 => this.taskSchedule = dt2,
             err => {
-              this.errorMessage = (err.error.message) ? err.error.message : err.message;
-              this.error = true;
+              Utils.HandleError(err, this);
             }
           );
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

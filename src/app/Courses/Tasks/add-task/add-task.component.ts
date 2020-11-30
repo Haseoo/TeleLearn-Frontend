@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/Models/Courses/Course';
 import { CourseService } from 'src/app/Services/course.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-add-task',
@@ -25,8 +26,7 @@ export class AddTaskComponent implements OnInit {
             dt => {
               this.course = dt;
             }, err => {
-              this.errorMessage = (err.error.message) ? err.error.message : err.message;
-              this.error = true;
+              Utils.HandleError(err, this);
             }
           );
         }

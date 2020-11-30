@@ -9,6 +9,7 @@ import { CourseService } from 'src/app/Services/course.service';
 import { PostService } from 'src/app/Services/post.service';
 import { UserService } from 'src/app/Services/user.service';
 import { environment } from 'src/environments/environment';
+import { IError } from 'src/IError';
 import { Utils } from 'src/Utlis';
 
 @Component({
@@ -16,7 +17,7 @@ import { Utils } from 'src/Utlis';
   templateUrl: './post-composer.component.html',
   styleUrls: ['./post-composer.component.css', './../../../../form-style.css']
 })
-export class PostComposerComponent implements OnInit {
+export class PostComposerComponent implements OnInit, IError {
 
   MAX_FILE_SIZE_MB = environment.max_file_size / 1000000;
 
@@ -112,8 +113,7 @@ export class PostComposerComponent implements OnInit {
             this.updateSuccess = true;
             setTimeout(() => this.updateSuccess = false, 5000);
           }, err => {
-            this.errorMessage = (err.error.message) ?  err.error.message : err.message;
-            this.error = true;
+            Utils.HandleError(err, this);
           }
         );
       } else {
@@ -122,8 +122,7 @@ export class PostComposerComponent implements OnInit {
             const postId = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
             this.router.navigate([`post/${postId}`], {relativeTo: this.activatedRoute.parent});
           }, err => {
-            this.errorMessage = (err.error.message) ?  err.error.message : err.message;
-            this.error = true;
+            Utils.HandleError(err, this);
           }
         );
       }
@@ -155,8 +154,7 @@ export class PostComposerComponent implements OnInit {
           commentingAllowed: this.post.commentingAllowed
         });
       }, err => {
-        this.errorMessage = (err.error.message) ?  err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

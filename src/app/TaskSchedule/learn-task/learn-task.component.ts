@@ -49,13 +49,11 @@ export class LearnTaskComponent implements OnInit {
                 this._FetchData(this.scheduleRecord.id);
                 this.showManualRecordFrom = false;
               }, err => {
-                this.errorMessage = (err.error.message) ? err.error.message : err.message;
-                this.error = true;
+                Utils.HandleError(err, this);
               }
             );
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
   }
@@ -85,8 +83,7 @@ export class LearnTaskComponent implements OnInit {
           this.error = true;
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

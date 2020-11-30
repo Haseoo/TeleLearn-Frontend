@@ -5,6 +5,7 @@ import { Student } from 'src/app/Models/Student';
 import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-student-list',
@@ -15,7 +16,7 @@ export class StudentListComponent implements OnInit {
 
   course: Course;
   error: boolean;
-  erorMessage: string;
+  errorMessage: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private courseService: CourseService,
@@ -39,8 +40,7 @@ export class StudentListComponent implements OnInit {
         dt => {
           this.FetchCourse(this.course.id);
         }, err => {
-          this.erorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }
@@ -50,8 +50,7 @@ export class StudentListComponent implements OnInit {
     this.courseService.AcceptStudent(this.course.id, student.id).subscribe (
       dt => this.FetchCourse(this.course.id),
       err => {
-        this.erorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

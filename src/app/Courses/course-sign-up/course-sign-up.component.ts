@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CourseBrief } from 'src/app/Models/Courses/CourseBrief';
 import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-course-sign-up',
@@ -26,8 +27,7 @@ export class CourseSignUpComponent implements OnInit {
       this.courseService.GetCourseBriefById(params['course-id']).subscribe(
         dt => this.course = dt,
         err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     });
@@ -42,8 +42,7 @@ export class CourseSignUpComponent implements OnInit {
           this.waitMessage = true;
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

@@ -5,6 +5,7 @@ import { Post } from 'src/app/Models/Courses/Posts/Post';
 import { CourseService } from 'src/app/Services/course.service';
 import { PostService } from 'src/app/Services/post.service';
 import { UserService } from 'src/app/Services/user.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-post-board',
@@ -35,8 +36,7 @@ export class PostBoardComponent implements OnInit {
           this.courseService.GetCourseById(courseId).subscribe (
             dt => this.course = dt,
             err => {
-              this.errorMessage = (err.error.message) ? err.error.message : err.message;
-              this.error = true;
+              Utils.HandleError(err, this);
             }
           );
           this._FetchPosts(courseId);
@@ -62,8 +62,7 @@ export class PostBoardComponent implements OnInit {
       dt => {
         this.posts = dt;
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }
@@ -73,8 +72,7 @@ export class PostBoardComponent implements OnInit {
       this.postService.DeletePost(post.id).subscribe(
         dt => this._FetchPosts(this.course.id),
         err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }

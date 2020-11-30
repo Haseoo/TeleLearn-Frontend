@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Utils } from 'src/Utlis';
 import { Teacher } from '../Models/Teacher';
 import { UserService } from '../Services/user.service';
 
@@ -32,8 +33,7 @@ export class TeacherListComponent implements OnInit {
         this.displayedTeachers = dt;
         this._SortDisplayed();
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
     this.filterForm = this.formBuilder.group({

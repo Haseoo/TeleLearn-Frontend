@@ -5,6 +5,7 @@ import { Course } from 'src/app/Models/Courses/Course';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { CourseService } from 'src/app/Services/course.service';
 import { TaskService } from 'src/app/Services/task.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-composer',
@@ -87,8 +88,7 @@ export class ComposerComponent implements OnInit {
           this.taskMode = false;
           this._FetchData(this.course.id);
         }, err => {
-          this.errorMessage = (err.error.message) ? err.error.message : err.message;
-          this.error = true;
+          Utils.HandleError(err, this);
         }
       );
     }
@@ -143,8 +143,7 @@ export class ComposerComponent implements OnInit {
           this.taskMode = true;
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

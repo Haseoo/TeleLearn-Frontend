@@ -73,8 +73,7 @@ export class TaskComposerComponent implements OnInit {
         this._UpdatePreviousAndNextTasks();
         this._UpdateTasktoDisplay();
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
     if (this.task) {
@@ -124,8 +123,7 @@ export class TaskComposerComponent implements OnInit {
           this.save.emit(((this.task) ? this.task.id.toString() : Utils.GetIdFromLocationUrl(dt.headers.get('Location'))));
         }
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(err, this);
       }
     );
   }

@@ -1,5 +1,5 @@
 <section class="card">
-    <app-error-bar *ngIf="responseError" [errorMessage]="responseErrorMessage"></app-error-bar>
+    <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
     <div class="card-title" *ngIf="user">
         <span *ngIf="teacher">{{ teacher.title }}</span>
         {{user.name }}

@@ -5,6 +5,7 @@ import { GlobalNews } from 'src/app/Models/GlobalNews';
 import { GlobalNewsRequest } from 'src/app/Models/Requests/GlobalNewsRequest';
 import { GlobalNewsService } from 'src/app/Services/global-news.service';
 import { UserService } from 'src/app/Services/user.service';
+import { IError } from 'src/IError';
 import { Utils } from 'src/Utlis';
 
 @Component({
@@ -12,11 +13,11 @@ import { Utils } from 'src/Utlis';
   templateUrl: './news-composer.component.html',
   styleUrls: ['./news-composer.component.css', './../../../form-style.css']
 })
-export class NewsComposerComponent implements OnInit {
+export class NewsComposerComponent implements OnInit, IError {
 
   article: GlobalNews;
-  responseError: boolean;
-  responseErrorMessage: string;
+  error: boolean;
+  errorMessage: string;
   editSuccess: boolean;
 
   newsForm: FormGroup;
@@ -48,8 +49,7 @@ export class NewsComposerComponent implements OnInit {
             });
           },
           err => {
-            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-            this.responseError = true;
+            Utils.HandleError(err, this);
           }
         );
       }
@@ -78,8 +78,7 @@ export class NewsComposerComponent implements OnInit {
             this.router.navigate([`/news/${id}`]);
           },
           err => {
-            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-            this.responseError = true;
+            Utils.HandleError(err, this);
           }
         );
       } else {
@@ -88,8 +87,7 @@ export class NewsComposerComponent implements OnInit {
             this.router.navigate([`/news/${this.article.id}`]);
           },
           err => {
-            this.responseErrorMessage = (err.error.message) ? err.error.message : err.message;
-            this.responseError = true;
+            Utils.HandleError(err, this);
           }
         );
       }

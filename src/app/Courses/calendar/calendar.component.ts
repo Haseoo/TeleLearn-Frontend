@@ -3,6 +3,7 @@ import { ActivatedRoute, } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { Task } from 'src/app/Models/Courses/Tasks/Task';
 import { TaskService } from 'src/app/Services/task.service';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-calendar',
@@ -55,7 +56,7 @@ export class CalendarComponent implements OnInit {
             this.tasks = dt;
             this._PrepareEvents();
           }, err => {
-            this.errorMessage = (err.error.message) ? err.error.message : err.message;
+            Utils.HandleError(this, err);
           }
         );
       }

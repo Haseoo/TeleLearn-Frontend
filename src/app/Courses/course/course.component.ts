@@ -5,6 +5,7 @@ import { UserRole } from 'src/app/Models/UserRole';
 import { CourseService } from 'src/app/Services/course.service';
 import { UserService } from 'src/app/Services/user.service';
 import { environment } from 'src/environments/environment';
+import { Utils } from 'src/Utlis';
 
 @Component({
   selector: 'app-course',
@@ -43,8 +44,7 @@ export class CourseComponent implements OnInit {
               if (err.status === 403) {
                 this.router.navigate(['/sign-up-course/' + courseId]);
               }
-              this.errorMessage = (err.error.message) ? err.error.message : err.message;
-              this.error = true;
+              Utils.HandleError(this, err);
             }
           );
         }
