@@ -90,7 +90,6 @@ export class TaskComposerComponent implements OnInit {
 
   Submit() {
     if (this.standalone) {
-      window.scroll(0, 0);
     }
     this.submitted = true;
     if (!this.taskForm.valid) {

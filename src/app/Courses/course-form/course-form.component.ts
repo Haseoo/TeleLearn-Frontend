@@ -59,7 +59,6 @@ export class CourseFormComponent implements OnInit {
   }
 
   Submit() {
-    window.scroll(0, 0);
     this.submited = true;
     if (!this.courseForm.valid) {
       return;

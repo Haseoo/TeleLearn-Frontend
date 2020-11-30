@@ -90,7 +90,6 @@ export class PostComposerComponent implements OnInit {
   }
 
   Submit() {
-    window.scroll(0, 0);
     this.submitted = true;
     if (this.postForm.valid) {
       const request = new FormData();

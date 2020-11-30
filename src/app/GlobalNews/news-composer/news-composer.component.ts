@@ -61,7 +61,6 @@ export class NewsComposerComponent implements OnInit {
   }
 
   Submit() {
-    window.scroll(0, 0);
     this.submited = true;
     if (this.newsForm.valid) {
       const request = new GlobalNewsRequest();

@@ -38,9 +38,11 @@ export class TaskComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.progressForm = this.formBuilder.group({
-      progress: [this.taskForStudent.taskCompletion, [Validators.required, Validators.min(0), Validators.max(100)]]
-    });
+    if (this._IsCurrentUserStudent()) {
+      this.progressForm = this.formBuilder.group({
+        progress: [this.taskForStudent.taskCompletion, [Validators.required, Validators.min(0), Validators.max(100)]]
+      });
+    }
   }
 
   DownloadFile(attachment: Attachment) {
