@@ -8,7 +8,7 @@
             <i class="material-icons md-18">delete_forever</i>Usuń zadanie
         </button>
     </div>
-    <div class="card-row d-flex justify-content-end btn-menu" *ngIf="showForStudent && standalone">
+    <div class="card-row d-flex justify-content-end btn-menu" *ngIf="showForStudent && standalone && taskForStudent.isLearnable">
         <button class="btn btn-success d-flex align-items-center"  (click)="OnProgressClick()">
             <i class="material-icons md-18">create</i>Aktualizuj postęp
         </button>

@@ -50,3 +50,15 @@ a.card-link:hover{
  .completed {
      background-color: rgb(225, 252, 225);
  }
+
+ .completed:hover {
+    background-color: rgb(194, 255, 194);
+}
+
+ .overlap {
+     background-color: rgb(255, 221, 221);
+ }
+
+ .overlap:hover {
+    background-color: rgb(255, 203, 203);
+}

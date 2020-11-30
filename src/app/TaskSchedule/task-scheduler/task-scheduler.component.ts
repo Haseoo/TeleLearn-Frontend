@@ -9,6 +9,7 @@ import { ScheduleTaskRequest } from 'src/app/Models/Requests/Courses/ScheduleTas
 import { Time } from 'src/app/Models/Time';
 import { TaskScheduleService } from 'src/app/Services/task-schedule.service';
 import { UserService } from 'src/app/Services/user.service';
+import { IError } from 'src/IError';
 import { Utils } from 'src/Utlis';
 import { TaskToScheduleSection } from '../TaskToScheduleSection';
 
@@ -18,7 +19,7 @@ import { TaskToScheduleSection } from '../TaskToScheduleSection';
   styleUrls: ['./task-scheduler.component.css', '../../../form-style.css'],
   providers: [NgbModalConfig, NgbModal]
 })
-export class TaskSchedulerComponent implements OnInit {
+export class TaskSchedulerComponent implements OnInit, IError {
 
   error: boolean;
   errorMessage: string;
@@ -180,8 +181,7 @@ export class TaskSchedulerComponent implements OnInit {
         this._FetchSchedule();
         this._FetchTasksToSchedule();
       }, err => {
-        this.errorMessage = (err.error.message) ? err.error.message : err.message;
-        this.error = true;
+        Utils.HandleError(this, err, true);
       }
     );
   }

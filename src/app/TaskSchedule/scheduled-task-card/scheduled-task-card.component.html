@@ -1,4 +1,4 @@
-<div class="card item" [ngClass]="{'completed': IsCompleted()}" *ngIf="taskSchedule">
+<div class="card item" [ngClass]="{'overlap': taskSchedule.isOverlap, 'completed': IsCompleted()}" *ngIf="taskSchedule">
     <div class="d-flex align-items-center justify-content-end">
         <i class="material-icons">
             schedule
@@ -19,8 +19,8 @@
             <div class="card-row" *ngIf="onTaskPage">
                 Data: <span class="bold">{{ taskSchedule.date | date:'dd.MM.yyyy' }}</span>
             </div>
-            <div class="card-row" *ngIf="taskSchedule.scheduleTime">
-                Godzina: <span class="bold">{{ taskSchedule.scheduleTime }}</span>
+            <div class="card-row" *ngIf="taskSchedule.scheduleTime" [ngClass]="{'text-danger': taskSchedule.isOverlap}">
+                Godzina: <span class="bold">{{ taskSchedule.scheduleTime }}</span>&nbsp;-&nbsp;<span class="bold">{{ taskSchedule.endScheduleTime }}</span>
             </div>
         </div>
         <button (click)="learn.emit()" *ngIf="buttons.includes('learn')" class="btn d-flex align-items-center justify-content-center" (click)="$event.stopPropagation()" title="Wykonuj zadanie" [ngClass]="(taskSchedule.task.isLearnable) ? 'btn-primary' : 'btn-secondary'" [disabled]="!taskSchedule.task.isLearnable">

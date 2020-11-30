@@ -6,9 +6,12 @@ export class Utils {
         return splittedLocation[splittedLocation.length - 1];
     }
 
-    static HandleError(component: IError, response: any) {
+    static HandleError(component: IError, response: any, timeOut: boolean = false) {
         component.errorMessage = (response.error.message) ? response.error.message : response.message;
         component.error = true;
+        if (timeOut) {
+            setTimeout(() => component.error = false, 5000);
+        }
     }
 
     static GetTimeString(date: Date) {

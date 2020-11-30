@@ -10,4 +10,6 @@ export class TaskSchedule {
     student: Student;
     task: TaskForStudent;
     scheduleTime: string;
+    endScheduleTime: string;
+    isOverlap: boolean;
 }
