@@ -45,12 +45,12 @@ export class PostPageComponent implements OnInit {
             this.courseService.GetCourseById(this.post.courseId).subscribe(
               dt2 => this.course = dt2,
               err => {
-                Utils.HandleError(err, this);
+                Utils.HandleError(this, err);
               }
             );
             this._FetchComments();
           }, err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       }
@@ -76,7 +76,7 @@ export class PostPageComponent implements OnInit {
       this.postService.DeletePost(this.post.id).subscribe(
         dt => this.router.navigate(['board'], {relativeTo: this.activatedRoute.parent}),
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -90,7 +90,7 @@ export class PostPageComponent implements OnInit {
           this.commentForm.reset();
           this._FetchComments();
         }, err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -101,7 +101,7 @@ export class PostPageComponent implements OnInit {
       this.postService.DeleteComment(comment.id).subscribe(
         dt => this._FetchComments(),
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -111,7 +111,7 @@ export class PostPageComponent implements OnInit {
     this.postService.GetComments(this.post.id).subscribe(
       dt => this.comments = dt,
       err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

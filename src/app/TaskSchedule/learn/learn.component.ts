@@ -32,7 +32,7 @@ export class LearnComponent implements OnInit {
           this.schedule.sort(this._SortSchedule);
         }
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

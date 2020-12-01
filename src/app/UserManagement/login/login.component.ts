@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit, IError {
           }
         },
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }

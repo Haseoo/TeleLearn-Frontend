@@ -28,7 +28,7 @@ export class ConversationListComponent implements OnInit, IError {
         this.collection = dt;
         this.collection.sort((first, second) => new Date(second.lastMessageTime).valueOf() - new Date(first.lastMessageTime).valueOf());
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

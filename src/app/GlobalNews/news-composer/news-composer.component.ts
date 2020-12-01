@@ -49,7 +49,7 @@ export class NewsComposerComponent implements OnInit, IError {
             });
           },
           err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       }
@@ -78,7 +78,7 @@ export class NewsComposerComponent implements OnInit, IError {
             this.router.navigate([`/news/${id}`]);
           },
           err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       } else {
@@ -87,7 +87,7 @@ export class NewsComposerComponent implements OnInit, IError {
             this.router.navigate([`/news/${this.article.id}`]);
           },
           err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       }

@@ -47,7 +47,7 @@ export class TaskPageComponent implements OnInit {
           this.deleteSucces = true;
           this.task = null;
         }, err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -62,7 +62,7 @@ export class TaskPageComponent implements OnInit {
       dt => {
         this._FetchTask(this.task.id);
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }
@@ -72,7 +72,7 @@ export class TaskPageComponent implements OnInit {
       dt => {
         this._FetchTask(this.task.id);
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }
@@ -92,19 +92,19 @@ export class TaskPageComponent implements OnInit {
         this.courseService.GetCourseById(this.task.courseId).subscribe(
           dt2 => this.course = dt2,
           err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
         if (this.ShowForStudent) {
           this.taskScheduleService.GetTaskSchedule(this.task.id).subscribe(
             dt2 => this.taskSchedule = dt2,
             err => {
-              Utils.HandleError(err, this);
+              Utils.HandleError(this, err);
             }
           );
         }
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

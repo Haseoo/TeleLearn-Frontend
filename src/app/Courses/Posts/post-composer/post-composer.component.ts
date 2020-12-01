@@ -113,7 +113,7 @@ export class PostComposerComponent implements OnInit, IError {
             this.updateSuccess = true;
             setTimeout(() => this.updateSuccess = false, 5000);
           }, err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       } else {
@@ -122,7 +122,7 @@ export class PostComposerComponent implements OnInit, IError {
             const postId = Utils.GetIdFromLocationUrl(dt.headers.get('Location'));
             this.router.navigate([`post/${postId}`], {relativeTo: this.activatedRoute.parent});
           }, err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       }
@@ -154,7 +154,7 @@ export class PostComposerComponent implements OnInit, IError {
           commentingAllowed: this.post.commentingAllowed
         });
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

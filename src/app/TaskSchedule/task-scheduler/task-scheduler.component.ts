@@ -133,7 +133,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
     this.userService.SetLearningTimeForStudent({ studentId: this.userService.GetCurrentUser().id, time: newTime, date: this.CurrentScheduleDate }).subscribe(
       dt => this._FetchLearningTime(),
       err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }
@@ -145,7 +145,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
           this._FetchSchedule();
           this._FetchTasksToSchedule();
         }, err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -275,7 +275,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
       dt => {
         this._learningTimeForDay = dt;
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }
@@ -285,7 +285,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
       dt => {
         this._studentSchedule = dt;
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }
@@ -295,7 +295,7 @@ export class TaskSchedulerComponent implements OnInit, IError {
       dt => {
         this._tasksToSchedule = dt;
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

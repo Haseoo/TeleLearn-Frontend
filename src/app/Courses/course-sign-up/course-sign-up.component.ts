@@ -27,7 +27,7 @@ export class CourseSignUpComponent implements OnInit {
       this.courseService.GetCourseBriefById(params['course-id']).subscribe(
         dt => this.course = dt,
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     });
@@ -42,7 +42,7 @@ export class CourseSignUpComponent implements OnInit {
           this.waitMessage = true;
         }
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

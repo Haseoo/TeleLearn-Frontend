@@ -45,7 +45,7 @@ export class ConversationComponent implements OnInit, IError {
             this.loadingBarService.useRef('fetchMessages').stop();
           },
           err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
             this.loadingBarService.useRef('fetchMessages').stop();
           }
         );
@@ -77,7 +77,7 @@ export class ConversationComponent implements OnInit, IError {
       dt => {
         this.FetchMessages();
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
     this.sendMessageForm.reset();
@@ -93,7 +93,7 @@ export class ConversationComponent implements OnInit, IError {
         this.messages = dt;
         setTimeout(() => this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight);
       }, err => {
-         Utils.HandleError(err, this);
+         Utils.HandleError(this, err);
       }
     );
   }

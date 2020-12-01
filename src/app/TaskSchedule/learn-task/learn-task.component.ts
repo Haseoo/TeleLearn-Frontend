@@ -49,11 +49,11 @@ export class LearnTaskComponent implements OnInit {
                 this._FetchData(this.scheduleRecord.id);
                 this.showManualRecordFrom = false;
               }, err => {
-                Utils.HandleError(err, this);
+                Utils.HandleError(this, err);
               }
             );
         }, err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
   }
@@ -83,7 +83,7 @@ export class LearnTaskComponent implements OnInit {
           this.error = true;
         }
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

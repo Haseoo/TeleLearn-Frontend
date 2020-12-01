@@ -39,7 +39,7 @@ export class UserInfoComponent implements OnInit, IError {
               this.userService.getStudent(this.user.id).subscribe (
                 dt2 => this.student = dt2,
                 err => {
-                  Utils.HandleError(err, this);
+                  Utils.HandleError(this, err);
                 }
               );
             } else if (this.user.userRole.toString() === UserRole[UserRole.TEACHER]) {
@@ -49,16 +49,16 @@ export class UserInfoComponent implements OnInit, IError {
                   this.courseService.GetMyCoursesForTeacher(this.teacher.id).subscribe(
                     dt3 => this.coursesBriefs = dt3,
                     err => {
-                      Utils.HandleError(err, this);
+                      Utils.HandleError(this, err);
                     }
                   );
                 }, err => {
-                  Utils.HandleError(err, this);
+                  Utils.HandleError(this, err);
                 }
               );
             }
           }, err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         )
       );

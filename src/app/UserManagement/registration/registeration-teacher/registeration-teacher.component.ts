@@ -57,7 +57,7 @@ export class RegisterationTeacherComponent implements OnInit, IError {
       this.userService.registerTeacher(request).subscribe(
         dt => this.router.navigate(['/login'], {queryParams: {redirect: 'registration'}}),
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }

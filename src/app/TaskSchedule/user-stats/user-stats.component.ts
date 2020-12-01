@@ -24,7 +24,7 @@ export class UserStatsComponent implements OnInit {
     this.userSerivce.GetStudentStats(this.userSerivce.GetCurrentUser().id).subscribe(
       dt => this.stats = dt,
       err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

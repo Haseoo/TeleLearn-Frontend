@@ -33,7 +33,7 @@ export class TeacherListComponent implements OnInit {
         this.displayedTeachers = dt;
         this._SortDisplayed();
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
     this.filterForm = this.formBuilder.group({

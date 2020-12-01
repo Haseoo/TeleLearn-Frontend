@@ -88,7 +88,7 @@ export class ComposerComponent implements OnInit {
           this.taskMode = false;
           this._FetchData(this.course.id);
         }, err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -143,7 +143,7 @@ export class ComposerComponent implements OnInit {
           this.taskMode = true;
         }
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

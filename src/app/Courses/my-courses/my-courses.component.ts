@@ -34,7 +34,7 @@ export class MyCoursesComponent implements OnInit {
         this.courseBriefs = dt;
         this.courseBriefs.sort(this._CourseCompare);
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

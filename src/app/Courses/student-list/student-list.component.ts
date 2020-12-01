@@ -40,7 +40,7 @@ export class StudentListComponent implements OnInit {
         dt => {
           this.FetchCourse(this.course.id);
         }, err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
@@ -50,7 +50,7 @@ export class StudentListComponent implements OnInit {
     this.courseService.AcceptStudent(this.course.id, student.id).subscribe (
       dt => this.FetchCourse(this.course.id),
       err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }

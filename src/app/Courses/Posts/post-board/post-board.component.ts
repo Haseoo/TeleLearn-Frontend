@@ -36,7 +36,7 @@ export class PostBoardComponent implements OnInit {
           this.courseService.GetCourseById(courseId).subscribe (
             dt => this.course = dt,
             err => {
-              Utils.HandleError(err, this);
+              Utils.HandleError(this, err);
             }
           );
           this._FetchPosts(courseId);
@@ -62,7 +62,7 @@ export class PostBoardComponent implements OnInit {
       dt => {
         this.posts = dt;
       }, err => {
-        Utils.HandleError(err, this);
+        Utils.HandleError(this, err);
       }
     );
   }
@@ -72,7 +72,7 @@ export class PostBoardComponent implements OnInit {
       this.postService.DeletePost(post.id).subscribe(
         dt => this._FetchPosts(this.course.id),
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }

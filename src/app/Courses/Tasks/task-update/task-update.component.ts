@@ -33,11 +33,11 @@ export class TaskUpdateComponent implements OnInit {
             this.courseService.GetCourseById(this.task.courseId).subscribe(
               dt2 => this.course = dt2,
               err => {
-                Utils.HandleError(err, this);
+                Utils.HandleError(this, err);
               }
             );
           }, err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       }

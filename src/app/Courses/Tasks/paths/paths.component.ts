@@ -54,7 +54,7 @@ export class PathsComponent implements OnInit {
             this._SetNodes();
             this._SetLinks();
           }, err => {
-            Utils.HandleError(err, this);
+            Utils.HandleError(this, err);
           }
         );
       }

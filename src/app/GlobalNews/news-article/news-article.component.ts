@@ -29,7 +29,7 @@ export class NewsArticleComponent implements OnInit, IError {
       this.newsService.getAricle(params.id).subscribe(
         dt => this.article = dt,
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     });
@@ -47,7 +47,7 @@ export class NewsArticleComponent implements OnInit, IError {
           this.article = null;
         },
         err => {
-          Utils.HandleError(err, this);
+          Utils.HandleError(this, err);
         }
       );
     }
