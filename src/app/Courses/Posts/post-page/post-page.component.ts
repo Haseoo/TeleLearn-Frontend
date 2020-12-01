@@ -83,10 +83,10 @@ export class PostPageComponent implements OnInit {
   }
 
   OnAddComment() {
-    const content = this.commentForm.controls.content.value;
+    const content = this.commentForm.value.content;
     if (content) {
       this.postService.AddComment(this.post.id, content).subscribe(
-        dt => {
+        () => {
           this.commentForm.reset();
           this._FetchComments();
         }, err => {

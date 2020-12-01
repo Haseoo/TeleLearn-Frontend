@@ -35,19 +35,19 @@
             <div class="form-group" *ngIf="IsStudent()">
                 <label>Czas wykonywania (HH:mm) (*):</label>
                 <div class="d-flex align-content-center">
-                    <input type="number" formControlName="hoursInterval" [min]=0 class="form-control" [ngClass]="{ 'invalid': userEditSubmitted && ectls.hoursInterval.errors }"/>
+                    <input type="number" formControlName="hours" [min]=0 class="form-control" [ngClass]="{ 'invalid': userEditSubmitted && ectls.hours.errors }"/>
                     <div class="separator align-self-center">
                         :
                     </div>
-                    <input type="number" formControlName="minutesInterval" [min]=0 max="60" class="form-control" [ngClass]="{ 'invalid': userEditSubmitted && ectls.minutesInterval.errors }"/>
+                    <input type="number" formControlName="minutes" [min]=0 max="60" class="form-control" [ngClass]="{ 'invalid': userEditSubmitted && ectls.minutes.errors }"/>
                 </div>
-                <div *ngIf="userEditSubmitted && ectls.minutesInterval.errors" class="text-danger">
-                    <div *ngIf="ectls.minutesInterval.errors.min">Liczba minut nie może być ujemna</div>
-                    <div *ngIf="ectls.minutesInterval.errors.max">Liczba minut nie może być większa niż 60</div>
+                <div *ngIf="userEditSubmitted && ectls.minutes.errors" class="text-danger">
+                    <div *ngIf="ectls.minutes.errors.min">Liczba minut nie może być ujemna</div>
+                    <div *ngIf="ectls.minutes.errors.max">Liczba minut nie może być większa niż 60</div>
                 </div>
-                <div *ngIf="userEditSubmitted && ectls.hoursInterval.errors" class="text-danger">
-                    <div *ngIf="ectls.hoursInterval.errors.min">Liczba godzin nie może być ujemna</div>
-                    <div *ngIf="ectls.hoursInterval.errors.max">Nie można planować na więcej niż jeden dzień</div>
+                <div *ngIf="userEditSubmitted && ectls.hours.errors" class="text-danger">
+                    <div *ngIf="ectls.hours.errors.min">Liczba godzin nie może być ujemna</div>
+                    <div *ngIf="ectls.hours.errors.max">Nie można planować na więcej niż jeden dzień</div>
                 </div>
             </div>
             <div class="form-group d-flex justify-content-center sub-btn">

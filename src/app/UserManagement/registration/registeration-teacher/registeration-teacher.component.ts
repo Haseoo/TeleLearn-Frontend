@@ -46,14 +46,14 @@ export class RegisterationTeacherComponent implements OnInit, IError {
     if (!this.registerationForm.valid || !this.registerationForm.controls.tos.value) {
       return;
     } else {
-      const ctls = this.registerationForm.controls;
-      const request = new TeacherRegisterRequest(ctls.login.value,
-        ctls.password.value,
-        ctls.email.value,
-        ctls.name.value,
-        ctls.surname.value,
-        ctls.unit.value,
-        ctls.title.value);
+      const data = this.registerationForm.value;
+      const request = new TeacherRegisterRequest(data.login,
+        data.password,
+        data.email,
+        data.name,
+        data.surname,
+        data.unit,
+        data.title);
       this.userService.registerTeacher(request).subscribe(
         dt => this.router.navigate(['/login'], {queryParams: {redirect: 'registration'}}),
         err => {

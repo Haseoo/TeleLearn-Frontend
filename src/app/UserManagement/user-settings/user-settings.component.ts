@@ -42,8 +42,8 @@ export class UserSettingsComponent implements OnInit {
     };
 
     if (this.IsStudent()) {
-      group.minutesInterval = ['0', [Validators.min(0), Validators.max(59)]];
-      group.hoursInterval = ['0', [Validators.min(0), Validators.max(23)]];
+      group.minutes = ['0', [Validators.min(0), Validators.max(59)]];
+      group.hours = ['0', [Validators.min(0), Validators.max(23)]];
     }
     this.userEditForm = this.formBuilder.group(group);
 
@@ -60,8 +60,8 @@ export class UserSettingsComponent implements OnInit {
             surname: dt.surname,
             email: dt.email,
             unit: dt.unit,
-            minutesInterval: dt.dailyLearningTime.minutes,
-            hoursInterval: dt.dailyLearningTime.hours
+            minutes: dt.dailyLearningTime.minutes,
+            hours: dt.dailyLearningTime.hours
           });
         },
         err => {
@@ -99,8 +99,8 @@ export class UserSettingsComponent implements OnInit {
   PasswordSubmit() {
     this.passwordSubmitted = true;
     if (this.passwordForm.valid) {
-      const request = new PasswordChangeRequest(this.passwordForm.controls.oldPassword.value,
-        this.passwordForm.controls.newPassword.value);
+      const request = new PasswordChangeRequest(this.passwordForm.value.oldPassword,
+        this.passwordForm.value.newPassword);
       this.userService.changePassword(this.userService.GetCurrentUser().id, request).subscribe (
         dt => {
             this.passwordResponseError = false;
@@ -120,14 +120,8 @@ export class UserSettingsComponent implements OnInit {
     this.userEditSubmitted = true;
     if (this.userEditForm.valid) {
       if (this.IsStudent()) {
-        const request = new StudentUpdateRequest();
-        const ctls = this.userEditForm.controls;
-        request.email = ctls.email.value;
-        request.name = ctls.name.value;
-        request.surname = ctls.surname.value;
-        request.unit = ctls.unit.value;
-        request.hours = ctls.hoursInterval.value;
-        request.minutes = ctls.minutesInterval.value;
+        const request = this.userEditForm.value;
+        console.log(request);
         this.userService.updateStudent(this.userService.GetCurrentUser().id, request).subscribe(
           dt => {
             this.editResponseError = false;
@@ -141,15 +135,9 @@ export class UserSettingsComponent implements OnInit {
           }
         );
       } else if (this.IsTeacher()) {
-        const request = new TeacherUpdateRequest();
-        const ctls = this.userEditForm.controls;
-        request.email = ctls.email.value;
-        request.name = ctls.name.value;
-        request.surname = ctls.surname.value;
-        request.unit = ctls.unit.value;
-        request.title = ctls.title.value;
+        const request = this.userEditForm.value;
         this.userService.updateTeacher(this.userService.GetCurrentUser().id, request).subscribe(
-          dt => {
+          () => {
             this.editUserSuccess = true;
             this.userService.updateCurrentUserInfo();
             setTimeout(() => this.editUserSuccess = false, 5000);

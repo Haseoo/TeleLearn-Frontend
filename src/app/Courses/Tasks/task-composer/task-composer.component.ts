@@ -94,16 +94,16 @@ export class TaskComposerComponent implements OnInit {
     if (!this.taskForm.valid) {
       return;
     }
-    const ctls = this.taskForm.controls;
+    const data = this.taskForm.value;
     const request = new FormData();
     request.append('courseId', this.course.id.toString());
-    request.append('name', ctls.name.value);
-    if (ctls.content.value && ctls.content.value !== 'null') {
-      request.append('description', ctls.content.value.replace(/<[^>]*>/g, '').replace('\n', '<br />'));
+    request.append('name', data.name);
+    if (data.content && data.content !== 'null') {
+      request.append('description', data.content.replace(/<[^>]*>/g, '').replace('\n', '<br />'));
     }
-    request.append('dueDate', ctls.dueDate.value);
-    request.append('learningTimeHours', ctls.hoursInterval.value);
-    request.append('learningTimeMinutes', ctls.minutesInterval.value);
+    request.append('dueDate', data.dueDate);
+    request.append('learningTimeHours', data.hoursInterval);
+    request.append('learningTimeMinutes', data.minutesInterval);
     this.filesToUpload.forEach(file => {
       request.append('files', file);
     });

@@ -55,17 +55,17 @@ export class TeacherListComponent implements OnInit {
 
   Submit() {
     this.formVisible = false;
-    const ctls = this.filterForm.controls;
+    const data = this.filterForm.value;
     let result = [...this._teachers];
-    if (ctls.name.value) {
-      result = result.filter(e => e.name.toUpperCase() === ctls.name.value.toUpperCase());
+    if (data.name) {
+      result = result.filter(e => e.name.toUpperCase() === data.name.toUpperCase());
     }
-    if (ctls.surname.value) {
-      result = result.filter(e => e.surname.toUpperCase() === ctls.surname.value.toUpperCase());
+    if (data.surname) {
+      result = result.filter(e => e.surname.toUpperCase() === data.surname.toUpperCase());
     }
 
-    if (ctls.unit.value) {
-      result = result.filter(e => e.unit.toUpperCase().includes(ctls.unit.value.toUpperCase()));
+    if (data.unit) {
+      result = result.filter(e => e.unit.toUpperCase().includes(data.unit.toUpperCase()));
     }
 
     this.displayedTeachers = result;

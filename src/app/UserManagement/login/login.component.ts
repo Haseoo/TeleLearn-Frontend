@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit, IError {
     if (!this.loginForm.valid) {
       return;
     } else {
-      const request = new LoginRequest(this.loginForm.controls.login.value,
-        this.loginForm.controls.password.value);
+      const request = new LoginRequest(this.loginForm.value.login,
+        this.loginForm.value.password);
       this.userService.PreformLogin(request).subscribe(
         dt => {
           this.userService.storeLogin(dt);

@@ -42,16 +42,16 @@ export class RegisterationStudentComponent implements OnInit, IError {
 
   Submit() {
     this.submitted = true;
-    if (!this.registerationForm.valid || !this.registerationForm.controls.tos.value) {
+    if (!this.registerationForm.valid || !this.registerationForm.value.tos) {
       return;
     } else {
-      const ctls = this.registerationForm.controls;
-      const request = new StudentRegisterRequest(ctls.login.value,
-        ctls.password.value,
-        ctls.email.value,
-        ctls.name.value,
-        ctls.surname.value,
-        ctls.unit.value);
+      const data = this.registerationForm.value;
+      const request = new StudentRegisterRequest(data.login,
+        data.password,
+        data.email,
+        data.name,
+        data.surname,
+        data.unit);
       this.userService.registerStudent(request).subscribe(
         dt => this.router.navigate(['/login'], {queryParams: {redirect: 'registration'}}),
         err => {

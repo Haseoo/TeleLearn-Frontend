@@ -64,16 +64,16 @@ export class CourseFormComponent implements OnInit {
       return;
     }
     const request = new CourseRequest();
-    const ctls = this.courseForm.controls;
+    const data = this.courseForm.value;
     request.ownerId = this.userService.GetCurrentUser().id;
-    request.name = ctls.name.value;
-    request.welcomePageHtmlContent = ctls.welcomePageHtmlContent.value;
-    request.isPublicCourse = ctls.publicCourse.value;
-    request.isAutoAccept = ctls.autoAccept.value;
-    request.areStudentsAllowedToPost = ctls.studentsAllowedToPost.value;
+    request.name = data.name;
+    request.welcomePageHtmlContent = data.welcomePageHtmlContent;
+    request.isPublicCourse = data.publicCourse;
+    request.isAutoAccept = data.autoAccept;
+    request.areStudentsAllowedToPost = data.studentsAllowedToPost;
     if (this.course) {
       this.courseService.UpdateCourse(this.course.id, request).subscribe(
-        dt => {
+        () => {
           this.editSuccess = true;
           setTimeout(() => this.editSuccess = false, 5000);
         }, err => {

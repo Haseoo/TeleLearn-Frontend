@@ -93,10 +93,10 @@ export class PostComposerComponent implements OnInit, IError {
     this.submitted = true;
     if (this.postForm.valid) {
       const request = new FormData();
-      const ctls = this.postForm.controls;
-      request.append('commentingAllowed', ctls.commentingAllowed.value);
-      request.append('content', ctls.content.value.replace(/<[^>]*>/g, '').replace('\n', '<br />'));
-      request.append('postVisibility', ctls.postVisibility.value);
+      const data = this.postForm.value;
+      request.append('commentingAllowed', data.commentingAllowed);
+      request.append('content', data.content.replace(/<[^>]*>/g, '').replace('\n', '<br />'));
+      request.append('postVisibility', data.postVisibility);
       request.append('courseId', this.courseId.toString());
       this.filesToUpload.forEach(file => {
         request.append('files', file);

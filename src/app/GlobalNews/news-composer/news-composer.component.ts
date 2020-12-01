@@ -64,13 +64,13 @@ export class NewsComposerComponent implements OnInit, IError {
     this.submited = true;
     if (this.newsForm.valid) {
       const request = new GlobalNewsRequest();
-      const ctls = this.newsForm.controls;
+      const data = this.newsForm.value;
       request.authorId = this.userService.GetCurrentUser().id;
-      request.title = ctls.title.value;
-      request.brief = ctls.brief.value;
-      request.htmlContent = ctls.htmlContent.value;
-      request.publicationDate = (ctls.publicationDate.value) ?
-        new Date(ctls.publicationDate.value) : new Date();
+      request.title = data.title;
+      request.brief = data.brief;
+      request.htmlContent = data.htmlContent;
+      request.publicationDate = (data.publicationDate) ?
+        new Date(data.publicationDate) : new Date();
       if (!this.article) {
         this.newsService.addArticle(request).subscribe(
           dt => {
