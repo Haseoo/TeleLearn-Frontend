@@ -67,8 +67,7 @@ export class PostComposerComponent implements OnInit, IError {
         this.courseId = params['course-id'];
         this.courseService.GetCourseById(this.courseId).subscribe(
           dt => {
-            const currentUser = this.userService.GetCurrentUser();
-            if (currentUser.userRole.toString() === UserRole[UserRole.STUDENT] && !dt.areStudentsAllowedToPost) {
+            if (this.userService.IsCurrentUserStudent() && !dt.areStudentsAllowedToPost) {
               this.router.navigate(['/auth-error']);
             }
           }

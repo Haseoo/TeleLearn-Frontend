@@ -15,6 +15,7 @@ import { Teacher } from '../Models/Teacher';
 import { Time } from '../Models/Time';
 import { User } from '../Models/User';
 import { UserLoginResponse } from '../Models/UserLoginResponse';
+import { UserRole } from '../Models/UserRole';
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,25 @@ export class UserService {
 
   SetLearningTimeForStudent(request: LearningTimeRequest): Observable<any> {
     return this.httpClient.put<Map<string, Time>>(`${environment.api_url}/learning-time`, request, { observe: 'response' });
+  }
+
+  IsCurrentUserAdmin(): boolean {
+    return this._CheckCurrentRole(UserRole.ADMIN);
+  }
+
+  IsCurrentUserTeacher(): boolean {
+    return this._CheckCurrentRole(UserRole.TEACHER);
+  }
+
+  IsCurrentUserStudent(): boolean {
+    return this._CheckCurrentRole(UserRole.STUDENT);
+  }
+
+  private _CheckCurrentRole(role: UserRole): boolean {
+    if (!this.GetCurrentUser()) {
+      return false;
+    }
+    return this.GetCurrentUser().userRole.toString() === UserRole[role];
   }
 
 }

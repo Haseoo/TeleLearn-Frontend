@@ -36,7 +36,7 @@ export class NewsArticleComponent implements OnInit, IError {
   }
 
   ShowManagement(): boolean {
-    return this.userService.GetCurrentUser() && this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.ADMIN];
+    return this.userService.IsCurrentUserAdmin();
   }
 
   OnDelete() {

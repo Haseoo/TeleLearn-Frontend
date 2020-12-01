@@ -38,7 +38,7 @@ export class TaskComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    if (this._IsCurrentUserStudent()) {
+    if (this.userService.IsCurrentUserStudent()) {
       this.progressForm = this.formBuilder.group({
         progress: [this.taskForStudent.taskCompletion, [Validators.required, Validators.min(0), Validators.max(100)]]
       });
@@ -57,7 +57,7 @@ export class TaskComponent implements OnInit {
   }
 
   get taskForStudent(): TaskForStudent {
-    if (this._IsCurrentUserStudent()) {
+    if (this.userService.IsCurrentUserStudent()) {
       return this.task as TaskForStudent;
     } else {
       return undefined;
@@ -73,10 +73,6 @@ export class TaskComponent implements OnInit {
     const newValue = this.progressForm.value.progress;
     this.updateProgress.emit(newValue);
     this.showProgressUpdate = false;
-  }
-
-  private _IsCurrentUserStudent(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
   }
 
 }

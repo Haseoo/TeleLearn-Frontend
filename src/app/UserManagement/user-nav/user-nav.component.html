@@ -1,16 +1,16 @@
-<button class="nav-banner" *ngIf="isCurrentUserAdmin()">
+<button class="nav-banner" *ngIf="isCurrentUserAdmin">
     Panel adminstratora
 </button>
-<ul *ngIf="isCurrentUserAdmin()">
+<ul *ngIf="isCurrentUserAdmin">
     <li>
         <a routerLink="/news/compose" (click)="linkClick.emit()">Dodaj nowy artykuł na stronę główną</a>
     </li>
 </ul>
 
-<button class="nav-banner" *ngIf="isCurrentUserStudent()">
+<button class="nav-banner" *ngIf="isCurrentUserStudent">
     Panel ucznia
 </button>
-<ul *ngIf="isCurrentUserStudent()">
+<ul *ngIf="isCurrentUserStudent">
     <li>
         <a routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
     </li>
@@ -32,10 +32,10 @@
 </ul>
 
 
-<button class="nav-banner" *ngIf="isCurrentUserTeacher()">
+<button class="nav-banner" *ngIf="isCurrentUserTeacher">
     Panel nauczyciela
 </button>
-<ul *ngIf="isCurrentUserTeacher()">
+<ul *ngIf="isCurrentUserTeacher">
     <li>
         <a routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
     </li>
@@ -58,13 +58,13 @@
 </ul>
 
 <ul *ngIf="userService.GetCurrentUser()">
-    <li *ngIf="!isCurrentUserAdmin()">
+    <li *ngIf="!isCurrentUserAdmin">
         <a routerLink="/user/{{ userService.GetCurrentUser().id }}" (click)="linkClick.emit()">Mój profil</a>
     </li>
     <li>
         <a routerLink="/messages" (click)="linkClick.emit()">Wiadomości</a>
     </li>
-    <li *ngIf="!isCurrentUserAdmin()">
+    <li *ngIf="!isCurrentUserAdmin">
         <a routerLink="/user/settings" (click)="linkClick.emit()">Ustawienia konta</a>
     </li>
     <li>

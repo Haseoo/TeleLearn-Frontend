@@ -22,12 +22,11 @@ export class MyCoursesComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
-    const currentUser = this.userService.GetCurrentUser();
     let observaleBriefs: Observable<CourseBrief[]>;
-    if (currentUser.userRole.toString() === UserRole[UserRole.STUDENT]) {
-      observaleBriefs = this.courseService.GetMyCoursesForStudent(currentUser.id);
-    } else if (currentUser.userRole.toString() === UserRole[UserRole.TEACHER]){
-      observaleBriefs = this.courseService.GetMyCoursesForTeacher(currentUser.id);
+    if (this.userService.IsCurrentUserStudent()) {
+      observaleBriefs = this.courseService.GetMyCoursesForStudent(this.userService.GetCurrentUser().id);
+    } else if (this.userService.IsCurrentUserTeacher()){
+      observaleBriefs = this.courseService.GetMyCoursesForTeacher(this.userService.GetCurrentUser().id);
     }
     observaleBriefs.subscribe(
       dt => {
@@ -40,7 +39,7 @@ export class MyCoursesComponent implements OnInit {
   }
 
   get ShowOwner(): boolean {
-    return !(this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER]);
+    return !(this.userService.IsCurrentUserTeacher());
   }
 
   private _CourseCompare(course1: CourseBrief, course2: CourseBrief) {

@@ -59,7 +59,7 @@ export class PostPageComponent implements OnInit {
 
   HasCurrentUserRightsToDelete(item: any): boolean {
     const currentUser = this.userService.GetCurrentUser();
-    return currentUser.userRole.toString() === UserRole[UserRole.TEACHER] || item.author.id === currentUser.id;
+    return this.userService.IsCurrentUserTeacher() || item.author.id === currentUser.id;
   }
 
   HasCurrentUserRightsEdit(item: any): boolean {

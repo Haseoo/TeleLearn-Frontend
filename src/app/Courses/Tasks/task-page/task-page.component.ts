@@ -78,11 +78,11 @@ export class TaskPageComponent implements OnInit {
   }
 
   get ShowManagement(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER];
+    return this.userService.IsCurrentUserTeacher();
   }
 
   get ShowForStudent(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
+    return this.userService.IsCurrentUserStudent();
   }
 
   private _FetchTask(id: number) {

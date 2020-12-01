@@ -163,10 +163,10 @@ export class UserSettingsComponent implements OnInit {
   }
 
   IsTeacher(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER];
+    return this.userService.IsCurrentUserTeacher();
   }
 
   IsStudent(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
+    return this.userService.IsCurrentUserStudent();
   }
 }

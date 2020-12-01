@@ -31,7 +31,7 @@ export class StudentListComponent implements OnInit {
   }
 
   IsCurrentUserTeacher(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER];
+    return this.userService.IsCurrentUserTeacher();
   }
 
   OnUserDelete(student: Student) {

@@ -13,12 +13,11 @@ export class AdminGuardService implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = this.userService.GetCurrentUser();
-    if (!currentUser) {
+    if (!this.userService.GetCurrentUser()) {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
-    if (currentUser.userRole.toString() === UserRole[UserRole.ADMIN]) {
+    if (this.userService.IsCurrentUserAdmin()) {
         return true;
     }
     this.router.navigate(['/auth-error']);

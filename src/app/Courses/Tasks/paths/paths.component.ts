@@ -66,11 +66,11 @@ export class PathsComponent implements OnInit {
   }
 
   IsCurrentUserTeacher(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.TEACHER];
+    return this.userService.IsCurrentUserTeacher();
   }
 
   IsCurrentUserStudent(): boolean {
-    return this.userService.GetCurrentUser().userRole.toString() === UserRole[UserRole.STUDENT];
+    return this.userService.IsCurrentUserStudent();
   }
 
   GetTaskForStudent(task: Task) {

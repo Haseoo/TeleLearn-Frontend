@@ -17,20 +17,16 @@ export class UserNavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isCurrentUserAdmin(): boolean {
-    return this.checkUserRole(UserRole.ADMIN);
+  get isCurrentUserAdmin(): boolean {
+    return this.userService.IsCurrentUserAdmin();
   }
 
-  isCurrentUserStudent(): boolean {
-    return this.checkUserRole(UserRole.STUDENT);
+  get isCurrentUserStudent(): boolean {
+    return this.userService.IsCurrentUserStudent();
   }
 
-  isCurrentUserTeacher(): boolean {
-    return this.checkUserRole(UserRole.TEACHER);
-  }
-
-  private checkUserRole(role: UserRole): boolean {
-    return this.userService.GetCurrentUser() && this.userService.GetCurrentUser().userRole.toString() === UserRole[role];
+  get isCurrentUserTeacher(): boolean {
+    return this.userService.IsCurrentUserTeacher();
   }
 
 }
