@@ -1,46 +1,46 @@
-<button class="nav-banner" *ngIf="isCurrentUserAdmin">
+<header class="nav-banner" *ngIf="isCurrentUserAdmin">
     Panel adminstratora
-</button>
+</header>
 <ul *ngIf="isCurrentUserAdmin">
     <li>
-        <a routerLink="/news/compose" (click)="linkClick.emit()">Dodaj nowy artykuł na stronę główną</a>
+        <a a class="d-flex justify-content-center"routerLink="/news/compose" (click)="linkClick.emit()">Dodaj nowy artykuł na stronę główną</a>
     </li>
 </ul>
 
-<button class="nav-banner" *ngIf="isCurrentUserStudent">
+<header class="nav-banner" *ngIf="isCurrentUserStudent">
     Panel ucznia
-</button>
+</header>
 <ul *ngIf="isCurrentUserStudent">
     <li>
-        <a routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
+        <a a class="d-flex justify-content-center"routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
     </li>
     <li>
-        <a routerLink="/learn" (click)="linkClick.emit()">Ucz się</a>
+        <a a class="d-flex justify-content-center"routerLink="/learn" (click)="linkClick.emit()">Ucz się</a>
     </li>
     <li>
-        <a routerLink="/my-schedule" (click)="linkClick.emit()">Zaplanuj naukę</a>
+        <a a class="d-flex justify-content-center"routerLink="/my-schedule" (click)="linkClick.emit()">Zaplanuj naukę</a>
     </li>
     <li>
-        <a routerLink="/timer" (click)="linkClick.emit()">Czasomierz</a>
+        <a a class="d-flex justify-content-center"routerLink="/timer" (click)="linkClick.emit()">Czasomierz</a>
     </li>
     <li>
-        <a routerLink="/stats" (click)="linkClick.emit()">Podsumowania i statystyki</a>
+        <a a class="d-flex justify-content-center"routerLink="/stats" (click)="linkClick.emit()">Podsumowania i statystyki</a>
     </li>
-    <li>
-        <a routerLink="/teachers" (click)="linkClick.emit()">Znajdź nauczyciela</a>
+    <li style="border-bottom: none;">
+        <a a class="d-flex justify-content-center"routerLink="/teachers" (click)="linkClick.emit()">Znajdź nauczyciela</a>
     </li>
 </ul>
 
 
-<button class="nav-banner" *ngIf="isCurrentUserTeacher">
+<header class="nav-banner" *ngIf="isCurrentUserTeacher">
     Panel nauczyciela
-</button>
+</header>
 <ul *ngIf="isCurrentUserTeacher">
     <li>
-        <a routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
+        <a a class="d-flex justify-content-center"routerLink="/my-courses" (click)="linkClick.emit()">Moje kursy</a>
     </li>
-    <li>
-        <a routerLink="/new-course" (click)="linkClick.emit()">Utwórz nowy kurs</a>
+    <li style="border-bottom: none;">
+        <a a class="d-flex justify-content-center"routerLink="/new-course" (click)="linkClick.emit()">Utwórz nowy kurs</a>
     </li>
 </ul>
 
@@ -50,24 +50,24 @@
 </button>
 <ul *ngIf="!userService.GetCurrentUser()">
     <li>
-        <a routerLink="/login" (click)="linkClick.emit()">Zaloguj się</a>
+        <a a class="d-flex justify-content-center"routerLink="/login" (click)="linkClick.emit()">Zaloguj się</a>
     </li>
     <li>
-        <a routerLink="/register" (click)="linkClick.emit()">Zarejestruj się</a>
+        <a a class="d-flex justify-content-center"routerLink="/register" (click)="linkClick.emit()">Zarejestruj się</a>
     </li>
 </ul>
 
 <ul *ngIf="userService.GetCurrentUser()">
     <li *ngIf="!isCurrentUserAdmin">
-        <a routerLink="/user/{{ userService.GetCurrentUser().id }}" (click)="linkClick.emit()">Mój profil</a>
+        <a a class="d-flex justify-content-center"routerLink="/user/{{ userService.GetCurrentUser().id }}" (click)="linkClick.emit()">Mój profil</a>
     </li>
     <li>
-        <a routerLink="/messages" (click)="linkClick.emit()">Wiadomości</a>
+        <a a class="d-flex justify-content-center"routerLink="/messages" (click)="linkClick.emit()">Wiadomości</a>
     </li>
     <li *ngIf="!isCurrentUserAdmin">
-        <a routerLink="/user/settings" (click)="linkClick.emit()">Ustawienia konta</a>
+        <a a class="d-flex justify-content-center"routerLink="/user/settings" (click)="linkClick.emit()">Ustawienia konta</a>
     </li>
     <li>
-        <a routerLink="/logout" (click)="linkClick.emit()">Wyloguj</a>
+        <a a class="d-flex justify-content-center"routerLink="/logout" (click)="linkClick.emit()">Wyloguj</a>
     </li>
 </ul>

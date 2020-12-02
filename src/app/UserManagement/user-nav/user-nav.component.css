@@ -7,8 +7,8 @@
     border-width: 1px 0;
     font-weight: bold;
     text-align: left;
-    cursor: pointer;
-    background-color: rgb(194, 233, 248);
+    background: radial-gradient(circle, rgba(194,233,248,1) 0%, rgba(216,241,251,1) 46%, rgba(224,238,244,1) 90%, rgba(255,255,255,1) 100%);
+    background-color: rgb(194, 233, 248); 
 }
 
 .nav-banner:focus {
@@ -22,13 +22,17 @@ ul {
 }
 
 li {
-    padding: 10px 0;
     list-style-type: none;
     text-align: center;
     border-bottom: solid lightgray 1px;
 }
 
+a {
+    padding: 10px 0;
+    text-decoration: none;
+}
+
 
 li:hover {
-    background-color: aliceblue;
+    background:  aliceblue;
 }
