@@ -5,8 +5,8 @@ export class StudentStat {
     taskTimeForWeek: Time;
     plannedTimeForWeek: Time;
     learningTimeForWeek: Time;
-    learningTimeForCourseSevenDays: Map<CourseBrief, Time>;
-    learningTimeForCourseTotal: Map<CourseBrief, Time>;
+    learningTimeForCourseSevenDays: any;
+    learningTimeForCourseTotal: any;
     hoursLearningStats: Map<number, number>;
     averageLearningTime: Time;
 }

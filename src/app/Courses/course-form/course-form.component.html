@@ -32,7 +32,7 @@
         </div>
     </form>
     <h3 *ngIf="course" class="text-center">Usuwanie kursu</h3>
-    <div class="container center-block">
+    <div class="container center-block" *ngIf="course">
         <p class="text-danger">Uwaga! Usunęcie kursu jest nieodracalne, spowoduje to, że wszyscy uczniowe utracą progres w zadaniach przypisanych do kursu.</p>
         <div class="form-group d-flex justify-content-center sub-btn">
             <button class="btn btn-danger" (click)="OnCourseDelete()">Usuń kurs</button>

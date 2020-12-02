@@ -1,5 +1,5 @@
 <div class="h4 text-center">Ścieżki kursu</div>
-<app-error-bar *ngIf="error" [errorMessage]="errorMessage"]></app-error-bar>
+<app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
 <div *ngIf="course && IsCurrentUserTeacher()" class="add-task d-flex justify-content-center">
     <a class="btn btn-primary d-flex align-items-center" routerLink="/course/{{ course.id }}/task/add">
         <i class="material-icons">add_task</i>

@@ -82,7 +82,7 @@
             </div>
             <div *ngIf="task && task.attachments.length > 0">
                 <p class="h5">Załączniki dodane do zadania:</p>
-                <div class="d-flex align-items-center attachment" *ngFor="let item of task.attachments">
+                <div class="d-flex align-items-center attachment item-on-list" *ngFor="let item of task.attachments">
                     <button type="button" class="btn btn-danger" title="Usuń załącznik" (click)="OnAddedFileDelete(item)"><i class="material-icons">delete_forever</i></button>
                     <div class="separator"></div>
                     <i class="material-icons">text_snippet</i>

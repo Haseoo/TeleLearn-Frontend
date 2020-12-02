@@ -2,4 +2,5 @@
 <app-task-composer *ngIf="course"
     [course]="course"
     (save)="OnSave($event)"
+    [standalone]="true"
 ></app-task-composer>
