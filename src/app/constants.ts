@@ -1,1 +1,1 @@
-export const APP_NAME: string = "TeleLearn.it"
+export const APP_NAME = 'TeleLearn.it';

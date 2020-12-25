@@ -84,6 +84,10 @@ li:hover {
         width: 100%;
     }
 
+    .menu-title {
+        cursor: pointer;
+    }
+
     .content-container {
         padding: 0;
         width: 100%;
