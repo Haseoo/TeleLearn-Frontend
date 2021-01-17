@@ -1,18 +1,18 @@
 <app-error-bar *ngIf="error" [errorMessage]="errorMessage"></app-error-bar>
 <app-success-bar *ngIf="updateSuccess" [message]="'Aktualizacja pomyślna'"></app-success-bar>
 <div class="container form-container shadow">
-    <p class="text-center h3" *ngIf="!post">Dodawanie postu</p>
-    <p class="text-center h3" *ngIf="post">Edycja postu</p>
+    <p class="text-center h3" *ngIf="!post">Dodawanie wpisu</p>
+    <p class="text-center h3" *ngIf="post">Edycja wpisu</p>
     <form [formGroup]="postForm" (ngSubmit)="Submit()">
         <div class="form-group">
             <label>Treść:</label>
-            <textarea placeholder="Treść postu..." formControlName="content" class="form-control" rows=5
+            <textarea placeholder="Treść wpisu..." formControlName="content" class="form-control" rows=5
                 [ngClass]="{ 'invalid': submitted && ctls.content.errors }">
             </textarea>
             <div class="text-danger" *ngIf="submitted && ctls.content.errors && ctls.content.errors.required">Post musi zawierać treść</div>
         </div>
-        <div class="form-group">
-            <label>Widoczność postu:</label>
+        <div class="form-group" *ngIf="IsCurrentUserStudent()">
+            <label>Widoczność wipsu:</label>
             <select class="form-control" formControlName="postVisibility">
                 <option value="{{ POST_VISIBILITY_EVERYONE }}">Wszyscy uczestnicy</option>
                 <option value="{{ POST_VISIBILITY_ONLY_TEACHER }}">Tylko prowadzący kurs</option>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div *ngIf="post && post.attachments.length > 0">
-                <p class="h5">Załączniki dodane do postu:</p>
+                <p class="h5">Załączniki dodane do wpisu:</p>
                 <div class="d-flex align-items-center attachment" *ngFor="let item of post.attachments">
                     <button class="btn btn-danger" title="Usuń załącznik" (click)="OnAddedFileDelete(item)"><i class="material-icons">delete_forever</i></button>
                     <div class="separator"></div>

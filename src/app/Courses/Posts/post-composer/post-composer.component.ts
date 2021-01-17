@@ -158,4 +158,8 @@ export class PostComposerComponent implements OnInit, IError {
     );
   }
 
+  IsCurrentUserStudent(): boolean {
+    return this.userService.IsCurrentUserStudent();
+  }
+
 }
