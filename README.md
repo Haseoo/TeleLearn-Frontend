@@ -8,5 +8,5 @@ TeleLearn is a three-tier application. PostgreSQL was chosen as the database, Ja
 ![](visuals/5.png)
 ![](visuals/6.png)
 ![](visuals/7.png)
-![](visuals/1a.gif)
-![](visuals/2.gif)
+![](visuals/a1.gif)
+![](visuals/a2.gif)
