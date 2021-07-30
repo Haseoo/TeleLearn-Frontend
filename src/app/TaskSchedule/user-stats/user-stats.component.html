@@ -40,14 +40,14 @@
         </thead>
         <tbody *ngIf="isAllDays">
           <tr *ngFor="let item of stats.learningTimeForCourseTotal">
-            <td>{{ GetCourseName(item) }}</td>
-            <td>{{ GetCourseTime(item).hours }}:{{ GetCourseTime(item).minutes | number:'2.0-0' }}</td>
+            <td *ngIf="item">{{ item.course }}</td>
+            <td *ngIf="item">{{ item.learningTime.hours }}:{{ item.learningTime.minutes | number:'2.0-0' }}</td>
           </tr>
         </tbody>
         <tbody *ngIf="!isAllDays">
             <tr *ngFor="let item of stats.learningTimeForCourseSevenDays">
-              <td>{{ GetCourseName(item) }}</td>
-              <td>{{ GetCourseTime(item).hours }}:{{ GetCourseTime(item).minutes | number:'2.0-0' }}</td>
+              <td *ngIf="item">{{ item.course  }}</td>
+              <td *ngIf="item">{{ item.learningTime.hours }}:{{ item.learningTime.minutes | number:'2.0-0' }}</td>
             </tr>
           </tbody>
     </table>
@@ -60,9 +60,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of stats.hoursLearningStats | keyvalue">
-            <td>{{ item.key }}</td>
-            <td>{{ item.value }}</td>
+          <tr *ngFor="let item of stats.hoursLearningStats">
+            <td>{{ item.hour }}</td>
+            <td>{{ item.learningTimes }}</td>
           </tr>
         </tbody>
     </table>

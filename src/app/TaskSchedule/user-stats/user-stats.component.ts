@@ -58,12 +58,4 @@ export class UserStatsComponent implements OnInit {
     return '';
   }
 
-  GetCourseName(item: any): string {
-    return Object.keys(item)[0];
-  }
-
-  GetCourseTime(item: any): any {
-    return item[Object.keys(item)[0]];
-  }
-
 }
