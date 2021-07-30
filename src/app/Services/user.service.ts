@@ -36,7 +36,8 @@ export class UserService {
     setTimeout(() => localStorage.setItem('currentUser', JSON.stringify(userLoginResponse)));
   }
 
-  logout(): void {
+  async logout(): Promise<void> {
+    await this.httpClient.delete<UserLoginResponse>(`${environment.api_url}/user/logout`).toPromise();
     setTimeout(() => localStorage.removeItem('currentUser'));
   }
 
